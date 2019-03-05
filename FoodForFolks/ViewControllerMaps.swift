@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  ViewControllerMaps.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class ViewControllerMaps: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
