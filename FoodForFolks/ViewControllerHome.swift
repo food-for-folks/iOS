@@ -16,10 +16,6 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //print(testFood[0].itemDescription)
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
