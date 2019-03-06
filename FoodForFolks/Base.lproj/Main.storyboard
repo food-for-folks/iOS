@@ -503,6 +503,9 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Maps" image="icons8-map-marker-filled-50" id="cPa-gy-q4n"/>
+                    <connections>
+                        <segue destination="EwN-Pa-1bG" kind="presentation" identifier="ShowDetailsMap" id="5FA-dx-Ha9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -850,7 +853,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OAY-yW-FKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2208.8000000000002" y="614.84257871064472"/>
+            <point key="canvasLocation" x="2212" y="544"/>
         </scene>
         <!--Settings-->
         <scene sceneID="AzJ-Re-L36">
@@ -872,7 +875,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PBe-jB-L4x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1269.5999999999999" y="614.84257871064472"/>
+            <point key="canvasLocation" x="1273" y="544"/>
         </scene>
     </scenes>
     <resources>
@@ -881,4 +884,7 @@
         <image name="icons8-map-marker-filled-50" width="37.5" height="37.5"/>
         <image name="icons8-settings-filled-50" width="37.5" height="37.5"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5FA-dx-Ha9"/>
+    </inferredMetricsTieBreakers>
 </document>
