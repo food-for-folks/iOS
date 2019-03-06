@@ -10,9 +10,11 @@ import UIKit
 
 class ViewControllerHome: UIViewController {
 
-    let testFood = TestFoodData.data
+    var testFood = TestFoodData.data
     
     var foodNumber:Int?
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,14 @@ class ViewControllerHome: UIViewController {
             let foodDetails = segue.destination as! ViewControllerFoodDetails
             foodDetails.food = testFood[foodNumber!]
         }
+    }
+    
+    @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
+        let vc = unwindSegue.source as! ViewControllerNewFood
+        let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: "111", itemImage: "111", idNumber: 2, itemDescription: vc.foodDescription.text!, itemOwner: vc.ownerName.text!, itemLocation: vc.foodLocation.text!, itemExpiration: "111")
+        testFood.append(newFood)
+        //print(testFood.last?.itemLocation)
+        tableView.reloadData()
     }
 
 }

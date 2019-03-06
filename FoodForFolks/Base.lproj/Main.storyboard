@@ -72,6 +72,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="P9R-cm-3B6" id="NbR-31-yGJ"/>
                         <segue destination="EwN-Pa-1bG" kind="presentation" identifier="foodDetails" id="t4T-c1-rzg"/>
                     </connections>
                 </viewController>
@@ -217,6 +218,10 @@
                                     <constraint firstAttribute="height" constant="30" id="ofu-wF-0UY"/>
                                 </constraints>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="checkSubmit:" destination="Ipa-U3-nuq" eventType="touchUpInside" id="1ol-hZ-2i1"/>
+                                    <segue destination="URO-Fz-KlN" kind="unwind" identifier="addedFood" unwindAction="unwindFromAddWithUnwindSegue:" id="tS0-2g-aox"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -270,8 +275,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ug6-Ui-M3Z"/>
                     </view>
+                    <connections>
+                        <outlet property="foodDescription" destination="Cxf-Gf-wdv" id="sab-6q-azw"/>
+                        <outlet property="foodExpiration" destination="9EG-ZN-cZf" id="vMb-sh-iJ6"/>
+                        <outlet property="foodLocation" destination="m8d-fB-L4I" id="Uoq-y6-F8g"/>
+                        <outlet property="foodQuanty" destination="lAu-Tg-7VA" id="H5G-Zg-dn0"/>
+                        <outlet property="foodTitle" destination="O63-hD-vPU" id="cmg-Bi-8iI"/>
+                        <outlet property="imageToAdd" destination="TsH-6O-J54" id="PSW-su-D6w"/>
+                        <outlet property="ownerName" destination="1pW-RU-Fmu" id="5a2-id-Eyn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A3Y-u7-SmL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="URO-Fz-KlN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3077.5999999999999" y="-1823.8380809595203"/>
         </scene>
@@ -885,6 +900,6 @@
         <image name="icons8-settings-filled-50" width="37.5" height="37.5"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5FA-dx-Ha9"/>
+        <segue reference="t4T-c1-rzg"/>
     </inferredMetricsTieBreakers>
 </document>
