@@ -471,15 +471,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EZp-hR-pKd">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
                             </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PiZ-h6-y1I">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Food For Folks" id="Ma9-nT-Y9W"/>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" placeholder="Search for Food" translatesAutoresizingMaskIntoConstraints="NO" id="Fvj-JP-J4Z">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EZp-hR-pKd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="0NZ-uI-Zmc"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="EZp-hR-pKd" secondAttribute="trailing" id="Ec2-LO-DN0"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="EZp-hR-pKd" secondAttribute="bottom" id="UaO-Mr-6Ll"/>
-                            <constraint firstItem="EZp-hR-pKd" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="oy5-63-M97"/>
+                            <constraint firstItem="Fvj-JP-J4Z" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="65h-NZ-0nS"/>
+                            <constraint firstItem="PiZ-h6-y1I" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Eob-0K-rxM"/>
+                            <constraint firstItem="PiZ-h6-y1I" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Hpl-oa-Mso"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="PFZ-0K-5gW"/>
+                            <constraint firstItem="Fvj-JP-J4Z" firstAttribute="top" secondItem="PiZ-h6-y1I" secondAttribute="bottom" id="YLm-Hm-03z"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="auL-FP-WtM"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="hvI-Ti-ZAQ"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="top" secondItem="Fvj-JP-J4Z" secondAttribute="bottom" id="oP6-st-xPW"/>
+                            <constraint firstItem="PiZ-h6-y1I" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="s4e-tY-BN8"/>
+                            <constraint firstItem="Fvj-JP-J4Z" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="yL0-PR-Ksr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
@@ -487,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273" y="-800"/>
+            <point key="canvasLocation" x="1272.8" y="-800.14992503748135"/>
         </scene>
         <!--Messages-->
         <scene sceneID="7Vj-nn-hvd">
