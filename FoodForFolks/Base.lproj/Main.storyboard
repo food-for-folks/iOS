@@ -479,7 +479,7 @@
                                     <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Food For Folks" id="Ma9-nT-Y9W"/>
+                                    <navigationItem title="Avaliable Food" id="Ma9-nT-Y9W"/>
                                 </items>
                             </navigationBar>
                             <searchBar contentMode="redraw" placeholder="Search for Food" translatesAutoresizingMaskIntoConstraints="NO" id="Fvj-JP-J4Z">
