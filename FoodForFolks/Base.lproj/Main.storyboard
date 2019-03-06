@@ -534,7 +534,7 @@
                                     <outlet property="delegate" destination="zfU-dF-GI1" id="vEp-hy-gCB"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="nae-R2-wIl">
+                            <searchBar contentMode="redraw" placeholder="Search Messages" translatesAutoresizingMaskIntoConstraints="NO" id="nae-R2-wIl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
