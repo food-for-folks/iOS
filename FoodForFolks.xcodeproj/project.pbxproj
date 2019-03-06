@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D059BEB222F56E600A0B676 /* ViewControllerThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */; };
+		5D059BED222F598C00A0B676 /* TableViewControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */; };
 		5D391DED222F030F00BCB29B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391DEC222F030F00BCB29B /* AppDelegate.swift */; };
 		5D391DEF222F030F00BCB29B /* ViewControllerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391DEE222F030F00BCB29B /* ViewControllerHome.swift */; };
 		5D391DF1222F030F00BCB29B /* ViewControllerMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */; };
@@ -14,7 +16,6 @@
 		5D391DF6222F031100BCB29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF5222F031100BCB29B /* Assets.xcassets */; };
 		5D391DF9222F031100BCB29B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF7222F031100BCB29B /* LaunchScreen.storyboard */; };
 		5D391E03222F060900BCB29B /* ViewControllerMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E02222F060900BCB29B /* ViewControllerMessages.swift */; };
-		5D391E05222F061E00BCB29B /* ViewControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E04222F061E00BCB29B /* ViewControllerSettings.swift */; };
 		5D391E0A222F0FD000BCB29B /* TableViewCellHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */; };
 		5D391E0B222F0FD000BCB29B /* TableViewCellHome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */; };
 		5D391E0D222F123100BCB29B /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0C222F123100BCB29B /* FoodData.swift */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerThread.swift; sourceTree = "<group>"; };
+		5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSettings.swift; sourceTree = "<group>"; };
 		5D391DE9222F030F00BCB29B /* FoodForFolks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodForFolks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D391DEC222F030F00BCB29B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D391DEE222F030F00BCB29B /* ViewControllerHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHome.swift; sourceTree = "<group>"; };
@@ -33,7 +36,6 @@
 		5D391DF8222F031100BCB29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D391DFA222F031100BCB29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D391E02222F060900BCB29B /* ViewControllerMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMessages.swift; sourceTree = "<group>"; };
-		5D391E04222F061E00BCB29B /* ViewControllerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSettings.swift; sourceTree = "<group>"; };
 		5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellHome.swift; sourceTree = "<group>"; };
 		5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellHome.xib; sourceTree = "<group>"; };
 		5D391E0C222F123100BCB29B /* FoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodData.swift; sourceTree = "<group>"; };
@@ -70,7 +72,6 @@
 				969F04832DCD28508755088D /* Pods-FoodForFolks.debug.xcconfig */,
 				D5E71E78DB16B3A7930C9AF3 /* Pods-FoodForFolks.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -104,8 +105,9 @@
 				5D391E0E222F1AFF00BCB29B /* ViewControllerNewFood.swift */,
 				5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */,
 				5D391E02222F060900BCB29B /* ViewControllerMessages.swift */,
-				5D391E04222F061E00BCB29B /* ViewControllerSettings.swift */,
+				5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */,
 				5D391DF2222F030F00BCB29B /* Main.storyboard */,
+				5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */,
 				5D391DF5222F031100BCB29B /* Assets.xcassets */,
 				5D391DF7222F031100BCB29B /* LaunchScreen.storyboard */,
 				5D391DFA222F031100BCB29B /* Info.plist */,
@@ -242,10 +244,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D059BEB222F56E600A0B676 /* ViewControllerThread.swift in Sources */,
 				5D391E0D222F123100BCB29B /* FoodData.swift in Sources */,
 				5D391DF1222F030F00BCB29B /* ViewControllerMaps.swift in Sources */,
 				5D391DED222F030F00BCB29B /* AppDelegate.swift in Sources */,
-				5D391E05222F061E00BCB29B /* ViewControllerSettings.swift in Sources */,
+				5D059BED222F598C00A0B676 /* TableViewControllerSettings.swift in Sources */,
 				5D391E03222F060900BCB29B /* ViewControllerMessages.swift in Sources */,
 				5D391E0A222F0FD000BCB29B /* TableViewCellHome.swift in Sources */,
 				5D391DEF222F030F00BCB29B /* ViewControllerHome.swift in Sources */,
