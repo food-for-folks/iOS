@@ -320,7 +320,7 @@
                                     <constraint firstAttribute="width" secondItem="BeJ-18-3Aw" secondAttribute="height" multiplier="343:240" id="fcP-w9-Kgv"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7B-vy-aMf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7B-vy-aMf">
                                 <rect key="frame" x="117" y="324" width="242" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J7B-vy-aMf" secondAttribute="height" multiplier="242:21" id="7ih-Tv-WU8"/>
