@@ -21,6 +21,7 @@
 		5D391E0D222F123100BCB29B /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0C222F123100BCB29B /* FoodData.swift */; };
 		5D391E0F222F1AFF00BCB29B /* ViewControllerNewFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0E222F1AFF00BCB29B /* ViewControllerNewFood.swift */; };
 		5D391E11222F204E00BCB29B /* ViewControllerFoodDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */; };
+		CEFE441522381AAD009681CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEFE441422381AAD009681CB /* GoogleService-Info.plist */; };
 		E721D7A6A1332E47353301E9 /* Pods_FoodForFolks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A7B30EC66E58E10E09FEBA /* Pods_FoodForFolks.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFoodDetails.swift; sourceTree = "<group>"; };
 		81A7B30EC66E58E10E09FEBA /* Pods_FoodForFolks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodForFolks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		969F04832DCD28508755088D /* Pods-FoodForFolks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodForFolks.debug.xcconfig"; path = "Target Support Files/Pods-FoodForFolks/Pods-FoodForFolks.debug.xcconfig"; sourceTree = "<group>"; };
+		CEFE441422381AAD009681CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D5E71E78DB16B3A7930C9AF3 /* Pods-FoodForFolks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodForFolks.release.xcconfig"; path = "Target Support Files/Pods-FoodForFolks/Pods-FoodForFolks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 		5D391DEB222F030F00BCB29B /* FoodForFolks */ = {
 			isa = PBXGroup;
 			children = (
+				CEFE441422381AAD009681CB /* GoogleService-Info.plist */,
 				5D391DEC222F030F00BCB29B /* AppDelegate.swift */,
 				5D391E0C222F123100BCB29B /* FoodData.swift */,
 				5D059BF0222F629500A0B676 /* ViewControllerHome.swift */,
@@ -177,6 +180,7 @@
 			files = (
 				5D391DF9222F031100BCB29B /* LaunchScreen.storyboard in Resources */,
 				5D391DF6222F031100BCB29B /* Assets.xcassets in Resources */,
+				CEFE441522381AAD009681CB /* GoogleService-Info.plist in Resources */,
 				5D391E0B222F0FD000BCB29B /* TableViewCellHome.xib in Resources */,
 				5D391DF4222F030F00BCB29B /* Main.storyboard in Resources */,
 			);
