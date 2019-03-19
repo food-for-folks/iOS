@@ -9,5 +9,7 @@ target 'FoodForFolks' do
   pod 'Alamofire', '~> 5.0.0-beta.2'
   pod 'MessageKit'
   pod 'Scaledrone', '~> 0.3.0'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 
 end
