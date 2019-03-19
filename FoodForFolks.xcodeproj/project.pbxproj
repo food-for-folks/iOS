@@ -21,6 +21,8 @@
 		5D391E0D222F123100BCB29B /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0C222F123100BCB29B /* FoodData.swift */; };
 		5D391E0F222F1AFF00BCB29B /* ViewControllerNewFood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0E222F1AFF00BCB29B /* ViewControllerNewFood.swift */; };
 		5D391E11222F204E00BCB29B /* ViewControllerFoodDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */; };
+		8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */; };
+		8B694EBC22415964008C81B8 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B694EBB22415964008C81B8 /* Switcher.swift */; };
 		E721D7A6A1332E47353301E9 /* Pods_FoodForFolks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A7B30EC66E58E10E09FEBA /* Pods_FoodForFolks.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		5D391E0E222F1AFF00BCB29B /* ViewControllerNewFood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNewFood.swift; sourceTree = "<group>"; };
 		5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFoodDetails.swift; sourceTree = "<group>"; };
 		81A7B30EC66E58E10E09FEBA /* Pods_FoodForFolks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodForFolks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLogin.swift; sourceTree = "<group>"; };
+		8B694EBB22415964008C81B8 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		969F04832DCD28508755088D /* Pods-FoodForFolks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodForFolks.debug.xcconfig"; path = "Target Support Files/Pods-FoodForFolks/Pods-FoodForFolks.debug.xcconfig"; sourceTree = "<group>"; };
 		D5E71E78DB16B3A7930C9AF3 /* Pods-FoodForFolks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodForFolks.release.xcconfig"; path = "Target Support Files/Pods-FoodForFolks/Pods-FoodForFolks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				5D391DEC222F030F00BCB29B /* AppDelegate.swift */,
+				8B694EBB22415964008C81B8 /* Switcher.swift */,
 				5D391E0C222F123100BCB29B /* FoodData.swift */,
 				5D059BF0222F629500A0B676 /* ViewControllerHome.swift */,
 				5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */,
@@ -107,6 +112,7 @@
 				5D391E02222F060900BCB29B /* ViewControllerMessages.swift */,
 				5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */,
 				5D391DF2222F030F00BCB29B /* Main.storyboard */,
+				8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */,
 				5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */,
 				5D391DF5222F031100BCB29B /* Assets.xcassets */,
 				5D391DF7222F031100BCB29B /* LaunchScreen.storyboard */,
@@ -274,6 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D059BEB222F56E600A0B676 /* ViewControllerThread.swift in Sources */,
+				8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */,
+				8B694EBC22415964008C81B8 /* Switcher.swift in Sources */,
 				5D391E0D222F123100BCB29B /* FoodData.swift in Sources */,
 				5D391DF1222F030F00BCB29B /* ViewControllerMaps.swift in Sources */,
 				5D391DED222F030F00BCB29B /* AppDelegate.swift in Sources */,
