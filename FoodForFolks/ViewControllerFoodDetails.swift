@@ -26,14 +26,12 @@ class ViewControllerFoodDetails: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        foodImage.image = UIImage(named: "apples")!
+        foodImage.image = food?.data
         foodTitle.text = food?.itemTitle
         foodQuanty.text = food?.itemQuanty
         foodExpiration.text = food?.itemExpiration
         foodDescription.text = food?.itemDescription
         foodOwner.text = food?.itemOwner
         foodLocation.text = food?.itemLocation
-        // Do any additional setup after loading the view.
     }
-
 }

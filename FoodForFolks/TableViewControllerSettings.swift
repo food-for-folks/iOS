@@ -7,13 +7,24 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class TableViewControllerSettings: UITableViewController {
 
     
     @IBAction func logout(_ sender: Any) {
-        UserDefaults.standard.set(false, forKey: "status")
-        Switcher.updateRootVC()
+        
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            if(Auth.auth().currentUser == nil) {
+                UserDefaults.standard.set(false, forKey: "status")
+                Switcher.updateRootVC()
+            }
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
     }
     
     override func viewDidLoad() {

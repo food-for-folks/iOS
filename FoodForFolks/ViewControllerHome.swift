@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewControllerHome: UIViewController {
 
-    var testFood = TestFoodData.data
+    var foodDatabase = [Food]()
     
     var foodNumber:Int?
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var user:UserData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,34 +26,34 @@ class ViewControllerHome: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "foodDetails") {
             let foodDetails = segue.destination as! ViewControllerFoodDetails
-            foodDetails.food = testFood[foodNumber!]
+            foodDetails.food = foodDatabase[foodNumber!]
         }
     }
     
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
         let vc = unwindSegue.source as! ViewControllerNewFood
-        let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: "111", itemImage: "111", idNumber: 2, itemDescription: vc.foodDescription.text!, itemOwner: vc.ownerName.text!, itemLocation: vc.foodLocation.text!, itemExpiration: "111")
-        testFood.append(newFood)
-        //print(testFood.last?.itemLocation)
+        let date = Date()
+        let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.ownerNameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: (String(vc.foodExpiration.calendar.component(.month, from: date)) + " / " + String(vc.foodExpiration.calendar.component(.day, from: date))), uid: vc.uid!)
+        foodDatabase.append(newFood)
+        newFood.data = vc.imageToAdd.image!
         tableView.reloadData()
     }
-
 }
 
 extension ViewControllerHome: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellNib = UINib(nibName: "TableViewCellHome", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "HomeCell")
-        return testFood.count
+        return foodDatabase.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! TableViewCellHome
-        let food = testFood[indexPath.row]
+        let food = foodDatabase[indexPath.row]
         cell.itemDescription.text = food.itemDescription
         cell.itemQuanty.text = food.itemQuanty
         cell.postTime.text = food.itemPostDate
-        cell.pictureOfFood.image = UIImage(named: "apples")!
+        cell.pictureOfFood.image = food.data
         
         return cell
     }
@@ -59,12 +62,12 @@ extension ViewControllerHome: UITableViewDataSource {
 extension ViewControllerHome: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        foodNumber = indexPath.row
+        performSegue(withIdentifier: "foodDetails", sender: nil)
     }
     
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        foodNumber = indexPath.row
-        performSegue(withIdentifier: "foodDetails", sender: nil)
+        
     }
 
 }

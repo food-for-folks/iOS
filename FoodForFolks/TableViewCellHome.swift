@@ -9,9 +9,6 @@
 import UIKit
 
 class TableViewCellHome: UITableViewCell {
-
-    
-    
     
     @IBOutlet weak var pictureOfFood: UIImageView!
     

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Food {
     
@@ -19,8 +20,10 @@ class Food {
     var itemOwner:String?
     var itemLocation:String?
     var itemExpiration:String?
+    var uid:String?
+    var data:UIImage?
     
-    init(itemTitle:String, itemQuanty:String, itemPostDate:String, itemImage:String, idNumber:Int, itemDescription:String, itemOwner:String, itemLocation:String, itemExpiration:String) {
+    init(itemTitle:String, itemQuanty:String, itemPostDate:String, itemImage:String, idNumber:Int, itemDescription:String, itemOwner:String, itemLocation:String, itemExpiration:String, uid:String) {
         self.itemTitle = itemTitle
         self.itemQuanty = itemQuanty
         self.itemPostDate = itemPostDate
@@ -30,9 +33,10 @@ class Food {
         self.itemOwner = itemOwner
         self.itemLocation = itemLocation
         self.itemExpiration = itemExpiration
+        self.uid = uid
     }
 }
 
-class TestFoodData {
-    static let data = [Food(itemTitle:"Some Food", itemQuanty:"A lot of food", itemPostDate:"March 03, 2018", itemImage:"Test Data", idNumber:0, itemDescription:"The is really good food", itemOwner:"Cory Rooker", itemLocation:"136 Knotts Ln. Roanoke Rapids, NC 27870", itemExpiration:"March 15th")]
-}
+//class TestFoodData {
+//    static let data = [Food(itemTitle:"Some Food", itemQuanty:"A lot of food", itemPostDate:"March 03, 2018", itemImage:"Test Data", idNumber:0, itemDescription:"The is really good food", itemOwner:"Cory Rooker", itemLocation:"136 Knotts Ln. Roanoke Rapids, NC 27870", itemExpiration:"March 15th")]
+//}

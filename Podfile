@@ -10,6 +10,9 @@ target 'FoodForFolks' do
   pod 'MessageKit'
   pod 'Scaledrone', '~> 0.3.0'
   pod 'Firebase/Auth'
+  pod 'Firebase/Core'
   pod 'GoogleSignIn'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
 
 end
