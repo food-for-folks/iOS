@@ -41,7 +41,7 @@ class ViewControllerSignup: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var confirmPassText: UITextField!
     @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var addressText: UITextField!
+    @IBOutlet weak var streetAddress: UITextField!
     
     
     @IBAction func submitClick(_ sender: Any) {

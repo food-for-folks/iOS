@@ -23,6 +23,8 @@
 		5D391E11222F204E00BCB29B /* ViewControllerFoodDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */; };
 		5D8AF36E2253C259001CEE79 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */; };
 		5D8AF37022544508001CEE79 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF36F22544508001CEE79 /* UserData.swift */; };
+		5D8AF3722256A000001CEE79 /* ViewControllerAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF3712256A000001CEE79 /* ViewControllerAccount.swift */; };
+		5D8AF3742256A0A7001CEE79 /* ViewControllerNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF3732256A0A7001CEE79 /* ViewControllerNotifications.swift */; };
 		5DC71278224C12DE006F063C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DC71277224C12DE006F063C /* GoogleService-Info.plist */; };
 		5DCC69912253BB4200E8DEA3 /* ViewControllerSignup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC69902253BB4200E8DEA3 /* ViewControllerSignup.swift */; };
 		8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */; };
@@ -49,6 +51,8 @@
 		5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFoodDetails.swift; sourceTree = "<group>"; };
 		5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		5D8AF36F22544508001CEE79 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		5D8AF3712256A000001CEE79 /* ViewControllerAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAccount.swift; sourceTree = "<group>"; };
+		5D8AF3732256A0A7001CEE79 /* ViewControllerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNotifications.swift; sourceTree = "<group>"; };
 		5DC71277224C12DE006F063C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5DCC69902253BB4200E8DEA3 /* ViewControllerSignup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSignup.swift; sourceTree = "<group>"; };
 		81A7B30EC66E58E10E09FEBA /* Pods_FoodForFolks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodForFolks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +126,8 @@
 				5D391E02222F060900BCB29B /* ViewControllerMessages.swift */,
 				5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */,
 				5D391DF2222F030F00BCB29B /* Main.storyboard */,
+				5D8AF3732256A0A7001CEE79 /* ViewControllerNotifications.swift */,
+				5D8AF3712256A000001CEE79 /* ViewControllerAccount.swift */,
 				5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */,
 				5DCC69902253BB4200E8DEA3 /* ViewControllerSignup.swift */,
 				8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */,
@@ -298,6 +304,8 @@
 			files = (
 				5DCC69912253BB4200E8DEA3 /* ViewControllerSignup.swift in Sources */,
 				5D059BEB222F56E600A0B676 /* ViewControllerThread.swift in Sources */,
+				5D8AF3742256A0A7001CEE79 /* ViewControllerNotifications.swift in Sources */,
+				5D8AF3722256A000001CEE79 /* ViewControllerAccount.swift in Sources */,
 				8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */,
 				5D8AF37022544508001CEE79 /* UserData.swift in Sources */,
 				8B694EBC22415964008C81B8 /* Switcher.swift in Sources */,
