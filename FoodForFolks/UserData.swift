@@ -10,6 +10,12 @@ import Foundation
 
 class UserData {
     var name:String?
-    var address:String?
+    var addressLineOne:String?
+    var addressLineTwoText:String?
+    var stateText:String?
+    var city:String?
+    var compName:String?
+    var zipCode:String?
     var email:String?
+    var type:Int?
 }

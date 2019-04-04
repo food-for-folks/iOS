@@ -33,6 +33,7 @@ class ViewControllerSignup: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addOkButton();
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
         
     }
     
@@ -41,8 +42,13 @@ class ViewControllerSignup: UIViewController {
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var confirmPassText: UITextField!
     @IBOutlet weak var nameText: UITextField!
-    @IBOutlet weak var streetAddress: UITextField!
-    
+    @IBOutlet weak var cityText: UITextField!
+    @IBOutlet weak var cNameText: UITextField!
+    @IBOutlet weak var addressLineOneText: UITextField!
+    @IBOutlet weak var addressLineTwoText: UITextField!
+    @IBOutlet weak var stateText: UITextField!
+    @IBOutlet weak var zipCodeText: UITextField!
+    @IBOutlet weak var selector: UISegmentedControl!
     
     @IBAction func submitClick(_ sender: Any) {
         
@@ -56,6 +62,11 @@ class ViewControllerSignup: UIViewController {
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { (authResult, error) in
                     if(error == nil) {
                         print("Signup Succesful")
+                        
+                        let ref = Database.database().reference()
+                        ref.child("users").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["email": self.emailText.text!, "name": self.nameText.text!, "city": self.cityText.text, "company": self.cNameText.text!, "address1": self.addressLineOneText.text!, "address2": self.addressLineTwoText.text ?? "", "state": self.stateText.text, "zip": self.zipCodeText.text, "donorRec": self.selector.selectedSegmentIndex, "uid": Auth.auth().currentUser!.uid])
+                        
+                        
                         UserDefaults.standard.set(true, forKey: "status")
                         Switcher.updateRootVC()
                     } else {

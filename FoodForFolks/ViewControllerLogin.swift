@@ -18,7 +18,9 @@ class ViewControllerLogin: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
     }
+    
     
     @IBAction func btnActionLogin(_ sender: Any) {
         Auth.auth().signIn(withEmail: emailLabel.text!, password: passwordText.text!) { (authResult, error) in

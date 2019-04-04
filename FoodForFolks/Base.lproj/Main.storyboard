@@ -839,9 +839,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JFs-HN-mt8">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JFs-HN-mt8">
                                 <rect key="frame" x="16" y="80" width="343" height="30"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -962,11 +962,17 @@
                         <viewLayoutGuide key="safeArea" id="AH0-3M-KIF"/>
                     </view>
                     <connections>
+                        <outlet property="addressLineOneText" destination="kUQ-tL-gud" id="APk-Lf-T8O"/>
+                        <outlet property="addressLineTwoText" destination="qE6-WC-lgC" id="wdM-zc-OaJ"/>
+                        <outlet property="cNameText" destination="04O-LG-Cqc" id="2m3-nu-h96"/>
+                        <outlet property="cityText" destination="gbI-1f-R8z" id="tcx-ak-n15"/>
                         <outlet property="confirmPassText" destination="ccm-Oh-vnC" id="inf-rs-9pX"/>
                         <outlet property="emailText" destination="CkZ-mt-gGC" id="gWe-tX-967"/>
                         <outlet property="nameText" destination="JFs-HN-mt8" id="MOO-fQ-dOu"/>
                         <outlet property="passwordText" destination="dTV-fW-cuu" id="qfE-q3-gVe"/>
-                        <outlet property="streetAddress" destination="gbI-1f-R8z" id="pFh-Ib-e2Y"/>
+                        <outlet property="selector" destination="dao-qu-grl" id="6Nr-s0-DSK"/>
+                        <outlet property="stateText" destination="em0-D5-2MT" id="oN3-ZY-Ch7"/>
+                        <outlet property="zipCodeText" destination="dr3-vs-Jmi" id="Eqc-tg-dyH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Xw-ci-BLR" userLabel="First Responder" sceneMemberID="firstResponder"/>

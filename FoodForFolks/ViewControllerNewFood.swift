@@ -54,6 +54,9 @@ class ViewControllerNewFood: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
+        
         // For removing the extra empty spaces of TableView below
         tableView.tableFooterView = UIView()
     }

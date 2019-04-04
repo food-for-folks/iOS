@@ -21,6 +21,7 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,6 +37,11 @@ class ViewControllerHome: UIViewController {
         let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.ownerNameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: (String(vc.foodExpiration.calendar.component(.month, from: date)) + " / " + String(vc.foodExpiration.calendar.component(.day, from: date))), uid: vc.uid!)
         foodDatabase.append(newFood)
         newFood.data = vc.imageToAdd.image!
+        
+        
+        
+        
+        
         tableView.reloadData()
     }
 }
