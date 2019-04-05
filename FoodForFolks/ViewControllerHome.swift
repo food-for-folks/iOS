@@ -34,12 +34,9 @@ class ViewControllerHome: UIViewController {
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
         let vc = unwindSegue.source as! ViewControllerNewFood
         let date = Date()
-        let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.ownerNameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: (String(vc.foodExpiration.calendar.component(.month, from: date)) + " / " + String(vc.foodExpiration.calendar.component(.day, from: date))), uid: vc.uid!)
+        let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: (String(vc.foodExpiration.calendar.component(.month, from: date)) + " / " + String(vc.foodExpiration.calendar.component(.day, from: date))), uid: vc.uid!)
         foodDatabase.append(newFood)
         newFood.data = vc.imageToAdd.image!
-        
-        
-        
         
         
         tableView.reloadData()

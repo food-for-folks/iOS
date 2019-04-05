@@ -18,7 +18,8 @@ class ViewControllerNewFood: UITableViewController {
     @IBOutlet weak var foodExpiration: UIDatePicker!
     @IBOutlet weak var foodQuanty: UITextField!
     @IBOutlet weak var foodLocation: UITextField!
-    @IBOutlet weak var ownerNameText: UILabel!
+    @IBOutlet weak var nameText: UITextField!
+    
     
     var imageLoc:String?
     var uid = Auth.auth().currentUser?.uid
@@ -55,7 +56,19 @@ class ViewControllerNewFood: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
+        let ref = Database.database().reference()
+        var name = "test"
+        ref.child("users").observe(.value) { (snapshot) in
+            if(snapshot.value != nil) {
+                for child in snapshot.children {
+                     let childSnap = child as! DataSnapshot
+                     name = childSnap.childSnapshot(forPath: "name").value as! String
+                     self.nameText.text = name
+                }
+            }
+        }
+        
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         
         // For removing the extra empty spaces of TableView below
         tableView.tableFooterView = UIView()
