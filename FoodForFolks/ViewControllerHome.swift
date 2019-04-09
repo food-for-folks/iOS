@@ -21,7 +21,57 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getData()
         //self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
+    }
+    
+    func getData() {
+        let ref = Database.database().reference()
+        foodDatabase.removeAll()
+        ref.child("food").observe(.value) { (snapshot) in
+            if(snapshot.value != nil) {
+                var titleFood = ""
+                var quantity = ""
+                var postDate = ""
+                var itemImage = ""
+                var idNumber = 0
+                var itemDes = ""
+                var owner  = ""
+                var location = ""
+                var exp = ""
+                var uid = ""
+                for child in snapshot.children {
+                    let childSnap = child as! DataSnapshot
+                    titleFood = (childSnap.childSnapshot(forPath: "title").value as? String)!
+                    quantity = (childSnap.childSnapshot(forPath: "quantity").value as? String)!
+                    postDate = (childSnap.childSnapshot(forPath: "postDate").value as? String)!
+                    itemImage = (childSnap.childSnapshot(forPath: "image").value as? String)!
+                    idNumber = (childSnap.childSnapshot(forPath: "idNumber").value as? Int)!
+                    itemDes = (childSnap.childSnapshot(forPath: "description").value as? String)!
+                    owner = (childSnap.childSnapshot(forPath: "owner").value as? String)!
+                    location = (childSnap.childSnapshot(forPath: "location").value as? String)!
+                    exp = (childSnap.childSnapshot(forPath: "expiration").value as? String)!
+                    uid = (childSnap.childSnapshot(forPath: "uid").value as? String)!
+                    
+                    let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: postDate, itemImage: itemImage, idNumber: idNumber, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
+                    
+                    let storage = Storage.storage()
+                    let storageRef = storage.reference()
+                    let imageRef = storageRef.child((Auth.auth().currentUser?.email)! + "/images/\(titleFood)")
+                    imageRef.getData(maxSize: 8 * 1024 * 1024, completion: { (data, error) in
+                        if error != nil {
+                            print(error)
+                        } else {
+                            // Data for "images/island.jpg" is returned
+                            let image = UIImage(data: data!)
+                            newFood.data = image
+                            self.foodDatabase.append(newFood)
+                            self.tableView.reloadData()
+                        }
+                    })
+                }
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,12 +84,18 @@ class ViewControllerHome: UIViewController {
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
         let vc = unwindSegue.source as! ViewControllerNewFood
         let date = Date()
-        let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: (String(vc.foodExpiration.calendar.component(.month, from: date)) + " / " + String(vc.foodExpiration.calendar.component(.day, from: date))), uid: vc.uid!)
-        foodDatabase.append(newFood)
-        newFood.data = vc.imageToAdd.image!
+        
+        //let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: vc.foodExpiration.date.description, uid: vc.uid!)
+        
+        let ref = Database.database().reference()
+        ref.child("food").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text])
         
         
-        tableView.reloadData()
+        //foodDatabase.append(newFood)
+        //newFood.data = vc.imageToAdd.image!
+        
+        
+        //tableView.reloadData()
     }
 }
 

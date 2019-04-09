@@ -31,8 +31,8 @@ class ViewControllerNewFood: UITableViewController {
     @IBAction func checkSubmit(_ sender: Any) {
         
         let storageRef = storage.reference()
-        let imageRef = storageRef.child((Auth.auth().currentUser?.email)! + "/images/\(foodTitle.text)")
-        imageLoc = (Auth.auth().currentUser?.email)! + "/images/\(foodTitle.text)"
+        let imageRef = storageRef.child((Auth.auth().currentUser?.email)! + "/images/\(foodTitle.text!)")
+        imageLoc = (Auth.auth().currentUser?.email)! + "/images/\(foodTitle.text!)"
         let localFile = imageToAdd.image?.jpegData(compressionQuality: 10)
         
         _ = imageRef.putData(localFile!, metadata: nil) { metadata, error in
