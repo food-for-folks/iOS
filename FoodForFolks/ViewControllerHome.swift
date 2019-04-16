@@ -22,12 +22,11 @@ class ViewControllerHome: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        //self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
+
     }
-    
+
     func getData() {
         let ref = Database.database().reference()
-        foodDatabase.removeAll()
         ref.child("food").observe(.value) { (snapshot) in
             if(snapshot.value != nil) {
                 var titleFood = ""
@@ -40,6 +39,7 @@ class ViewControllerHome: UIViewController {
                 var location = ""
                 var exp = ""
                 var uid = ""
+                self.foodDatabase.removeAll()
                 for child in snapshot.children {
                     let childSnap = child as! DataSnapshot
                     titleFood = (childSnap.childSnapshot(forPath: "title").value as? String)!
@@ -51,7 +51,7 @@ class ViewControllerHome: UIViewController {
                     owner = (childSnap.childSnapshot(forPath: "owner").value as? String)!
                     location = (childSnap.childSnapshot(forPath: "location").value as? String)!
                     exp = (childSnap.childSnapshot(forPath: "expiration").value as? String)!
-                    uid = (childSnap.childSnapshot(forPath: "uid").value as? String)!
+                    uid = childSnap.key
                     
                     let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: postDate, itemImage: itemImage, idNumber: idNumber, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
                     
@@ -60,9 +60,8 @@ class ViewControllerHome: UIViewController {
                     let imageRef = storageRef.child((Auth.auth().currentUser?.email)! + "/images/\(titleFood)")
                     imageRef.getData(maxSize: 8 * 1024 * 1024, completion: { (data, error) in
                         if error != nil {
-                            print(error)
+                            print(error!)
                         } else {
-                            // Data for "images/island.jpg" is returned
                             let image = UIImage(data: data!)
                             newFood.data = image
                             self.foodDatabase.append(newFood)
@@ -85,17 +84,8 @@ class ViewControllerHome: UIViewController {
         let vc = unwindSegue.source as! ViewControllerNewFood
         let date = Date()
         
-        //let newFood = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: vc.foodExpiration.date.description, uid: vc.uid!)
-        
         let ref = Database.database().reference()
-        ref.child("food").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text])
-        
-        
-        //foodDatabase.append(newFood)
-        //newFood.data = vc.imageToAdd.image!
-        
-        
-        //tableView.reloadData()
+        ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text])
     }
 }
 
