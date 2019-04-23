@@ -24,6 +24,12 @@ class ViewControllerHome: UIViewController {
         getData()
 
     }
+    
+    
+    @IBAction func filterButtonClicked(_ sender: Any) {
+        
+    }
+    
 
     func getData() {
         let ref = Database.database().reference()
