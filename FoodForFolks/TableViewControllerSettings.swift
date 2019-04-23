@@ -30,13 +30,30 @@ class TableViewControllerSettings: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        if(indexPath.row == 0) {
+            performSegue(withIdentifier: "account", sender: nil)
+        }
+        
+        if(indexPath.row == 1) {
+            performSegue(withIdentifier: "notify", sender: nil)
+        }
+        
+        if(indexPath.row == 2) {
+            performSegue(withIdentifier: "location", sender: nil)
+        }
+        
+        if(indexPath.row == 3) {
+            performSegue(withIdentifier: "faq", sender: nil)
+        }
+        
+        if(indexPath.row == 4) {
+            performSegue(withIdentifier: "privacy", sender: nil)
+        }
+        
     }
 
 }
