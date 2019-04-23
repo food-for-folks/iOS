@@ -14,7 +14,6 @@
 		5D391DF1222F030F00BCB29B /* ViewControllerMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */; };
 		5D391DF4222F030F00BCB29B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF2222F030F00BCB29B /* Main.storyboard */; };
 		5D391DF6222F031100BCB29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF5222F031100BCB29B /* Assets.xcassets */; };
-		5D391DF9222F031100BCB29B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF7222F031100BCB29B /* LaunchScreen.storyboard */; };
 		5D391E03222F060900BCB29B /* ViewControllerMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E02222F060900BCB29B /* ViewControllerMessages.swift */; };
 		5D391E0A222F0FD000BCB29B /* TableViewCellHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */; };
 		5D391E0B222F0FD000BCB29B /* TableViewCellHome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */; };
@@ -45,7 +44,6 @@
 		5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMaps.swift; sourceTree = "<group>"; };
 		5D391DF3222F030F00BCB29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D391DF5222F031100BCB29B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5D391DF8222F031100BCB29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D391DFA222F031100BCB29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D391E02222F060900BCB29B /* ViewControllerMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMessages.swift; sourceTree = "<group>"; };
 		5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellHome.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */,
 				5D391DF5222F031100BCB29B /* Assets.xcassets */,
 				5D8F148C226F672800671D27 /* Launch Screen.storyboard */,
-				5D391DF7222F031100BCB29B /* LaunchScreen.storyboard */,
 				5D391DFA222F031100BCB29B /* Info.plist */,
 			);
 			path = FoodForFolks;
@@ -213,7 +210,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D8F148D226F672800671D27 /* Launch Screen.storyboard in Resources */,
-				5D391DF9222F031100BCB29B /* LaunchScreen.storyboard in Resources */,
 				5D391DF6222F031100BCB29B /* Assets.xcassets in Resources */,
 				5DC71278224C12DE006F063C /* GoogleService-Info.plist in Resources */,
 				5D391E0B222F0FD000BCB29B /* TableViewCellHome.xib in Resources */,
@@ -347,14 +343,6 @@
 				5D391DF3222F030F00BCB29B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5D391DF7222F031100BCB29B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5D391DF8222F031100BCB29B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
