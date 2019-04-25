@@ -15,7 +15,11 @@ class ViewControllerHome: UIViewController {
     
     var foodNumber:Int?
     
+    var searchQuery = [Food]()
+    var searching = false
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var user:UserData?
     
@@ -23,7 +27,7 @@ class ViewControllerHome: UIViewController {
         super.viewDidLoad()
         getData()
         
-        
+        searchBar.delegate = self
     }
     
     
@@ -109,20 +113,34 @@ class ViewControllerHome: UIViewController {
     }
 }
 
+
+
 extension ViewControllerHome: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellNib = UINib(nibName: "TableViewCellHome", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "HomeCell")
-        return foodDatabase.count
+        if searching {
+            return searchQuery.count
+        }else {
+            return foodDatabase.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! TableViewCellHome
         let food = foodDatabase[indexPath.row]
-        cell.itemDescription.text = food.itemDescription
-        cell.itemQuanty.text = food.itemQuanty
-        cell.postTime.text = food.itemPostDate
-        cell.pictureOfFood.image = food.data
+        if searching {
+            cell.itemDescription.text = searchQuery[indexPath.row].itemDescription
+            cell.itemQuanty.text = searchQuery[indexPath.row].itemQuanty
+            cell.postTime.text = searchQuery[indexPath.row].itemPostDate
+            cell.pictureOfFood.image = searchQuery[indexPath.row].data
+        } else {
+            cell.itemDescription.text = foodDatabase[indexPath.row].itemDescription
+            cell.itemQuanty.text = foodDatabase[indexPath.row].itemQuanty
+            cell.postTime.text = foodDatabase[indexPath.row].itemPostDate
+            cell.pictureOfFood.image = foodDatabase[indexPath.row].data
+        }
+
         
         return cell
     }
@@ -139,4 +157,22 @@ extension ViewControllerHome: UITableViewDelegate {
         
     }
 
+}
+
+extension ViewControllerHome: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        searchQuery = foodDatabase.filter({$0.itemTitle!.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        searching = true
+        tableView.reloadData()
+        
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searching = false
+        view.endEditing(true)
+        tableView.reloadData()
+    }
 }
