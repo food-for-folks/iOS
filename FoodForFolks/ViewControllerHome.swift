@@ -163,14 +163,13 @@ extension ViewControllerHome: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! TableViewCellHome
-        let food = foodDatabase[indexPath.row]
         if searching {
-            cell.itemDescription.text = searchQuery[indexPath.row].itemDescription
+            cell.itemDescription.text = searchQuery[indexPath.row].itemTitle
             cell.itemQuanty.text = searchQuery[indexPath.row].itemQuanty
             cell.postTime.text = searchQuery[indexPath.row].itemPostDate
             cell.pictureOfFood.image = searchQuery[indexPath.row].data
         } else {
-            cell.itemDescription.text = foodDatabase[indexPath.row].itemDescription
+            cell.itemDescription.text = foodDatabase[indexPath.row].itemTitle
             cell.itemQuanty.text = foodDatabase[indexPath.row].itemQuanty
             cell.postTime.text = foodDatabase[indexPath.row].itemPostDate
             cell.pictureOfFood.image = foodDatabase[indexPath.row].data
