@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewControllerFoodDetails: UIViewController {
 
     var food:Food?
+    var ref: DatabaseReference!
     
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var foodTitle: UILabel!
@@ -24,6 +26,12 @@ class ViewControllerFoodDetails: UIViewController {
         self.dismiss(animated: true, completion: nil) 
     }
     
+    @IBAction func claimButtonClicked(_ sender: Any) {
+        ref = Database.database().reference()
+        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").updateChildValues(["foodTitle": foodTitle.text!, "uid": food?.postUID!])
+        ref.child("food").child((food?.uid)!).removeValue()
+        self.navigationController?.popViewController(animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         foodImage.image = food?.data

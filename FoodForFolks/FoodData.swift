@@ -22,6 +22,7 @@ class Food {
     var itemExpiration:String?
     var uid:String?
     var data:UIImage?
+    var postUID:String?
     
     init(itemTitle:String, itemQuanty:String, itemPostDate:String, itemImage:String, idNumber:Int, itemDescription:String, itemOwner:String, itemLocation:String, itemExpiration:String, uid:String) {
         self.itemTitle = itemTitle

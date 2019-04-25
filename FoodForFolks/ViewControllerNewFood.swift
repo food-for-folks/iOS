@@ -19,7 +19,7 @@ class ViewControllerNewFood: UITableViewController {
     @IBOutlet weak var foodQuanty: UITextField!
     @IBOutlet weak var foodLocation: UITextField!
     @IBOutlet weak var nameText: UITextField!
-    
+    var food:Food?
     
     var imageLoc:String?
     var uid = Auth.auth().currentUser?.uid
@@ -29,15 +29,13 @@ class ViewControllerNewFood: UITableViewController {
     }
     
     @IBAction func checkSubmit(_ sender: Any) {
-        
         let storageRef = storage.reference()
-        let imageRef = storageRef.child((Auth.auth().currentUser?.email)! + "/images/\(foodTitle.text!)")
-        imageLoc = (Auth.auth().currentUser?.email)! + "/images/\(foodTitle.text!)"
+        let imageRef = storageRef.child("/images/\(foodTitle.text!)")
+        imageLoc = "/images/\(foodTitle.text!)"
         let localFile = imageToAdd.image?.jpegData(compressionQuality: 10)
         
         _ = imageRef.putData(localFile!, metadata: nil) { metadata, error in
             guard metadata != nil else {
-                // Uh-oh, an error occurred!
                 return
             }
         }
@@ -58,13 +56,24 @@ class ViewControllerNewFood: UITableViewController {
         
         let ref = Database.database().reference()
         var name = "test"
+        var address = "test"
+        var city = "test"
+        var address2 = "test"
+        var state = "test"
+        var zip = "test"
         ref.child("users").observe(.value) { (snapshot) in
             if(snapshot.value != nil) {
                 for child in snapshot.children {
                      let childSnap = child as! DataSnapshot
                      name = childSnap.childSnapshot(forPath: "name").value as! String
-                     self.nameText.text = name
+                     address = childSnap.childSnapshot(forPath: "address1").value as! String
+                     address2 = childSnap.childSnapshot(forPath: "address2").value as! String
+                    city = childSnap.childSnapshot(forPath: "city").value as! String
+                    state = childSnap.childSnapshot(forPath: "state").value as! String
+                    zip = childSnap.childSnapshot(forPath: "zip").value as! String
                 }
+                self.nameText.text = name
+                self.foodLocation.text = "\(address) \(address2) \(city), \(state) \(zip)"
             }
         }
         
@@ -74,26 +83,4 @@ class ViewControllerNewFood: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if indexPath.row == 4 {
-//            if dateCellExpanded {
-//                dateCellExpanded = false
-//            } else {
-//                dateCellExpanded = true
-//            }
-//            tableView.beginUpdates()
-//            tableView.endUpdates()
-//        }
-//    }
-    
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        if indexPath.row == 4 {
-//            if dateCellExpanded {
-//                return 250
-//            } else {
-//                return 50
-//            }
-//        }
-//        return 50
-//    }
 }

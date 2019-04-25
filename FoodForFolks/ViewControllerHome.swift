@@ -22,7 +22,8 @@ class ViewControllerHome: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-
+        
+        
     }
     
     
@@ -33,6 +34,8 @@ class ViewControllerHome: UIViewController {
 
     func getData() {
         let ref = Database.database().reference()
+        tableView.delegate = self
+        
         ref.child("food").observe(.value) { (snapshot) in
             if(snapshot.value != nil) {
                 var titleFood = ""
@@ -45,6 +48,7 @@ class ViewControllerHome: UIViewController {
                 var location = ""
                 var exp = ""
                 var uid = ""
+                var postUID = ""
                 self.foodDatabase.removeAll()
                 for child in snapshot.children {
                     let childSnap = child as! DataSnapshot
@@ -58,12 +62,13 @@ class ViewControllerHome: UIViewController {
                     location = (childSnap.childSnapshot(forPath: "location").value as? String)!
                     exp = (childSnap.childSnapshot(forPath: "expiration").value as? String)!
                     uid = childSnap.key
+                    postUID = (childSnap.childSnapshot(forPath: "uid").value as? String)!
                     
                     let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: postDate, itemImage: itemImage, idNumber: idNumber, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
-                    
+                    newFood.postUID = postUID
                     let storage = Storage.storage()
                     let storageRef = storage.reference()
-                    let imageRef = storageRef.child((Auth.auth().currentUser?.email)! + "/images/\(titleFood)")
+                    let imageRef = storageRef.child("/images/\(titleFood)")
                     imageRef.getData(maxSize: 8 * 1024 * 1024, completion: { (data, error) in
                         if error != nil {
                             print(error!)
@@ -71,7 +76,9 @@ class ViewControllerHome: UIViewController {
                             let image = UIImage(data: data!)
                             newFood.data = image
                             self.foodDatabase.append(newFood)
-                            self.tableView.reloadData()
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                            }
                         }
                     })
                 }
@@ -86,12 +93,19 @@ class ViewControllerHome: UIViewController {
         }
     }
     
+     @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
+        let vc = unwindSegue.source as! ViewControllerFoodDetails
+        foodDatabase.remove(at: foodNumber!)
+        tableView.reloadData()
+    }
+    
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
         let vc = unwindSegue.source as! ViewControllerNewFood
         let date = Date()
         
         let ref = Database.database().reference()
-        ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!])
+        ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid])
+        self.tableView.reloadData()
     }
 }
 
