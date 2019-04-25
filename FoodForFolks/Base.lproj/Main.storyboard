@@ -607,7 +607,10 @@
                         <constraints>
                             <constraint firstItem="Fvj-JP-J4Z" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="65h-NZ-0nS"/>
                             <constraint firstItem="PiZ-h6-y1I" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Eob-0K-rxM"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="FIj-dE-0zi"/>
                             <constraint firstItem="PiZ-h6-y1I" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Hpl-oa-Mso"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="M3U-dP-Bvv"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="top" secondItem="Fvj-JP-J4Z" secondAttribute="bottom" id="Nah-7s-9WQ"/>
                             <constraint firstItem="EZp-hR-pKd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="PFZ-0K-5gW"/>
                             <constraint firstItem="Fvj-JP-J4Z" firstAttribute="top" secondItem="PiZ-h6-y1I" secondAttribute="bottom" id="YLm-Hm-03z"/>
                             <constraint firstItem="EZp-hR-pKd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="auL-FP-WtM"/>
@@ -615,6 +618,7 @@
                             <constraint firstItem="EZp-hR-pKd" firstAttribute="top" secondItem="Fvj-JP-J4Z" secondAttribute="bottom" id="oP6-st-xPW"/>
                             <constraint firstItem="PiZ-h6-y1I" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="s4e-tY-BN8"/>
                             <constraint firstItem="Fvj-JP-J4Z" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="yL0-PR-Ksr"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="ybf-mr-edt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
@@ -1182,7 +1186,7 @@ By email: CoryRooker@me.com</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OJ9-rU-BQL">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <mutableString key="text">How do I list a food item for donation?
+                                <string key="text">How do I list a food item for donation?
 From your home screen, click the plus (+) in the top right corner. 
 
 Am I liable for food I donate?
@@ -1195,7 +1199,7 @@ How can I find a specific item?
 Use the search bar in the home page to search for a specific item. 
 
 How can I filter donations?
-You can filter by location, expiration date, and items that are unclaimed or claimed by you. Use the "Filter" button in the top left of the home page to filter. </mutableString>
+You can filter by location, expiration date, and items that are unclaimed or claimed by you. Use the "Filter" button in the top left of the home page to filter. </string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1597,6 +1601,6 @@ You can filter by location, expiration date, and items that are unclaimed or cla
         <image name="icons8-settings-filled-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5FA-dx-Ha9"/>
+        <segue reference="t4T-c1-rzg"/>
     </inferredMetricsTieBreakers>
 </document>

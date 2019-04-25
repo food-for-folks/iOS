@@ -63,8 +63,6 @@ open class Request {
     public let serializationQueue: DispatchQueue
     /// `EventMonitor` used for event callbacks.
     public let eventMonitor: EventMonitor?
-    /// The `Request`'s interceptor.
-    public let interceptor: RequestInterceptor?
     /// The `Request`'s delegate.
     public weak var delegate: RequestDelegate?
 
@@ -82,10 +80,6 @@ open class Request {
         var uploadProgressHandler: (handler: ProgressHandler, queue: DispatchQueue)?
         /// `ProgressHandler` and `DispatchQueue` provided for download progress callbacks.
         var downloadProgressHandler: (handler: ProgressHandler, queue: DispatchQueue)?
-        /// `RetryHandler` provided for redirect responses.
-        var redirectHandler: RedirectHandler?
-        /// `CachedResponseHandler` provided to handle caching responses.
-        var cachedResponseHandler: CachedResponseHandler?
         /// `URLCredential` used for authentication challenges.
         var credential: URLCredential?
         /// All `URLRequest`s created by Alamofire on behalf of the `Request`.
@@ -136,20 +130,6 @@ open class Request {
     fileprivate var downloadProgressHandler: (handler: ProgressHandler, queue: DispatchQueue)? {
         get { return protectedMutableState.directValue.downloadProgressHandler }
         set { protectedMutableState.write { $0.downloadProgressHandler = newValue } }
-    }
-
-    // Redirects
-
-    public private(set) var redirectHandler: RedirectHandler? {
-        get { return protectedMutableState.directValue.redirectHandler }
-        set { protectedMutableState.write { $0.redirectHandler = newValue } }
-    }
-
-    // Cached Responses
-
-    public private(set) var cachedResponseHandler: CachedResponseHandler? {
-        get { return protectedMutableState.directValue.cachedResponseHandler }
-        set { protectedMutableState.write { $0.cachedResponseHandler = newValue } }
     }
 
     // Credential
@@ -218,6 +198,7 @@ open class Request {
         set { protectedMutableState.write { $0.error = newValue } }
     }
 
+
     /// Default initializer for the `Request` superclass.
     ///
     /// - Parameters:
@@ -226,13 +207,11 @@ open class Request {
     ///   - serializationQueue: `DispatchQueue` on which all serialization work is performed. Targets the
     ///                         `underlyingQueue` when created by a `SessionManager`.
     ///   - eventMonitor:       `EventMonitor` used for event callbacks from internal `Request` actions.
-    ///   - interceptor:        `RequestInterceptor` used throughout the request lifecycle.
     ///   - delegate:           `RequestDelegate` that provides an interface to actions not performed by the `Request`.
     public init(id: UUID = UUID(),
                 underlyingQueue: DispatchQueue,
                 serializationQueue: DispatchQueue,
                 eventMonitor: EventMonitor?,
-                interceptor: RequestInterceptor?,
                 delegate: RequestDelegate) {
         self.id = id
         self.underlyingQueue = underlyingQueue
@@ -242,7 +221,6 @@ open class Request {
                                        name: "org.alamofire.request-\(id)",
                                        startSuspended: true)
         self.eventMonitor = eventMonitor
-        self.interceptor = interceptor
         self.delegate = delegate
     }
 
@@ -355,7 +333,7 @@ open class Request {
 
     /// Called to trigger retry or finish this `Request`.
     func retryOrFinish(error: Error?) {
-        if let error = error, delegate?.willAttemptToRetryRequest(self) == true {
+        if let error = error, delegate?.willRetryRequest(self) == true {
             delegate?.retryRequest(self, ifNecessaryWithError: error)
             return
         } else {
@@ -364,9 +342,7 @@ open class Request {
     }
 
     /// Finishes this `Request` and starts the response serializers.
-    func finish(error: Error? = nil) {
-        if let error = error { self.error = error }
-
+    func finish() {
         // Start response handlers
         internalQueue.isSuspended = false
 
@@ -476,6 +452,13 @@ open class Request {
 
     /// Sets a closure to be called periodically during the lifecycle of the `Request` as data is read from the server.
     ///
+    /// - parameter queue:   The dispatch queue to execute the closure on.
+    /// - parameter closure: The code to be executed periodically as data is read from the server.
+    ///
+    /// - returns: The request.
+
+    /// Sets a closure to be called periodically during the lifecycle of the `Request` as data is read from the server.
+    ///
     /// Only the last closure provided is used.
     ///
     /// - Parameters:
@@ -503,38 +486,6 @@ open class Request {
 
         return self
     }
-
-    // MARK: - Redirects
-
-    /// Sets the redirect handler for the `Request` which will be used if a redirect response is encountered.
-    ///
-    /// - Parameter handler: The `RedirectHandler`.
-    /// - Returns:           The `Request`.
-    @discardableResult
-    open func redirect(using handler: RedirectHandler) -> Self {
-        protectedMutableState.write { mutableState in
-            precondition(mutableState.redirectHandler == nil, "Redirect handler has already been set")
-            mutableState.redirectHandler = handler
-        }
-
-        return self
-    }
-
-    // MARK: - Cached Responses
-
-    /// Sets the cached response handler for the `Request` which will be used when attempting to cache a response.
-    ///
-    /// - Parameter handler: The `CachedResponseHandler`.
-    /// - Returns:           The `Request`.
-    @discardableResult
-    open func cacheResponse(using handler: CachedResponseHandler) -> Self {
-        protectedMutableState.write { mutableState in
-            precondition(mutableState.cachedResponseHandler == nil, "Cached response handler has already been set")
-            mutableState.cachedResponseHandler = handler
-        }
-
-        return self
-    }
 }
 
 // MARK: - Protocol Conformances
@@ -546,8 +497,8 @@ extension Request: Equatable {
 }
 
 extension Request: Hashable {
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
+    public var hashValue: Int {
+        return id.hashValue
     }
 }
 
@@ -650,7 +601,7 @@ extension Request: CustomDebugStringConvertible {
 public protocol RequestDelegate: AnyObject {
     var sessionConfiguration: URLSessionConfiguration { get }
 
-    func willAttemptToRetryRequest(_ request: Request) -> Bool
+    func willRetryRequest(_ request: Request) -> Bool
     func retryRequest(_ request: Request, ifNecessaryWithError error: Error)
 
     func cancelRequest(_ request: Request)
@@ -674,7 +625,6 @@ open class DataRequest: Request {
          underlyingQueue: DispatchQueue,
          serializationQueue: DispatchQueue,
          eventMonitor: EventMonitor?,
-         interceptor: RequestInterceptor?,
          delegate: RequestDelegate) {
         self.convertible = convertible
 
@@ -682,7 +632,6 @@ open class DataRequest: Request {
                    underlyingQueue: underlyingQueue,
                    serializationQueue: serializationQueue,
                    eventMonitor: eventMonitor,
-                   interceptor: interceptor,
                    delegate: delegate)
     }
 
@@ -831,7 +780,6 @@ open class DownloadRequest: Request {
          underlyingQueue: DispatchQueue,
          serializationQueue: DispatchQueue,
          eventMonitor: EventMonitor?,
-         interceptor: RequestInterceptor?,
          delegate: RequestDelegate,
          destination: Destination? = nil) {
         self.downloadable = downloadable
@@ -841,7 +789,6 @@ open class DownloadRequest: Request {
                    underlyingQueue: underlyingQueue,
                    serializationQueue: serializationQueue,
                    eventMonitor: eventMonitor,
-                   interceptor: interceptor,
                    delegate: delegate)
     }
 
@@ -938,7 +885,6 @@ open class UploadRequest: DataRequest {
          underlyingQueue: DispatchQueue,
          serializationQueue: DispatchQueue,
          eventMonitor: EventMonitor?,
-         interceptor: RequestInterceptor?,
          delegate: RequestDelegate) {
         self.upload = convertible
 
@@ -947,7 +893,6 @@ open class UploadRequest: DataRequest {
                    underlyingQueue: underlyingQueue,
                    serializationQueue: serializationQueue,
                    eventMonitor: eventMonitor,
-                   interceptor: interceptor,
                    delegate: delegate)
 
         // Automatically remove temporary upload files (e.g. multipart form data)
@@ -1014,3 +959,4 @@ extension UploadRequest.Uploadable: UploadableConvertible {
 }
 
 public protocol UploadConvertible: UploadableConvertible & URLRequestConvertible { }
+

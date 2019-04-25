@@ -6,9 +6,8 @@ target 'FoodForFolks' do
   use_frameworks!
 
   # Pods for FoodForFolks
-  pod 'Alamofire', '~> 5.0.0-beta.2'
+  pod 'Alamofire', ' 5.0.0-beta.1'
   pod 'MessageKit'
-  pod 'Scaledrone', '~> 0.3.0'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
   pod 'GoogleSignIn'
