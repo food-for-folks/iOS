@@ -25,9 +25,11 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getData()
-        
         searchBar.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getData()
     }
     
     

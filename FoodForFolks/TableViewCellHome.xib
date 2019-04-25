@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="326" height="302.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RYU-Om-she">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RYU-Om-she">
                         <rect key="frame" x="6" y="11" width="312" height="208"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="RYU-Om-she" secondAttribute="height" multiplier="3:2" id="CGv-Ml-evE"/>
