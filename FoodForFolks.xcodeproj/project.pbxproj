@@ -36,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330A76802272029F007EEC10 /* FoodForFolks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FoodForFolks.entitlements; sourceTree = "<group>"; };
 		5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerThread.swift; sourceTree = "<group>"; };
 		5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSettings.swift; sourceTree = "<group>"; };
 		5D059BF0222F629500A0B676 /* ViewControllerHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHome.swift; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 		5D391DEB222F030F00BCB29B /* FoodForFolks */ = {
 			isa = PBXGroup;
 			children = (
+				330A76802272029F007EEC10 /* FoodForFolks.entitlements */,
 				5DC71277224C12DE006F063C /* GoogleService-Info.plist */,
 				5D391DEC222F030F00BCB29B /* AppDelegate.swift */,
 				8B694EBB22415964008C81B8 /* Switcher.swift */,
@@ -183,6 +185,11 @@
 				TargetAttributes = {
 					5D391DE8222F030F00BCB29B = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -469,6 +476,7 @@
 			baseConfigurationReference = 969F04832DCD28508755088D /* Pods-FoodForFolks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FoodForFolks/FoodForFolks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D884PK6NS7;
 				INFOPLIST_FILE = FoodForFolks/Info.plist;
@@ -488,6 +496,7 @@
 			baseConfigurationReference = D5E71E78DB16B3A7930C9AF3 /* Pods-FoodForFolks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FoodForFolks/FoodForFolks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D884PK6NS7;
 				INFOPLIST_FILE = FoodForFolks/Info.plist;
