@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWr-pQ-iZ9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWr-pQ-iZ9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -612,7 +612,10 @@
                         <constraints>
                             <constraint firstItem="Fvj-JP-J4Z" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="65h-NZ-0nS"/>
                             <constraint firstItem="PiZ-h6-y1I" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Eob-0K-rxM"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="FIj-dE-0zi"/>
                             <constraint firstItem="PiZ-h6-y1I" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Hpl-oa-Mso"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="M3U-dP-Bvv"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="top" secondItem="Fvj-JP-J4Z" secondAttribute="bottom" id="Nah-7s-9WQ"/>
                             <constraint firstItem="EZp-hR-pKd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="PFZ-0K-5gW"/>
                             <constraint firstItem="Fvj-JP-J4Z" firstAttribute="top" secondItem="PiZ-h6-y1I" secondAttribute="bottom" id="YLm-Hm-03z"/>
                             <constraint firstItem="EZp-hR-pKd" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="auL-FP-WtM"/>
@@ -620,11 +623,13 @@
                             <constraint firstItem="EZp-hR-pKd" firstAttribute="top" secondItem="Fvj-JP-J4Z" secondAttribute="bottom" id="oP6-st-xPW"/>
                             <constraint firstItem="PiZ-h6-y1I" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="s4e-tY-BN8"/>
                             <constraint firstItem="Fvj-JP-J4Z" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="yL0-PR-Ksr"/>
+                            <constraint firstItem="EZp-hR-pKd" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="ybf-mr-edt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Maps" image="icons8-map-marker-filled-50" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="MapView" destination="EZp-hR-pKd" id="4l7-B3-21o"/>
                         <segue destination="EwN-Pa-1bG" kind="presentation" identifier="ShowDetailsMap" id="5FA-dx-Ha9"/>
                     </connections>
                 </viewController>
@@ -1266,11 +1271,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add img square" width="225" height="225"/>
-        <image name="icons8-chat-filled-50" width="37.5" height="37.5"/>
-        <image name="icons8-home-filled-50-2" width="37.5" height="37.5"/>
-        <image name="icons8-map-marker-filled-50" width="37.5" height="37.5"/>
-        <image name="icons8-settings-filled-50" width="37.5" height="37.5"/>
+        <image name="add img square" width="300" height="300"/>
+        <image name="icons8-chat-filled-50" width="25" height="25"/>
+        <image name="icons8-home-filled-50-2" width="25" height="25"/>
+        <image name="icons8-map-marker-filled-50" width="25" height="25"/>
+        <image name="icons8-settings-filled-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5FA-dx-Ha9"/>
