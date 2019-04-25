@@ -32,7 +32,39 @@ class ViewControllerHome: UIViewController {
     
     
     @IBAction func filterButtonClicked(_ sender: Any) {
-        
+        let action: UIAlertController = UIAlertController(title: "Sort By", message: "Pick option to sort the food by", preferredStyle: .actionSheet)
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel")
+        }
+        let nameActionButton = UIAlertAction(title: "Name", style: .default) { _ in
+            print("name")
+            let nameArray = self.foodDatabase.sorted {
+                $0.itemTitle! < $1.itemTitle!
+            }
+            self.foodDatabase = nameArray
+            self.tableView.reloadData()
+        }
+        let ageActionButton = UIAlertAction(title: "Expiration", style: .default) { _ in
+            print("expiration")
+            let nameArray = self.foodDatabase.sorted {
+                $0.itemExpiration! < $1.itemExpiration!
+            }
+            self.foodDatabase = nameArray
+            self.tableView.reloadData()
+        }
+        let stateActionButton = UIAlertAction(title: "Quantity", style: .default) { _ in
+            print("quantity")
+            let nameArray = self.foodDatabase.sorted {
+                $0.itemQuanty! < $1.itemQuanty!
+            }
+            self.foodDatabase = nameArray
+            self.tableView.reloadData()
+        }
+        action.addAction(cancelActionButton)
+        action.addAction(nameActionButton)
+        action.addAction(ageActionButton)
+        action.addAction(stateActionButton)
+        self.present(action, animated: true, completion: nil)
     }
     
 
@@ -98,7 +130,8 @@ class ViewControllerHome: UIViewController {
     }
     
      @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
-        let vc = unwindSegue.source as! ViewControllerFoodDetails
+        let ref = Database.database().reference()
+        ref.child("food").child(foodDatabase[foodNumber!].uid!).removeValue()
         foodDatabase.remove(at: foodNumber!)
         tableView.reloadData()
     }
@@ -109,6 +142,8 @@ class ViewControllerHome: UIViewController {
         
         let ref = Database.database().reference()
         ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid])
+        //let food = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: vc.foodExpiration.date.description, uid: vc.uid!)
+        //foodDatabase.append(food)
         self.tableView.reloadData()
     }
 }

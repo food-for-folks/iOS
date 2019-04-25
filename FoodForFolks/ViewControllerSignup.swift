@@ -17,6 +17,18 @@ class ViewControllerSignup: UIViewController {
     
     let alertEmail = UIAlertController(title: "Error!", message: "Missing Email", preferredStyle: .alert)
     
+    let alertName = UIAlertController(title: "Error!", message: "Name cannot be blank!", preferredStyle: .alert)
+    
+    let alertCity = UIAlertController(title: "Error!", message: "City cannot be blank!", preferredStyle: .alert)
+    
+    let alertCompany = UIAlertController(title: "Error!", message: "Company cannot be blank!", preferredStyle: .alert)
+    
+    let alertAddress = UIAlertController(title: "Error!", message: "Address cannot be blank!", preferredStyle: .alert)
+    
+    let alertState = UIAlertController(title: "Error!", message: "State cannot be blank!", preferredStyle: .alert)
+    
+    let alertZip = UIAlertController(title: "Error!", message: "Zip cannot be blank!", preferredStyle: .alert)
+    
     
     func addOkButton() {
         alertPassword.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
@@ -24,6 +36,30 @@ class ViewControllerSignup: UIViewController {
         }))
         
         alertEmail.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
+        alertName.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
+        alertCity.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
+        alertCompany.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
+        alertAddress.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
+        alertState.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
+        alertZip.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
             NSLog("The \"OK\" alert occured.")
         }))
         
@@ -56,6 +92,18 @@ class ViewControllerSignup: UIViewController {
             self.present(alertEmail, animated: true, completion: nil)
         } else if(passwordText.text == "" || passwordText.text != confirmPassText.text) {
             self.present(alertPassword, animated: true, completion: nil)
+        } else if(nameText.text == "") {
+            self.present(alertName, animated: true, completion: nil)
+        } else if(cityText.text == "") {
+            self.present(alertCity, animated: true, completion: nil)
+        } else if(cNameText.text == "") {
+            self.present(alertCompany, animated: true, completion: nil)
+        } else if(addressLineOneText.text == "") {
+            self.present(alertAddress, animated: true, completion: nil)
+        } else if(stateText.text == "") {
+            self.present(alertState, animated: true, completion: nil)
+        } else if(zipCodeText.text == "") {
+            self.present(alertZip, animated: true, completion: nil)
         } else if(emailText.text != "" && passwordText.text != "") {
         
             if(Auth.auth().currentUser == nil) {
