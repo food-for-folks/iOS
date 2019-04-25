@@ -415,6 +415,12 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Item Details" id="6b4-16-1gX">
+                                        <barButtonItem key="leftBarButtonItem" title="Delete" id="Dv8-Yp-v77">
+                                            <connections>
+                                                <action selector="deleteButtonClicked:" destination="EwN-Pa-1bG" id="IJH-q0-zwc"/>
+                                                <segue destination="Yco-Gj-bBm" kind="unwind" unwindAction="unwindFromDetailsWithUnwindSegue:" id="zwp-jG-UrL"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="PIm-Yl-pw5">
                                             <connections>
                                                 <action selector="doneButton:" destination="EwN-Pa-1bG" id="IFO-4Y-yNA"/>
@@ -563,6 +569,8 @@
                         <viewLayoutGuide key="safeArea" id="rai-kQ-H60"/>
                     </view>
                     <connections>
+                        <outlet property="claimButton" destination="LBh-AL-Dix" id="Whg-4e-Q3B"/>
+                        <outlet property="deleteButton" destination="Dv8-Yp-v77" id="DzT-6x-myG"/>
                         <outlet property="foodDescription" destination="6VP-t5-Hzt" id="Shy-Oe-lqF"/>
                         <outlet property="foodExpiration" destination="EnG-0L-pYN" id="Q8Z-a0-ZxG"/>
                         <outlet property="foodImage" destination="BeJ-18-3Aw" id="Waw-ih-EIw"/>

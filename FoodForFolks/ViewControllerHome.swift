@@ -125,7 +125,8 @@ class ViewControllerHome: UIViewController {
     }
     
      @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
-        let vc = unwindSegue.source as! ViewControllerFoodDetails
+        let ref = Database.database().reference()
+        ref.child("food").child(foodDatabase[foodNumber!].uid!).removeValue()
         foodDatabase.remove(at: foodNumber!)
         tableView.reloadData()
     }
