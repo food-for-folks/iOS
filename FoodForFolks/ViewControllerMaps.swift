@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Firebase
+import CoreLocation
 
 class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     //database declarations
@@ -29,6 +30,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
         getData()
+        translateAddress()
         locationManager.delegate = self
         
         switch CLLocationManager.authorizationStatus() {
@@ -77,6 +79,22 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
+    }
+    
     func getData() {
         let ref = Database.database().reference()
         ref.child("food").observe(.value) { (snapshot) in
@@ -120,6 +138,34 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
                     }
                     
                 }
+            }
+        }
+    }
+    
+    
+    func translateAddress() {
+        for (address, count) in locationOccur {
+            var geocoder = CLGeocoder()
+            var lat: CLLocationDegrees?
+            var lon: CLLocationDegrees?
+            if let addressItem = address {
+                geocoder.geocodeAddressString(addressItem) {
+                placemarks, error in
+                let placemark = placemarks?.first
+                    if let latitude = lat, let longitude = lon {
+                        lat = placemark?.location?.coordinate.latitude
+                        lon = placemark?.location?.coordinate.longitude
+                        print("Lat: \(lat), Lon: \(lon)")
+                    }
+                }
+            }
+            let point = MKPointAnnotation()
+            if let countOfLocation = count {
+                point.title = String(countOfLocation) + " items at this location."
+            }
+            if let latitude = lat, let longitude = lon {
+                point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                MapView.addAnnotation(point)
             }
         }
     }
