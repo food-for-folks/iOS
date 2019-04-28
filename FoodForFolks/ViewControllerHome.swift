@@ -22,7 +22,7 @@ class ViewControllerHome: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
-        
+        print("debug")
         
     }
     

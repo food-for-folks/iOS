@@ -17,6 +17,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     var foodNumber:Int?
     var user:UserData?
     var locationOccur: [String?: Int?] = [:]
+    var ref: DatabaseReference!
     
     
     //location declarations
@@ -96,8 +97,8 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     }
     
     func getData() {
-        let ref = Database.database().reference()
-        ref.child("food").observe(.value) { (snapshot) in
+        self.ref = Database.database().reference()
+        self.ref.child("food").observe(.value) { (snapshot) in
             if(snapshot.value != nil) {
                 var titleFood = ""
                 var quantity = ""
