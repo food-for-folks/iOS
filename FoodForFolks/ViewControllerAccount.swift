@@ -7,24 +7,19 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewControllerAccount: UIViewController {
 
+    @IBOutlet weak var accountName: UITextField!
+    @IBOutlet weak var comapnyName: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var confirmPass: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
