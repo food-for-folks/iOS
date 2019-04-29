@@ -35,6 +35,11 @@ class ViewControllerAccount: UIViewController {
     }
     @IBAction func updateClicked(_ sender: Any) {
         if(self.name != self.accountName.text!) {
+            let ref = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid)
+            ref.updateChildValues(["name": self.name])
+        }
+        
+        if(self.comapnyName.text != self.company) {
             
         }
     }
