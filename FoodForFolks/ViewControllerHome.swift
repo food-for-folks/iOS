@@ -48,7 +48,8 @@ class ViewControllerHome: UIViewController {
         let nameActionButton = UIAlertAction(title: "Name (A-Z)", style: .default) { _ in
             print("name")
             let nameArray = self.foodDatabase.sorted {
-                $0.itemTitle! < $1.itemTitle!
+                //$0.itemTitle! < $1.itemTitle!
+                $0.itemTitle!.localizedStandardCompare($1.itemTitle!) == .orderedAscending
             }
             self.foodDatabase = nameArray
             self.tableView.reloadData()
