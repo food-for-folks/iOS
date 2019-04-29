@@ -635,7 +635,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="-800.14992503748135"/>
+            <point key="canvasLocation" x="1273" y="-789"/>
         </scene>
         <!--Messages-->
         <scene sceneID="7Vj-nn-hvd">
@@ -1616,6 +1616,6 @@ You can filter by location, expiration date, and items that are unclaimed or cla
         <image name="icons8-settings-filled-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="t4T-c1-rzg"/>
+        <segue reference="5FA-dx-Ha9"/>
     </inferredMetricsTieBreakers>
 </document>

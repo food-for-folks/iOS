@@ -26,6 +26,7 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(tabBarController?.viewControllers![1])
         searchBar.delegate = self
     }
     
@@ -120,6 +121,8 @@ class ViewControllerHome: UIViewController {
                             self.foodDatabase.append(newFood)
                             self.done = true
                             self.tableView.reloadData()
+                            let vc = self.tabBarController!.viewControllers![1] as! ViewControllerMaps
+                            vc.foodDatabase = self.foodDatabase
                         }
                     })
                 }

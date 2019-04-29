@@ -20,6 +20,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(foodDatabase[0].itemTitle)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
         getData()
         translateAddress()
