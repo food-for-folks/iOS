@@ -14,6 +14,7 @@ class ViewControllerHome: UIViewController {
     var foodDatabase = [Food]()
     
     var foodNumber:Int?
+    var done = false
     
     var searchQuery = [Food]()
     var searching = false
@@ -29,7 +30,11 @@ class ViewControllerHome: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getData()
+        if(!done) {
+            self.foodDatabase.removeAll()
+            self.tableView.reloadData()
+            getData()
+        }
     }
     
     
@@ -87,7 +92,6 @@ class ViewControllerHome: UIViewController {
                 var exp = ""
                 var uid = ""
                 var postUID = ""
-                self.foodDatabase.removeAll()
                 for child in snapshot.children {
                     let childSnap = child as! DataSnapshot
                     titleFood = (childSnap.childSnapshot(forPath: "title").value as? String)!
@@ -114,9 +118,8 @@ class ViewControllerHome: UIViewController {
                             let image = UIImage(data: data!)
                             newFood.data = image
                             self.foodDatabase.append(newFood)
-                            DispatchQueue.main.async {
-                                self.tableView.reloadData()
-                            }
+                            self.done = true
+                            self.tableView.reloadData()
                         }
                     })
                 }
@@ -146,6 +149,7 @@ class ViewControllerHome: UIViewController {
         ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid])
         //let food = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: vc.foodExpiration.date.description, uid: vc.uid!)
         //foodDatabase.append(food)
+        self.done = false
         self.tableView.reloadData()
     }
 }
@@ -170,7 +174,7 @@ extension ViewControllerHome: UITableViewDataSource {
             cell.itemQuanty.text = searchQuery[indexPath.row].itemQuanty
             cell.postTime.text = searchQuery[indexPath.row].itemPostDate
             cell.pictureOfFood.image = searchQuery[indexPath.row].data
-        } else {
+        } else if(done) {
             cell.itemDescription.text = foodDatabase[indexPath.row].itemTitle
             cell.itemQuanty.text = foodDatabase[indexPath.row].itemQuanty
             cell.postTime.text = foodDatabase[indexPath.row].itemPostDate
