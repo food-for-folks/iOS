@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWr-pQ-iZ9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EWr-pQ-iZ9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1443,7 +1443,11 @@ You can filter by location, expiration date, and items that are unclaimed or cla
                         <viewLayoutGuide key="safeArea" id="yAE-wC-P6g"/>
                     </view>
                     <navigationItem key="navigationItem" title="Account" id="bS2-5m-88Q">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="BtP-bb-KYn"/>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="BtP-bb-KYn">
+                            <connections>
+                                <action selector="updateClicked:" destination="X9o-3E-3yM" id="qD8-nx-Nxd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="accountName" destination="3Fr-9z-fwz" id="5fS-Da-KDx"/>
@@ -1605,11 +1609,11 @@ You can filter by location, expiration date, and items that are unclaimed or cla
         </scene>
     </scenes>
     <resources>
-        <image name="add img square" width="225" height="225"/>
-        <image name="icons8-chat-filled-50" width="37.5" height="37.5"/>
-        <image name="icons8-home-filled-50-2" width="37.5" height="37.5"/>
-        <image name="icons8-map-marker-filled-50" width="37.5" height="37.5"/>
-        <image name="icons8-settings-filled-50" width="37.5" height="37.5"/>
+        <image name="add img square" width="300" height="300"/>
+        <image name="icons8-chat-filled-50" width="25" height="25"/>
+        <image name="icons8-home-filled-50-2" width="25" height="25"/>
+        <image name="icons8-map-marker-filled-50" width="25" height="25"/>
+        <image name="icons8-settings-filled-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="t4T-c1-rzg"/>
