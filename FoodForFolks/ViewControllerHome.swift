@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+
 class ViewControllerHome: UIViewController {
 
     var foodDatabase = [Food]()
@@ -44,7 +45,7 @@ class ViewControllerHome: UIViewController {
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             print("Cancel")
         }
-        let nameActionButton = UIAlertAction(title: "Name", style: .default) { _ in
+        let nameActionButton = UIAlertAction(title: "Name (A-Z)", style: .default) { _ in
             print("name")
             let nameArray = self.foodDatabase.sorted {
                 $0.itemTitle! < $1.itemTitle!
@@ -60,10 +61,10 @@ class ViewControllerHome: UIViewController {
             self.foodDatabase = nameArray
             self.tableView.reloadData()
         }
-        let stateActionButton = UIAlertAction(title: "Quantity", style: .default) { _ in
+        let stateActionButton = UIAlertAction(title: "Quantity (Small to Large)", style: .default) { _ in
             print("quantity")
             let nameArray = self.foodDatabase.sorted {
-                $0.itemQuanty! < $1.itemQuanty!
+                $0.itemQuanty!.localizedStandardCompare($1.itemQuanty!) == .orderedAscending
             }
             self.foodDatabase = nameArray
             self.tableView.reloadData()
