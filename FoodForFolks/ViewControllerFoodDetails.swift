@@ -14,6 +14,8 @@ class ViewControllerFoodDetails: UIViewController {
     var food:Food?
     var ref: DatabaseReference!
     
+    @IBOutlet weak var claimButton: UIButton!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
     @IBOutlet weak var foodImage: UIImageView!
     @IBOutlet weak var foodTitle: UILabel!
     @IBOutlet weak var foodQuanty: UILabel!
@@ -26,9 +28,16 @@ class ViewControllerFoodDetails: UIViewController {
         self.dismiss(animated: true, completion: nil) 
     }
     
+    @IBAction func deleteButtonClicked(_ sender: Any) {
+        ref = Database.database().reference()
+        ref.child("food").child((food?.uid)!).removeValue()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     @IBAction func claimButtonClicked(_ sender: Any) {
         ref = Database.database().reference()
-        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").updateChildValues(["foodTitle": foodTitle.text!, "uid": food?.postUID!])
+        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food?.postUID!])
         ref.child("food").child((food?.uid)!).removeValue()
         self.navigationController?.popViewController(animated: true)
     }
@@ -41,5 +50,14 @@ class ViewControllerFoodDetails: UIViewController {
         foodDescription.text = food?.itemDescription
         foodOwner.text = food?.itemOwner
         foodLocation.text = food?.itemLocation
+        
+        
+        
+        deleteButton.isEnabled = false
+        claimButton.isEnabled = true
+        if(Auth.auth().currentUser?.uid == food?.postUID) {
+            deleteButton.isEnabled = true
+            claimButton.isEnabled = false
+        }
     }
 }

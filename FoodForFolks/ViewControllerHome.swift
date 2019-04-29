@@ -15,20 +15,63 @@ class ViewControllerHome: UIViewController {
     
     var foodNumber:Int?
     
+    var searchQuery = [Food]()
+    var searching = false
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var user:UserData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         getData()
+<<<<<<< HEAD
         print("debug")
         
+=======
+>>>>>>> MapsTesting
     }
     
     
     @IBAction func filterButtonClicked(_ sender: Any) {
-        
+        let action: UIAlertController = UIAlertController(title: "Sort By", message: "Pick option to sort the food by", preferredStyle: .actionSheet)
+        let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            print("Cancel")
+        }
+        let nameActionButton = UIAlertAction(title: "Name", style: .default) { _ in
+            print("name")
+            let nameArray = self.foodDatabase.sorted {
+                $0.itemTitle! < $1.itemTitle!
+            }
+            self.foodDatabase = nameArray
+            self.tableView.reloadData()
+        }
+        let ageActionButton = UIAlertAction(title: "Expiration", style: .default) { _ in
+            print("expiration")
+            let nameArray = self.foodDatabase.sorted {
+                $0.itemExpiration! < $1.itemExpiration!
+            }
+            self.foodDatabase = nameArray
+            self.tableView.reloadData()
+        }
+        let stateActionButton = UIAlertAction(title: "Quantity", style: .default) { _ in
+            print("quantity")
+            let nameArray = self.foodDatabase.sorted {
+                $0.itemQuanty! < $1.itemQuanty!
+            }
+            self.foodDatabase = nameArray
+            self.tableView.reloadData()
+        }
+        action.addAction(cancelActionButton)
+        action.addAction(nameActionButton)
+        action.addAction(ageActionButton)
+        action.addAction(stateActionButton)
+        self.present(action, animated: true, completion: nil)
     }
     
 
@@ -94,7 +137,8 @@ class ViewControllerHome: UIViewController {
     }
     
      @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
-        let vc = unwindSegue.source as! ViewControllerFoodDetails
+        let ref = Database.database().reference()
+        ref.child("food").child(foodDatabase[foodNumber!].uid!).removeValue()
         foodDatabase.remove(at: foodNumber!)
         tableView.reloadData()
     }
@@ -105,24 +149,39 @@ class ViewControllerHome: UIViewController {
         
         let ref = Database.database().reference()
         ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid])
+        //let food = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: vc.foodExpiration.date.description, uid: vc.uid!)
+        //foodDatabase.append(food)
         self.tableView.reloadData()
     }
 }
+
+
 
 extension ViewControllerHome: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellNib = UINib(nibName: "TableViewCellHome", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "HomeCell")
-        return foodDatabase.count
+        if searching {
+            return searchQuery.count
+        }else {
+            return foodDatabase.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! TableViewCellHome
-        let food = foodDatabase[indexPath.row]
-        cell.itemDescription.text = food.itemDescription
-        cell.itemQuanty.text = food.itemQuanty
-        cell.postTime.text = food.itemPostDate
-        cell.pictureOfFood.image = food.data
+        if searching {
+            cell.itemDescription.text = searchQuery[indexPath.row].itemTitle
+            cell.itemQuanty.text = searchQuery[indexPath.row].itemQuanty
+            cell.postTime.text = searchQuery[indexPath.row].itemPostDate
+            cell.pictureOfFood.image = searchQuery[indexPath.row].data
+        } else {
+            cell.itemDescription.text = foodDatabase[indexPath.row].itemTitle
+            cell.itemQuanty.text = foodDatabase[indexPath.row].itemQuanty
+            cell.postTime.text = foodDatabase[indexPath.row].itemPostDate
+            cell.pictureOfFood.image = foodDatabase[indexPath.row].data
+        }
+
         
         return cell
     }
@@ -139,4 +198,22 @@ extension ViewControllerHome: UITableViewDelegate {
         
     }
 
+}
+
+extension ViewControllerHome: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.showsCancelButton = true
+        searchQuery = foodDatabase.filter({$0.itemTitle!.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        searching = true
+        tableView.reloadData()
+        
+        
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searching = false
+        view.endEditing(true)
+        tableView.reloadData()
+    }
 }
