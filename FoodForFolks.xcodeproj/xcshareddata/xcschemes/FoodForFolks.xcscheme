@@ -64,7 +64,7 @@
       <AdditionalOptions>
       </AdditionalOptions>
       <LocationScenarioReference
-         identifier = "../charlotte.gpx"
+         identifier = "../charlotteUpdated.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
