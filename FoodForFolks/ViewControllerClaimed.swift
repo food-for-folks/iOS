@@ -46,7 +46,7 @@ class ViewControllerClaimed: UIViewController {
                     location = (childSnap.childSnapshot(forPath: "foodLocation").value as? String)!
                     exp = (childSnap.childSnapshot(forPath: "foodExp").value as? String)!
                     pNum = (childSnap.childSnapshot(forPath: "phone").value as? Int)!
-                    uid = childSnap.key
+                    uid = (childSnap.childSnapshot(forPath: "uid").value as? String)!
                     
                     let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: "", itemImage: "", idNumber: 0, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
                     newFood.pNum = pNum
@@ -80,6 +80,26 @@ extension ViewControllerClaimed: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "claimedCell", for: indexPath)
+        let imageView = cell.viewWithTag(100) as! UIImageView
+        let title = cell.viewWithTag(200) as! UILabel
+        let company = cell.viewWithTag(300) as! UILabel
+        let phoneNumber = cell.viewWithTag(400) as! UILabel
+        
+        
+        let ref = Database.database().reference()
+        ref.child("users").child(foodDatabase[indexPath.row].uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let companyData = value?["company"] as? String ?? ""
+            company.text = companyData
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        
+        
+        imageView.image = foodDatabase[indexPath.row].data
+        title.text = foodDatabase[indexPath.row].itemTitle
+        phoneNumber.text = "\(foodDatabase[indexPath.row].pNum!)"
         
         return cell
     }
