@@ -14,11 +14,13 @@ class ViewControllerClaimed: UIViewController {
     
     var foodDatabase = [Food]()
     var done:Bool?
+    var foodNumber:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
+        //self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
         getData()
+        tableView.allowsSelection = true
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -69,6 +71,14 @@ class ViewControllerClaimed: UIViewController {
         }
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "ClaimedDetails") {
+            let foodDetails = segue.destination as! ViewControllerFoodDetails
+            foodDetails.food = foodDatabase[foodNumber!]
+            foodDetails.claimed = true
+        }
+    }
 
 }
 
@@ -95,8 +105,6 @@ extension ViewControllerClaimed: UITableViewDataSource {
             print(error.localizedDescription)
         }
         
-        
-        
         imageView.image = foodDatabase[indexPath.row].data
         title.text = foodDatabase[indexPath.row].itemTitle
         phoneNumber.text = "\(foodDatabase[indexPath.row].pNum!)"
@@ -108,11 +116,8 @@ extension ViewControllerClaimed: UITableViewDataSource {
 extension ViewControllerClaimed: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
+        foodNumber = indexPath.row
+        performSegue(withIdentifier: "ClaimedDetails", sender: nil)
     }
     
 }

@@ -121,7 +121,7 @@ class ViewControllerSignup: UIViewController {
                         print("Signup Succesful")
                         
                         let ref = Database.database().reference()
-                        ref.child("users").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["email": self.emailText.text!, "name": self.nameText.text!, "city": self.cityText.text, "company": self.cNameText.text!, "address1": self.addressLineOneText.text!, "address2": self.addressLineTwoText.text ?? "", "state": self.stateText.text, "zip": self.zipCodeText.text, "phone": self.phoneNumber.text, "donorRec": self.selector.selectedSegmentIndex, "uid": Auth.auth().currentUser!.uid])
+                        ref.child("users").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["email": self.emailText.text!, "name": self.nameText.text!, "city": self.cityText.text, "company": self.cNameText.text!, "address1": self.addressLineOneText.text!, "address2": self.addressLineTwoText.text ?? "", "state": self.stateText.text, "zip": self.zipCodeText.text, "phone": Int(self.phoneNumber.text!), "donorRec": self.selector.selectedSegmentIndex, "uid": Auth.auth().currentUser!.uid])
                         
                         
                         UserDefaults.standard.set(true, forKey: "status")

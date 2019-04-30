@@ -13,6 +13,7 @@ class ViewControllerFoodDetails: UIViewController {
 
     var food:Food?
     var ref: DatabaseReference!
+    var claimed = false
     
     @IBOutlet weak var claimButton: UIButton!
     @IBOutlet weak var deleteButton: UIBarButtonItem!
@@ -23,7 +24,8 @@ class ViewControllerFoodDetails: UIViewController {
     @IBOutlet weak var foodDescription: UILabel!
     @IBOutlet weak var foodOwner: UILabel!
     @IBOutlet weak var foodLocation: UILabel!
-    @IBOutlet weak var pNumberField: UILabel!
+    @IBOutlet weak var pNumberField: UITextView!
+    @IBOutlet weak var phoneNumLabel: UILabel!
     
     @IBAction func doneButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil) 
@@ -42,6 +44,7 @@ class ViewControllerFoodDetails: UIViewController {
         ref.child("food").child((food?.uid)!).removeValue()
         self.navigationController?.popViewController(animated: true)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         foodImage.image = food?.data
@@ -52,13 +55,23 @@ class ViewControllerFoodDetails: UIViewController {
         foodOwner.text = food?.itemOwner
         foodLocation.text = food?.itemLocation
         pNumberField.text = "\(food!.pNum!)"
-        
+        pNumberField!.dataDetectorTypes = UIDataDetectorTypes.all;
         
         deleteButton.isEnabled = false
         claimButton.isEnabled = true
         if(Auth.auth().currentUser?.uid == food?.postUID) {
             deleteButton.isEnabled = true
             claimButton.isEnabled = false
+            
+        }
+        if(claimed) {
+            deleteButton.isEnabled = false
+            claimButton.isEnabled = false
+        }
+        
+        if(!claimed) {
+            pNumberField.isHidden = true
+            phoneNumLabel.isHidden = true
         }
     }
 }

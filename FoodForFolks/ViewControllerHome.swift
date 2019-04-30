@@ -206,10 +206,6 @@ extension ViewControllerHome: UITableViewDelegate {
         foodNumber = indexPath.row
         performSegue(withIdentifier: "foodDetails", sender: nil)
     }
-    
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        
-    }
 
 }
 
