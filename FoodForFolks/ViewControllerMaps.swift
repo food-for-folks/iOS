@@ -51,7 +51,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
             print("Found user's location: \(location.coordinate.latitude)")
             let location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             // 2
-            let span = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+            let span = MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
             let region = MKCoordinateRegion(center: location, span: span)
             MapView.setRegion(region, animated: true)
             
