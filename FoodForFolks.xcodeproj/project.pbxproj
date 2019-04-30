@@ -31,6 +31,7 @@
 		5DE4FECA2256DF7600BC954E /* ViewControllerPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE4FEC92256DF7600BC954E /* ViewControllerPrivacy.swift */; };
 		8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */; };
 		8B694EBC22415964008C81B8 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B694EBB22415964008C81B8 /* Switcher.swift */; };
+		CE70ADD22277B5AE00A66C13 /* CoordinateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE70ADD12277B5AE00A66C13 /* CoordinateData.swift */; };
 		E721D7A6A1332E47353301E9 /* Pods_FoodForFolks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A7B30EC66E58E10E09FEBA /* Pods_FoodForFolks.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLogin.swift; sourceTree = "<group>"; };
 		8B694EBB22415964008C81B8 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
 		969F04832DCD28508755088D /* Pods-FoodForFolks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodForFolks.debug.xcconfig"; path = "Target Support Files/Pods-FoodForFolks/Pods-FoodForFolks.debug.xcconfig"; sourceTree = "<group>"; };
+		CE70ADD12277B5AE00A66C13 /* CoordinateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateData.swift; sourceTree = "<group>"; };
 		D5E71E78DB16B3A7930C9AF3 /* Pods-FoodForFolks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodForFolks.release.xcconfig"; path = "Target Support Files/Pods-FoodForFolks/Pods-FoodForFolks.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				5D391DF5222F031100BCB29B /* Assets.xcassets */,
 				5D8F148C226F672800671D27 /* Launch Screen.storyboard */,
 				5D391DFA222F031100BCB29B /* Info.plist */,
+				CE70ADD12277B5AE00A66C13 /* CoordinateData.swift */,
 			);
 			path = FoodForFolks;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */,
 				5D8AF37022544508001CEE79 /* UserData.swift in Sources */,
 				8B694EBC22415964008C81B8 /* Switcher.swift in Sources */,
+				CE70ADD22277B5AE00A66C13 /* CoordinateData.swift in Sources */,
 				5DE4FEC62256DE5C00BC954E /* ViewControllerLocation.swift in Sources */,
 				5D391E0D222F123100BCB29B /* FoodData.swift in Sources */,
 				5D391DF1222F030F00BCB29B /* ViewControllerMaps.swift in Sources */,

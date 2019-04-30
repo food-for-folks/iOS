@@ -1080,7 +1080,7 @@
         <scene sceneID="TnB-jY-hBf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sGQ-Q6-RW5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Claimed" image="icons8-chat-filled-50" id="Dk6-oL-vci"/>
+                    <tabBarItem key="tabBarItem" title="Claimed" image="icons claimed" id="Dk6-oL-vci"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qTb-NV-3KX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -1689,7 +1689,7 @@ You can filter by location, expiration date, and items that are unclaimed or cla
     </scenes>
     <resources>
         <image name="add img square" width="300" height="300"/>
-        <image name="icons8-chat-filled-50" width="25" height="25"/>
+        <image name="icons claimed" width="25" height="25"/>
         <image name="icons8-home-filled-50-2" width="25" height="25"/>
         <image name="icons8-map-marker-filled-50" width="25" height="25"/>
         <image name="icons8-settings-filled-50" width="25" height="25"/>
