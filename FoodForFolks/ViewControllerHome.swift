@@ -22,6 +22,7 @@ class ViewControllerHome: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     var user:UserData?
     
@@ -29,6 +30,18 @@ class ViewControllerHome: UIViewController {
         super.viewDidLoad()
         //print(tabBarController?.viewControllers![1])
         searchBar.delegate = self
+        let ref = Database.database().reference()
+        ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let userType = value?["donorRec"] as? Int ?? 0
+            if(userType == 0) {
+                self.addButton.isEnabled = false
+            } else if(userType == 1) {
+                self.addButton.isEnabled = true
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

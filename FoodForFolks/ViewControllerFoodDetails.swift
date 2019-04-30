@@ -23,7 +23,7 @@ class ViewControllerFoodDetails: UIViewController {
     @IBOutlet weak var foodExpiration: UILabel!
     @IBOutlet weak var foodDescription: UILabel!
     @IBOutlet weak var foodOwner: UILabel!
-    @IBOutlet weak var foodLocation: UILabel!
+    @IBOutlet weak var foodLocation: UITextView!
     @IBOutlet weak var pNumberField: UITextView!
     @IBOutlet weak var phoneNumLabel: UILabel!
     
