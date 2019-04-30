@@ -32,7 +32,7 @@ class ViewControllerNewFood: UITableViewController {
         let storageRef = storage.reference()
         let imageRef = storageRef.child("/images/\(foodTitle.text!)")
         imageLoc = "/images/\(foodTitle.text!)"
-        let localFile = imageToAdd.image?.jpegData(compressionQuality: 10)
+        let localFile = imageToAdd.image?.jpegData(compressionQuality: 90)
         
         _ = imageRef.putData(localFile!, metadata: nil) { metadata, error in
             guard metadata != nil else {
