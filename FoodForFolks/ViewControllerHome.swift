@@ -95,6 +95,7 @@ class ViewControllerHome: UIViewController {
                 var exp = ""
                 var uid = ""
                 var postUID = ""
+                var pNum = 0
                 for child in snapshot.children {
                     let childSnap = child as! DataSnapshot
                     titleFood = (childSnap.childSnapshot(forPath: "title").value as? String)!
@@ -106,15 +107,17 @@ class ViewControllerHome: UIViewController {
                     owner = (childSnap.childSnapshot(forPath: "owner").value as? String)!
                     location = (childSnap.childSnapshot(forPath: "location").value as? String)!
                     exp = (childSnap.childSnapshot(forPath: "expiration").value as? String)!
+                    pNum = (childSnap.childSnapshot(forPath: "phone").value as? Int)!
                     uid = childSnap.key
                     postUID = (childSnap.childSnapshot(forPath: "uid").value as? String)!
                     
                     let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: postDate, itemImage: itemImage, idNumber: idNumber, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
                     newFood.postUID = postUID
+                    newFood.pNum = pNum
                     let storage = Storage.storage()
                     let storageRef = storage.reference()
                     let imageRef = storageRef.child("/images/\(titleFood)")
-                    imageRef.getData(maxSize: 8 * 1024 * 1024, completion: { (data, error) in
+                    imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
                         if error != nil {
                             print(error!)
                         } else {
@@ -154,8 +157,7 @@ class ViewControllerHome: UIViewController {
         let ref2 = Database.database().reference()
         ref2.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            let phone = value?["phone"] as? String ?? ""
-            print(phone)
+            let phone = value?["phone"] as? Int64 ?? 0
             let ref = Database.database().reference()
             ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid, "phone": phone])
             self.done = false

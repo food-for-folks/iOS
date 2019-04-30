@@ -23,6 +23,7 @@ class ViewControllerFoodDetails: UIViewController {
     @IBOutlet weak var foodDescription: UILabel!
     @IBOutlet weak var foodOwner: UILabel!
     @IBOutlet weak var foodLocation: UILabel!
+    @IBOutlet weak var pNumberField: UILabel!
     
     @IBAction func doneButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil) 
@@ -37,7 +38,7 @@ class ViewControllerFoodDetails: UIViewController {
     
     @IBAction func claimButtonClicked(_ sender: Any) {
         ref = Database.database().reference()
-        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food?.postUID!, "foodQuanty": food?.itemQuanty, "foodExp": food?.itemExpiration, "foodDes": food?.itemDescription, "foodOwn": food?.itemOwner, "foodLocation": food?.itemLocation])
+        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food?.postUID!, "foodQuanty": food?.itemQuanty, "foodExp": food?.itemExpiration, "foodDes": food?.itemDescription, "foodOwn": food?.itemOwner, "foodLocation": food?.itemLocation, "phone": food?.pNum])
         ref.child("food").child((food?.uid)!).removeValue()
         self.navigationController?.popViewController(animated: true)
     }
@@ -50,7 +51,7 @@ class ViewControllerFoodDetails: UIViewController {
         foodDescription.text = food?.itemDescription
         foodOwner.text = food?.itemOwner
         foodLocation.text = food?.itemLocation
-        
+        pNumberField.text = "\(food!.pNum!)"
         
         
         deleteButton.isEnabled = false
