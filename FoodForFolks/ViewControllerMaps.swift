@@ -8,7 +8,9 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     var foodDatabase = [Food]()
     var foodNumber:Int?
     var user:UserData?
-    var locationOccur: [String?: Int?] = [:]
+    var locationOccur: [String: Int] = [:]
+    var locationCoor: [CoordinateData] = []
+    var itemAnnotations: [ItemAnnotation] = []
     
     
     //location declarations
@@ -22,10 +24,10 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         //print(foodDatabase[0].itemTitle)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
-        getData()
-        translateAddress()
         locationManager.delegate = self
-        
+        getAddresses()
+        translateAddress()
+        MapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         switch CLLocationManager.authorizationStatus() {
         case .notDetermined:
             // Request when-in-use authorization initially
@@ -43,7 +45,6 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
             break
         }
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
@@ -72,51 +73,77 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView!.canShowCallout = true
-        } else {
-            annotationView!.annotation = annotation
-        }
-        
-        return annotationView
-    }
     
-    func getData() {
-        
-    }
-    
-    
-    func translateAddress() {
-        for (address, count) in locationOccur {
-            var geocoder = CLGeocoder()
-            var lat: CLLocationDegrees?
-            var lon: CLLocationDegrees?
-            if let addressItem = address {
-                geocoder.geocodeAddressString(addressItem) {
-                    placemarks, error in
-                    let placemark = placemarks?.first
-                    if let latitude = lat, let longitude = lon {
-                        lat = placemark?.location?.coordinate.latitude
-                        lon = placemark?.location?.coordinate.longitude
-                        print("Lat: \(lat), Lon: \(lon)")
+    func getAddresses() {
+        for item in self.foodDatabase {
+            if self.locationOccur.count == 0 {
+                if let itemLocation = item.itemLocation {
+                    self.locationOccur[itemLocation] = 1
+                }
+            }
+            else {
+                if let itemLocation = item.itemLocation {
+                    for (address, count) in self.locationOccur {
+                        if address == itemLocation, let itemCount = self.locationOccur[itemLocation] {
+                            self.locationOccur[itemLocation] = itemCount + 1;
+                        }
                     }
                 }
             }
-            let point = MKPointAnnotation()
-            if let countOfLocation = count {
-                point.title = String(countOfLocation) + " items at this location."
-            }
-            if let latitude = lat, let longitude = lon {
-                point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                MapView.addAnnotation(point)
-            }
         }
+    }
+    
+    func translateAddress() {
+        let geoCoder = CLGeocoder()
+        for (address, occurence) in self.locationOccur {
+            geoCoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+                if(error != nil)
+                {
+                    print("Error", error)
+                }
+                    
+                else if let placemark = placemarks?[0]
+                {
+                    let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
+                    var itemCoordinateInfo = CoordinateData(point: coordinates,address: address,count: occurence)
+                    self.createAnnotations(itemInfo: itemCoordinateInfo)
+                }
+            })
+        }
+        
+    }
+    
+    //this function creates annotations using our custom ItemAnnonation class that conforms to MKAnnotations interface
+    func createAnnotations(itemInfo: CoordinateData) {
+        self.addAnnotations(annotation: (ItemAnnotation(coordinate: itemInfo.point, title: ("\(itemInfo.count) items"), subtitle: ("\(itemInfo.count) items are listed at this location"))))
+    }
+    
+    //this func adds annotations to the mapview
+    func addAnnotations(annotation: ItemAnnotation) {
+        self.MapView.addAnnotation(annotation)
+    }
+}
+extension ViewControllerMaps: MKMapViewDelegate {
+    func MapView(_ MapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if let itemAnnotationView = MapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView {
+            itemAnnotationView.animatesWhenAdded = true
+            itemAnnotationView.titleVisibility = .adaptive
+            return itemAnnotationView
+        }
+        return nil;
+    }
+}
+
+//This class is used to create our custom annonations
+final class ItemAnnotation: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        super.init()
     }
 }
