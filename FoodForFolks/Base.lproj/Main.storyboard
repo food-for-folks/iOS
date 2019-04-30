@@ -412,7 +412,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Item Details" id="6b4-16-1gX">
@@ -584,7 +584,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T1U-Aw-bS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Yco-Gj-bBm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3077.5999999999999" y="-1075.4122938530736"/>
+            <point key="canvasLocation" x="3577" y="-941"/>
         </scene>
         <!--Maps-->
         <scene sceneID="wg7-f3-ORb">
@@ -601,7 +601,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Avaliable Food" id="Ma9-nT-Y9W"/>
@@ -637,10 +637,10 @@
             </objects>
             <point key="canvasLocation" x="1273" y="-789"/>
         </scene>
-        <!--Messages-->
+        <!--Claimed-->
         <scene sceneID="7Vj-nn-hvd">
             <objects>
-                <viewController id="zfU-dF-GI1" customClass="ViewControllerMessages" customModule="FoodForFolks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zfU-dF-GI1" customClass="ViewControllerClaimed" customModule="FoodForFolks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VCM-33-au5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -663,9 +663,13 @@
                                     <outlet property="delegate" destination="zfU-dF-GI1" id="vEp-hy-gCB"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="Search Messages" translatesAutoresizingMaskIntoConstraints="NO" id="nae-R2-wIl">
+                            <searchBar contentMode="redraw" placeholder="Search Claimed" translatesAutoresizingMaskIntoConstraints="NO" id="nae-R2-wIl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -680,37 +684,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UDZ-GX-zzw"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Messages" id="jMR-hc-lOI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ANU-si-VVE"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Claimed" id="jMR-hc-lOI"/>
                     <connections>
-                        <segue destination="A4s-y0-utA" kind="show" identifier="threadSegue" id="rcT-Wi-wLv"/>
+                        <segue destination="EwN-Pa-1bG" kind="presentation" identifier="ClaimedDetails" id="VVO-gQ-RpF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cF1-Mp-kQn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2212" y="-134.48275862068968"/>
-        </scene>
-        <!--View Controller Thread-->
-        <scene sceneID="APr-WK-RGC">
-            <objects>
-                <viewController id="A4s-y0-utA" customClass="ViewControllerThread" customModule="FoodForFolks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sSz-yi-cPn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghl-zM-7op">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="0DG-HO-aDF"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Vp-E2-wgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3106" y="-134"/>
         </scene>
         <!--View Controller Login-->
         <scene sceneID="cXs-7U-la2">
@@ -823,6 +804,9 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SIb-0l-3d2">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Sign up" id="R6e-Zk-rOc"/>
                                 </items>
@@ -1008,7 +992,8 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1020,17 +1005,17 @@
             </objects>
             <point key="canvasLocation" x="1272.8" y="-1477.5112443778112"/>
         </scene>
-        <!--Messages-->
+        <!--Claimed-->
         <scene sceneID="TnB-jY-hBf">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sGQ-Q6-RW5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" image="icons8-chat-filled-50" id="Dk6-oL-vci"/>
+                    <tabBarItem key="tabBarItem" title="Claimed" image="icons8-chat-filled-50" id="Dk6-oL-vci"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qTb-NV-3KX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1375,70 +1360,81 @@ You can filter by location, expiration date, and items that are unclaimed or cla
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current User" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Fr-9z-fwz">
-                                <rect key="frame" x="10" y="117" width="349" height="30"/>
+                                <rect key="frame" x="16" y="116.5" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orI-hu-0d2">
-                                <rect key="frame" x="16" y="80" width="343" height="21"/>
+                                <rect key="frame" x="16" y="80" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Company Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ult-Ry-aXw">
-                                <rect key="frame" x="5" y="200" width="354" height="30"/>
+                                <rect key="frame" x="16" y="199" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q7g-5d-7r6">
-                                <rect key="frame" x="12" y="163" width="343" height="21"/>
+                                <rect key="frame" x="16" y="162.5" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="peT-vQ-NsM">
-                                <rect key="frame" x="8" y="333" width="351" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="peT-vQ-NsM">
+                                <rect key="frame" x="16" y="328" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IIZ-QI-Cd0">
+                                <rect key="frame" x="16" y="374" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zhp-VV-cCx">
+                                <rect key="frame" x="16" y="282" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-gp-T8W">
-                                <rect key="frame" x="8" y="250" width="74" height="21"/>
+                                <rect key="frame" x="16" y="245" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Current Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zhp-VV-cCx">
-                                <rect key="frame" x="8" y="287" width="351" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="orI-hu-0d2" firstAttribute="trailing" secondItem="W9J-uh-08M" secondAttribute="trailingMargin" id="0aJ-bM-K10"/>
-                            <constraint firstItem="nMV-gp-T8W" firstAttribute="top" secondItem="Ult-Ry-aXw" secondAttribute="bottom" constant="20" id="35L-io-r4q"/>
-                            <constraint firstItem="orI-hu-0d2" firstAttribute="leading" secondItem="W9J-uh-08M" secondAttribute="leadingMargin" id="7Qn-bz-KC9"/>
-                            <constraint firstItem="Ult-Ry-aXw" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="5" id="9Ul-v0-ekx"/>
-                            <constraint firstItem="Zhp-VV-cCx" firstAttribute="top" secondItem="nMV-gp-T8W" secondAttribute="bottom" constant="16" id="AQ3-KS-lux"/>
-                            <constraint firstItem="3Fr-9z-fwz" firstAttribute="trailing" secondItem="Ult-Ry-aXw" secondAttribute="trailing" id="C8t-e3-UEc"/>
-                            <constraint firstItem="nMV-gp-T8W" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="8" id="CY4-Fd-Ezt"/>
-                            <constraint firstItem="Ult-Ry-aXw" firstAttribute="trailing" secondItem="Zhp-VV-cCx" secondAttribute="trailing" id="DA8-0s-e3e"/>
-                            <constraint firstItem="3Fr-9z-fwz" firstAttribute="top" secondItem="orI-hu-0d2" secondAttribute="bottom" constant="16" id="JOe-Q5-TPN"/>
-                            <constraint firstItem="3Fr-9z-fwz" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="10" id="KrR-Il-tow"/>
-                            <constraint firstItem="q7g-5d-7r6" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="12" id="Nrv-Xn-sNb"/>
-                            <constraint firstItem="Ult-Ry-aXw" firstAttribute="top" secondItem="q7g-5d-7r6" secondAttribute="bottom" constant="16" id="PMx-DN-Mpc"/>
-                            <constraint firstItem="Zhp-VV-cCx" firstAttribute="trailing" secondItem="peT-vQ-NsM" secondAttribute="trailing" id="R4s-FR-TXf"/>
-                            <constraint firstItem="Zhp-VV-cCx" firstAttribute="leading" secondItem="peT-vQ-NsM" secondAttribute="leading" id="VB3-yd-IQb"/>
-                            <constraint firstItem="orI-hu-0d2" firstAttribute="trailing" secondItem="3Fr-9z-fwz" secondAttribute="trailing" id="fg6-hq-PRp"/>
-                            <constraint firstItem="q7g-5d-7r6" firstAttribute="centerX" secondItem="Zhp-VV-cCx" secondAttribute="centerX" id="qUF-Ns-52h"/>
-                            <constraint firstItem="orI-hu-0d2" firstAttribute="top" secondItem="yAE-wC-P6g" secondAttribute="top" constant="16" id="rsM-Tk-EU1"/>
-                            <constraint firstItem="peT-vQ-NsM" firstAttribute="top" secondItem="Zhp-VV-cCx" secondAttribute="bottom" constant="16" id="spS-eh-l1Q"/>
-                            <constraint firstItem="nMV-gp-T8W" firstAttribute="leading" secondItem="Zhp-VV-cCx" secondAttribute="leading" id="try-4U-oCM"/>
-                            <constraint firstItem="q7g-5d-7r6" firstAttribute="top" secondItem="3Fr-9z-fwz" secondAttribute="bottom" constant="16" id="vLe-0I-HSm"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="peT-vQ-NsM" secondAttribute="trailing" constant="16" id="36D-Wm-vKg"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="3Fr-9z-fwz" secondAttribute="trailing" constant="16" id="3Ge-nK-Noc"/>
+                            <constraint firstItem="Zhp-VV-cCx" firstAttribute="top" secondItem="nMV-gp-T8W" secondAttribute="bottom" constant="16" id="3mH-Zb-T9r"/>
+                            <constraint firstItem="nMV-gp-T8W" firstAttribute="top" secondItem="Ult-Ry-aXw" secondAttribute="bottom" constant="16" id="4PI-aI-eiH"/>
+                            <constraint firstItem="3Fr-9z-fwz" firstAttribute="top" secondItem="orI-hu-0d2" secondAttribute="bottom" constant="16" id="4fq-l4-7EZ"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="bottom" secondItem="IIZ-QI-Cd0" secondAttribute="bottom" constant="214" id="Azo-su-jKy"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="IIZ-QI-Cd0" secondAttribute="trailing" constant="16" id="FxN-6O-Vsb"/>
+                            <constraint firstItem="q7g-5d-7r6" firstAttribute="top" secondItem="3Fr-9z-fwz" secondAttribute="bottom" constant="16" id="GQo-Il-ANq"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="nMV-gp-T8W" secondAttribute="trailing" constant="16" id="GQq-Ln-7cW"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="q7g-5d-7r6" secondAttribute="trailing" constant="16" id="Hc2-6b-504"/>
+                            <constraint firstItem="Ult-Ry-aXw" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="IMh-vk-cn3"/>
+                            <constraint firstItem="IIZ-QI-Cd0" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="INr-Ke-p68"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="Ult-Ry-aXw" secondAttribute="trailing" constant="16" id="LNW-l8-nnQ"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="Zhp-VV-cCx" secondAttribute="trailing" constant="16" id="M6B-H1-6B6"/>
+                            <constraint firstItem="3Fr-9z-fwz" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="O9K-7a-V1x"/>
+                            <constraint firstItem="nMV-gp-T8W" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="PcB-8s-QBy"/>
+                            <constraint firstItem="Ult-Ry-aXw" firstAttribute="top" secondItem="q7g-5d-7r6" secondAttribute="bottom" constant="16" id="PiV-E2-LmV"/>
+                            <constraint firstItem="orI-hu-0d2" firstAttribute="top" secondItem="yAE-wC-P6g" secondAttribute="top" constant="16" id="SWG-zS-ur8"/>
+                            <constraint firstItem="Zhp-VV-cCx" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="WYC-0C-Me4"/>
+                            <constraint firstItem="peT-vQ-NsM" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="X2P-Ps-0il"/>
+                            <constraint firstItem="peT-vQ-NsM" firstAttribute="top" secondItem="Zhp-VV-cCx" secondAttribute="bottom" constant="16" id="dRh-J8-oJK"/>
+                            <constraint firstItem="q7g-5d-7r6" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="lyX-oQ-XMr"/>
+                            <constraint firstItem="IIZ-QI-Cd0" firstAttribute="top" secondItem="peT-vQ-NsM" secondAttribute="bottom" constant="16" id="pSx-VU-1Ls"/>
+                            <constraint firstItem="yAE-wC-P6g" firstAttribute="trailing" secondItem="orI-hu-0d2" secondAttribute="trailing" constant="16" id="wjw-hh-wTN"/>
+                            <constraint firstItem="orI-hu-0d2" firstAttribute="leading" secondItem="yAE-wC-P6g" secondAttribute="leading" constant="16" id="znO-aX-WEQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yAE-wC-P6g"/>
                     </view>
@@ -1452,7 +1448,8 @@ You can filter by location, expiration date, and items that are unclaimed or cla
                     <connections>
                         <outlet property="accountName" destination="3Fr-9z-fwz" id="5fS-Da-KDx"/>
                         <outlet property="comapnyName" destination="Ult-Ry-aXw" id="Mq2-Ql-ZyQ"/>
-                        <outlet property="confirmPass" destination="peT-vQ-NsM" id="9lH-ze-GHp"/>
+                        <outlet property="confirmPass" destination="IIZ-QI-Cd0" id="BIo-DP-dcm"/>
+                        <outlet property="newPassword" destination="peT-vQ-NsM" id="dou-Nk-LZL"/>
                         <outlet property="password" destination="Zhp-VV-cCx" id="fJO-Wb-JsJ"/>
                     </connections>
                 </viewController>
@@ -1533,8 +1530,19 @@ You can filter by location, expiration date, and items that are unclaimed or cla
                         <viewLayoutGuide key="safeArea" id="fff-eh-f4g"/>
                     </view>
                     <navigationItem key="navigationItem" title="Location" id="lay-Hb-a1t">
-                        <barButtonItem key="rightBarButtonItem" title="Update" id="p9k-sY-wd4"/>
+                        <barButtonItem key="rightBarButtonItem" title="Update" id="p9k-sY-wd4">
+                            <connections>
+                                <action selector="updateButtonClicked:" destination="npt-VZ-abv" id="Ddc-ju-NpF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressLine1" destination="ORH-Fh-PEk" id="To2-Wb-Y4d"/>
+                        <outlet property="addressLine2" destination="xnh-Vz-iek" id="2Na-Li-9W7"/>
+                        <outlet property="cityLine" destination="Igh-ff-Wvr" id="c1l-cr-lGO"/>
+                        <outlet property="stateLine" destination="k1f-yz-WD5" id="IKC-FH-8ur"/>
+                        <outlet property="zipCodeLine" destination="o3c-Ty-u71" id="Z3a-Yy-cO9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WvC-9Z-B2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1595,7 +1603,7 @@ You can filter by location, expiration date, and items that are unclaimed or cla
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1616,6 +1624,6 @@ You can filter by location, expiration date, and items that are unclaimed or cla
         <image name="icons8-settings-filled-50" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5FA-dx-Ha9"/>
+        <segue reference="VVO-gQ-RpF"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -55,26 +55,18 @@ class ViewControllerNewFood: UITableViewController {
         super.viewDidLoad()
         
         let ref = Database.database().reference()
-        var name = "test"
-        var address = "test"
-        var city = "test"
-        var address2 = "test"
-        var state = "test"
-        var zip = "test"
-        ref.child("users").observe(.value) { (snapshot) in
-            if(snapshot.value != nil) {
-                for child in snapshot.children {
-                     let childSnap = child as! DataSnapshot
-                     name = childSnap.childSnapshot(forPath: "name").value as! String
-                     address = childSnap.childSnapshot(forPath: "address1").value as! String
-                     address2 = childSnap.childSnapshot(forPath: "address2").value as! String
-                    city = childSnap.childSnapshot(forPath: "city").value as! String
-                    state = childSnap.childSnapshot(forPath: "state").value as! String
-                    zip = childSnap.childSnapshot(forPath: "zip").value as! String
-                }
-                self.nameText.text = name
-                self.foodLocation.text = "\(address) \(address2) \(city), \(state) \(zip)"
-            }
+        ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let name = value?["name"] as? String ?? ""
+            let address = value?["address1"] as? String ?? ""
+            let city = value?["city"] as? String ?? ""
+            let address2 = value?["address2"] as? String ?? ""
+            let state = value?["state"] as? String ?? ""
+            let zip = value?["zip"] as? String ?? ""
+            self.nameText.text = name
+            self.foodLocation.text = "\(address) \(address2) \(city), \(state) \(zip)"
+        }) { (error) in
+            print(error.localizedDescription)
         }
         
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))

@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5D059BEB222F56E600A0B676 /* ViewControllerThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */; };
 		5D059BED222F598C00A0B676 /* TableViewControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */; };
 		5D059BF1222F629500A0B676 /* ViewControllerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D059BF0222F629500A0B676 /* ViewControllerHome.swift */; };
 		5D391DED222F030F00BCB29B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391DEC222F030F00BCB29B /* AppDelegate.swift */; };
 		5D391DF1222F030F00BCB29B /* ViewControllerMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */; };
 		5D391DF4222F030F00BCB29B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF2222F030F00BCB29B /* Main.storyboard */; };
 		5D391DF6222F031100BCB29B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D391DF5222F031100BCB29B /* Assets.xcassets */; };
-		5D391E03222F060900BCB29B /* ViewControllerMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E02222F060900BCB29B /* ViewControllerMessages.swift */; };
+		5D391E03222F060900BCB29B /* ViewControllerClaimed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E02222F060900BCB29B /* ViewControllerClaimed.swift */; };
 		5D391E0A222F0FD000BCB29B /* TableViewCellHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */; };
 		5D391E0B222F0FD000BCB29B /* TableViewCellHome.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */; };
 		5D391E0D222F123100BCB29B /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0C222F123100BCB29B /* FoodData.swift */; };
@@ -37,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		330A76802272029F007EEC10 /* FoodForFolks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FoodForFolks.entitlements; sourceTree = "<group>"; };
-		5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerThread.swift; sourceTree = "<group>"; };
 		5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerSettings.swift; sourceTree = "<group>"; };
 		5D059BF0222F629500A0B676 /* ViewControllerHome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerHome.swift; sourceTree = "<group>"; };
 		5D391DE9222F030F00BCB29B /* FoodForFolks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodForFolks.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +44,7 @@
 		5D391DF3222F030F00BCB29B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5D391DF5222F031100BCB29B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D391DFA222F031100BCB29B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D391E02222F060900BCB29B /* ViewControllerMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerMessages.swift; sourceTree = "<group>"; };
+		5D391E02222F060900BCB29B /* ViewControllerClaimed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerClaimed.swift; sourceTree = "<group>"; };
 		5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellHome.swift; sourceTree = "<group>"; };
 		5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellHome.xib; sourceTree = "<group>"; };
 		5D391E0C222F123100BCB29B /* FoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodData.swift; sourceTree = "<group>"; };
@@ -131,8 +129,7 @@
 				5D391E0E222F1AFF00BCB29B /* ViewControllerNewFood.swift */,
 				5D8AF36F22544508001CEE79 /* UserData.swift */,
 				5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */,
-				5D391E02222F060900BCB29B /* ViewControllerMessages.swift */,
-				5D059BEA222F56E600A0B676 /* ViewControllerThread.swift */,
+				5D391E02222F060900BCB29B /* ViewControllerClaimed.swift */,
 				5D391DF2222F030F00BCB29B /* Main.storyboard */,
 				5DE4FEC92256DF7600BC954E /* ViewControllerPrivacy.swift */,
 				5DE4FEC72256DEE900BC954E /* ViewControllerFAQ.swift */,
@@ -319,7 +316,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DCC69912253BB4200E8DEA3 /* ViewControllerSignup.swift in Sources */,
-				5D059BEB222F56E600A0B676 /* ViewControllerThread.swift in Sources */,
 				5D8AF3742256A0A7001CEE79 /* ViewControllerNotifications.swift in Sources */,
 				5D8AF3722256A000001CEE79 /* ViewControllerAccount.swift in Sources */,
 				8B694EBA224157AC008C81B8 /* ViewControllerLogin.swift in Sources */,
@@ -332,7 +328,7 @@
 				5D059BED222F598C00A0B676 /* TableViewControllerSettings.swift in Sources */,
 				5D059BF1222F629500A0B676 /* ViewControllerHome.swift in Sources */,
 				5D8AF36E2253C259001CEE79 /* ImagePickerManager.swift in Sources */,
-				5D391E03222F060900BCB29B /* ViewControllerMessages.swift in Sources */,
+				5D391E03222F060900BCB29B /* ViewControllerClaimed.swift in Sources */,
 				5DE4FECA2256DF7600BC954E /* ViewControllerPrivacy.swift in Sources */,
 				5D391E0A222F0FD000BCB29B /* TableViewCellHome.swift in Sources */,
 				5DE4FEC82256DEE900BC954E /* ViewControllerFAQ.swift in Sources */,
