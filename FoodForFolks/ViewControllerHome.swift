@@ -48,7 +48,8 @@ class ViewControllerHome: UIViewController {
         let nameActionButton = UIAlertAction(title: "Name (A-Z)", style: .default) { _ in
             print("name")
             let nameArray = self.foodDatabase.sorted {
-                $0.itemTitle! < $1.itemTitle!
+                //$0.itemTitle! < $1.itemTitle!
+                $0.itemTitle!.localizedStandardCompare($1.itemTitle!) == .orderedAscending
             }
             self.foodDatabase = nameArray
             self.tableView.reloadData()
@@ -149,12 +150,19 @@ class ViewControllerHome: UIViewController {
         let vc = unwindSegue.source as! ViewControllerNewFood
         let date = Date()
         
-        let ref = Database.database().reference()
-        ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid])
-        //let food = Food(itemTitle: vc.foodTitle.text!, itemQuanty: vc.foodQuanty.text!, itemPostDate: (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), itemImage: vc.imageLoc!, idNumber: foodDatabase.count + 1, itemDescription: vc.foodDescription.text!, itemOwner: vc.nameText.text!, itemLocation: vc.foodLocation.text!, itemExpiration: vc.foodExpiration.date.description, uid: vc.uid!)
-        //foodDatabase.append(food)
-        self.done = false
-        self.tableView.reloadData()
+        
+        let ref2 = Database.database().reference()
+        ref2.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let phone = value?["phone"] as? String ?? ""
+            print(phone)
+            let ref = Database.database().reference()
+            ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid, "phone": phone])
+            self.done = false
+            self.tableView.reloadData()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
 }
 

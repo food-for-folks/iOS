@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerMessages: UIViewController {
+class ViewControllerClaimed: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class ViewControllerMessages: UIViewController {
 }
 
 
-extension ViewControllerMessages: UITableViewDataSource {
+extension ViewControllerClaimed: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
@@ -31,7 +31,7 @@ extension ViewControllerMessages: UITableViewDataSource {
     }
 }
 
-extension ViewControllerMessages: UITableViewDelegate {
+extension ViewControllerClaimed: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

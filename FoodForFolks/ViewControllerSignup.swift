@@ -29,6 +29,8 @@ class ViewControllerSignup: UIViewController {
     
     let alertZip = UIAlertController(title: "Error!", message: "Zip cannot be blank!", preferredStyle: .alert)
     
+    let alertPhone = UIAlertController(title: "Error!", message: "Phone number cannot be blank!", preferredStyle: .alert)
+    
     
     func addOkButton() {
         alertPassword.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
@@ -63,6 +65,10 @@ class ViewControllerSignup: UIViewController {
             NSLog("The \"OK\" alert occured.")
         }))
         
+        alertPhone.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        
     }
     
     
@@ -85,6 +91,7 @@ class ViewControllerSignup: UIViewController {
     @IBOutlet weak var stateText: UITextField!
     @IBOutlet weak var zipCodeText: UITextField!
     @IBOutlet weak var selector: UISegmentedControl!
+    @IBOutlet weak var phoneNumber: UITextField!
     
     @IBAction func submitClick(_ sender: Any) {
         
@@ -104,6 +111,8 @@ class ViewControllerSignup: UIViewController {
             self.present(alertState, animated: true, completion: nil)
         } else if(zipCodeText.text == "") {
             self.present(alertZip, animated: true, completion: nil)
+        } else if(phoneNumber.text == "") {
+            self.present(alertPhone, animated: true, completion: nil)
         } else if(emailText.text != "" && passwordText.text != "") {
         
             if(Auth.auth().currentUser == nil) {
@@ -112,7 +121,7 @@ class ViewControllerSignup: UIViewController {
                         print("Signup Succesful")
                         
                         let ref = Database.database().reference()
-                        ref.child("users").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["email": self.emailText.text!, "name": self.nameText.text!, "city": self.cityText.text, "company": self.cNameText.text!, "address1": self.addressLineOneText.text!, "address2": self.addressLineTwoText.text ?? "", "state": self.stateText.text, "zip": self.zipCodeText.text, "donorRec": self.selector.selectedSegmentIndex, "uid": Auth.auth().currentUser!.uid])
+                        ref.child("users").child("\(Auth.auth().currentUser!.uid)").updateChildValues(["email": self.emailText.text!, "name": self.nameText.text!, "city": self.cityText.text, "company": self.cNameText.text!, "address1": self.addressLineOneText.text!, "address2": self.addressLineTwoText.text ?? "", "state": self.stateText.text, "zip": self.zipCodeText.text, "phone": self.phoneNumber.text, "donorRec": self.selector.selectedSegmentIndex, "uid": Auth.auth().currentUser!.uid])
                         
                         
                         UserDefaults.standard.set(true, forKey: "status")
