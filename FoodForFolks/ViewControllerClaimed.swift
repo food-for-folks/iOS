@@ -1,5 +1,5 @@
 //
-//  ViewControllerMessages.swift
+//  ViewControllerClaimed.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
