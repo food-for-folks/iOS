@@ -840,9 +840,9 @@
                     <connections>
                         <segue destination="epd-Gp-gUQ" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="v9R-bG-cnD" kind="relationship" relationship="viewControllers" id="y4B-WR-5JT"/>
                         <segue destination="sGQ-Q6-RW5" kind="relationship" relationship="viewControllers" id="OmJ-vd-n9o"/>
                         <segue destination="WOq-UD-X2y" kind="relationship" relationship="viewControllers" id="Sqv-Gh-Nsx"/>
-                        <segue destination="v9R-bG-cnD" kind="relationship" relationship="viewControllers" id="y4B-WR-5JT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1054,12 +1054,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for Messages" id="aj5-lC-7zD">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5l5-rS-ztJ">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="thread" rowHeight="80" id="5l5-rS-ztJ">
+                                <rect key="frame" x="0.0" y="72" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5l5-rS-ztJ" id="iu6-zF-2ez">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1069,11 +1074,31 @@
                             <outlet property="delegate" destination="yo3-rV-8Ab" id="7NH-jt-ZmH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Messages" id="ve7-kz-D8I"/>
+                    <navigationItem key="navigationItem" title="Messages" id="ve7-kz-D8I">
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="uNM-sd-zcO"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="CjC-5o-2Dg" kind="show" identifier="threadMessage" id="uX3-LD-Jra"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xkW-MS-Upr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3151" y="1325"/>
+            <point key="canvasLocation" x="3149.5999999999999" y="1324.5877061469266"/>
+        </scene>
+        <!--View Controller New Message-->
+        <scene sceneID="VQh-gx-egr">
+            <objects>
+                <viewController id="CjC-5o-2Dg" customClass="ViewControllerNewMessage" customModule="FoodForFolks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BmY-iN-E3K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9rL-d3-PtT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lFV-9w-ZLQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3150" y="2189"/>
         </scene>
         <!--Home-->
         <scene sceneID="RRN-F1-B4C">

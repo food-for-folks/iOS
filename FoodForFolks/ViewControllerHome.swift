@@ -28,7 +28,7 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print(tabBarController?.viewControllers![1])
+        print(tabBarController?.viewControllers)
         searchBar.delegate = self
         let ref = Database.database().reference()
         ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -139,8 +139,9 @@ class ViewControllerHome: UIViewController {
                             self.foodDatabase.append(newFood)
                             self.done = true
                             self.tableView.reloadData()
-                            let vc = self.tabBarController!.viewControllers![1] as! ViewControllerMaps
-                            vc.foodDatabase = self.foodDatabase
+                            
+                            let vc = self.tabBarController!.viewControllers![1] as? ViewControllerMaps
+                            vc?.foodDatabase = self.foodDatabase
                         }
                     })
                 }
