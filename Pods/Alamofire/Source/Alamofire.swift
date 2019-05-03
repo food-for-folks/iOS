@@ -337,6 +337,7 @@ public enum AF {
     /// - Parameters:
     ///   - multipartFormData:       The closure used to append body parts to the `MultipartFormData`.
     ///   - encodingMemoryThreshold: The encoding memory threshold in bytes. `10_000_000` bytes by default.
+    ///   - fileManager:             The `FileManager` instance to use to manage streaming and encoding.
     ///   - url:                     The `URLConvertible` value.
     ///   - method:                  The `HTTPMethod`, `.post` by default.
     ///   - headers:                 The `HTTPHeaders`, `nil` by default.
@@ -344,13 +345,15 @@ public enum AF {
     ///
     /// - Returns: The created `UploadRequest`.
     public static func upload(multipartFormData: @escaping (MultipartFormData) -> Void,
-                              usingThreshold encodingMemoryThreshold: UInt64 = MultipartUpload.encodingMemoryThreshold,
+                              usingThreshold encodingMemoryThreshold: UInt64 = MultipartFormData.encodingMemoryThreshold,
+                              fileManager: FileManager = .default,
                               to url: URLConvertible,
                               method: HTTPMethod = .post,
                               headers: HTTPHeaders? = nil,
                               interceptor: RequestInterceptor? = nil) -> UploadRequest {
         return Session.default.upload(multipartFormData: multipartFormData,
                                       usingThreshold: encodingMemoryThreshold,
+                                      fileManager: fileManager,
                                       to: url,
                                       method: method,
                                       headers: headers,
@@ -381,8 +384,8 @@ public enum AF {
     ///
     /// - Returns: The `UploadRequest` created.
     @discardableResult
-    public static func upload(multipartFormData: @escaping (MultipartFormData) -> Void,
-                              usingThreshold encodingMemoryThreshold: UInt64 = MultipartUpload.encodingMemoryThreshold,
+    public static func upload(multipartFormData: MultipartFormData,
+                              usingThreshold encodingMemoryThreshold: UInt64 = MultipartFormData.encodingMemoryThreshold,
                               with urlRequest: URLRequestConvertible,
                               interceptor: RequestInterceptor? = nil) -> UploadRequest {
         return Session.default.upload(multipartFormData: multipartFormData,

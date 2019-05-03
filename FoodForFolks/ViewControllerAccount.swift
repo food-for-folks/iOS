@@ -52,7 +52,7 @@ class ViewControllerAccount: UIViewController {
                     print(error)
                 } else {
                     Auth.auth().currentUser?.updatePassword(to: self.confirmPass.text!) { (error) in
-                        print(error)
+                        print(error!)
                     }
                 }
             }

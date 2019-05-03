@@ -128,6 +128,12 @@ static NSString *const kAppNotAuthorizedReasonValue = @"ipRefererBlocked";
  */
 static NSString *const kErrorMessageKey = @"message";
 
+/** @var kReturnIDPCredentialErrorMessageKey
+    @brief The key for "errorMessage" value in JSON responses from the server, In case
+        returnIDPCredential of a verifyAssertion request is set to @YES.
+ */
+static NSString *const kReturnIDPCredentialErrorMessageKey = @"errorMessage";
+
 /** @var kUserNotFoundErrorMessage
     @brief This is the error message returned when the user is not found, which means the user
         account has been deleted given the token was once valid.
@@ -288,9 +294,15 @@ static NSString *const kMissingAndroidPackageNameErrorMessage = @"MISSING_ANDROI
  */
 static NSString *const kUnauthorizedDomainErrorMessage = @"UNAUTHORIZED_DOMAIN";
 
+/** @var kInvalidProviderIDErrorMessage
+    @brief This is the error message the server will respond with if the provider id given for the
+        web operation is invalid.
+ */
+static NSString *const kInvalidProviderIDErrorMessage = @"INVALID_PROVIDER_ID";
+
 /** @var kInvalidDynamicLinkDomainErrorMessage
- @brief This is the error message the server will respond with if the dynamic link domain provided
- in the request is invalid.
+    @brief This is the error message the server will respond with if the dynamic link domain
+        provided in the request is invalid.
  */
 static NSString *const kInvalidDynamicLinkDomainErrorMessage = @"INVALID_DYNAMIC_LINK_DOMAIN";
 
@@ -925,18 +937,15 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
     if ([request isKindOfClass:[FIRVerifyAssertionRequest class]]) {
       FIRVerifyAssertionRequest *verifyAssertionRequest = (FIRVerifyAssertionRequest *)request;
       if (verifyAssertionRequest.returnIDPCredential) {
-        NSDictionary *errorDictionary = dictionary[kErrorKey];
-        if ([errorDictionary isKindOfClass:[NSDictionary class]]) {
-          id<NSObject> errorMessage = errorDictionary[kErrorMessageKey];
-          if ([errorMessage isKindOfClass:[NSString class]]) {
-            NSString *errorString = (NSString *)errorMessage;
-            NSError *clientError = [[self class] clientErrorWithServerErrorMessage:errorString
-                                                                   errorDictionary:errorDictionary
-                                                                          response:response];
-            if (clientError) {
-              callback(clientError);
-              return;
-            }
+        NSString *errorMessage = dictionary[kReturnIDPCredentialErrorMessageKey];
+        if ([errorMessage isKindOfClass:[NSString class]]) {
+          NSString *errorString = (NSString *)errorMessage;
+          NSError *clientError = [[self class] clientErrorWithServerErrorMessage:errorString
+                                                                 errorDictionary:@{}
+                                                                        response:response];
+          if (clientError) {
+            callback(clientError);
+            return;
           }
         }
       }
@@ -1058,11 +1067,13 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
     NSString *email;
     if ([response isKindOfClass:[FIRVerifyAssertionResponse class]]) {
       FIRVerifyAssertionResponse *verifyAssertion = (FIRVerifyAssertionResponse *)response;
-      credential =
-          [[FIROAuthCredential alloc] initWithProviderID:verifyAssertion.providerID
-                                                 IDToken:verifyAssertion.oauthIDToken
-                                             accessToken:verifyAssertion.oauthAccessToken
-                                            pendingToken:verifyAssertion.pendingToken];
+      if (verifyAssertion.oauthIDToken.length || verifyAssertion.oauthAccessToken.length) {
+        credential =
+            [[FIROAuthCredential alloc] initWithProviderID:verifyAssertion.providerID
+                                                   IDToken:verifyAssertion.oauthIDToken
+                                               accessToken:verifyAssertion.oauthAccessToken
+                                              pendingToken:verifyAssertion.pendingToken];
+      }
       email = verifyAssertion.email;
     }
     return [FIRAuthErrorUtils credentialAlreadyInUseErrorWithMessage:serverDetailErrorMessage
@@ -1112,6 +1123,10 @@ static id<FIRAuthBackendImplementation> gBackendImplementation;
 
   if ([shortErrorMessage isEqualToString:kInvalidContinueURIErrorMessage]) {
     return [FIRAuthErrorUtils invalidContinueURIErrorWithMessage:serverDetailErrorMessage];
+  }
+
+  if ([shortErrorMessage isEqualToString:kInvalidProviderIDErrorMessage]) {
+    return [FIRAuthErrorUtils invalidProviderIDErrorWithMessage:serverDetailErrorMessage];
   }
 
   if ([shortErrorMessage isEqualToString:kInvalidDynamicLinkDomainErrorMessage]) {

@@ -139,6 +139,8 @@ public enum AFError: Error {
         case decodingFailed(error: Error)
         /// Generic serialization failed for an empty response that wasn't type `Empty` but instead the associated type.
         case invalidEmptyResponse(type: String)
+        /// A response serializer was added to the request after the request was already finished.
+        case responseSerializerAddedAfterRequestFinished
     }
 
     /// Underlying reason a server trust evaluation error occured.
@@ -185,6 +187,8 @@ public enum AFError: Error {
         case publicKeyPinningFailed(host: String, trust: SecTrust, pinnedKeys: [SecKey], serverKeys: [SecKey])
     }
 
+    case sessionDeinitialized
+    case sessionInvalidated(error: Error?)
     case explicitlyCancelled
     case invalidURL(url: URLConvertible)
     case parameterEncodingFailed(reason: ParameterEncodingFailureReason)
@@ -207,66 +211,79 @@ extension Error {
 // MARK: - Error Booleans
 
 extension AFError {
-    /// Returns whether the `AFError` is an explicitly cancelled error.
+    // Returns whether the instance is `.sessionDeinitialized`.
+    public var isSessionDeinitializedError: Bool {
+        if case .sessionDeinitialized = self { return true }
+        return false
+    }
+
+    // Returns whether the instance is `.sessionInvalidated`.
+    public var isSessionInvalidatedError: Bool {
+        if case .sessionInvalidated = self { return true }
+        return false
+    }
+
+    /// Returns whether the instance is `.explicitlyCancelled`.
     public var isExplicitlyCancelledError: Bool {
         if case .explicitlyCancelled = self { return true }
         return false
     }
 
-    /// Returns whether the AFError is an invalid URL error.
+    /// Returns whether the instance is `.invalidURL`.
     public var isInvalidURLError: Bool {
         if case .invalidURL = self { return true }
         return false
     }
 
-    /// Returns whether the AFError is a parameter encoding error. When `true`, the `underlyingError` property will
+    /// Returns whether the instance is `.parameterEncodingFailed`. When `true`, the `underlyingError` property will
     /// contain the associated value.
     public var isParameterEncodingError: Bool {
         if case .parameterEncodingFailed = self { return true }
         return false
     }
 
-    /// Returns whether the instance is a parameter encoder error.
+    /// Returns whether the instance is `.parameterEncoderFailed`. When `true`, the `underlyingError` property will
+    // contain the associated value.
     public var isParameterEncoderError: Bool {
         if case .parameterEncoderFailed = self { return true }
         return false
     }
 
-    /// Returns whether the AFError is a multipart encoding error. When `true`, the `url` and `underlyingError` properties
-    /// will contain the associated values.
+    /// Returns whether the instance is `.multipartEncodingFailed`. When `true`, the `url` and `underlyingError`
+    /// properties will contain the associated values.
     public var isMultipartEncodingError: Bool {
         if case .multipartEncodingFailed = self { return true }
         return false
     }
 
-    /// Returns whether the AFError is a request adaptation error. When `true`, the `underlyingError` property will
+    /// Returns whether the instance is `.requestAdaptationFailed`. When `true`, the `underlyingError` property will
     /// contain the associated value.
     public var isRequestAdaptationError: Bool {
         if case .requestAdaptationFailed = self { return true }
         return false
     }
 
-    /// Returns whether the `AFError` is a response validation error. When `true`, the `acceptableContentTypes`,
+    /// Returns whether the instance is `.responseValidationFailed`. When `true`, the `acceptableContentTypes`,
     /// `responseContentType`, and `responseCode` properties will contain the associated values.
     public var isResponseValidationError: Bool {
         if case .responseValidationFailed = self { return true }
         return false
     }
 
-    /// Returns whether the `AFError` is a response serialization error. When `true`, the `failedStringEncoding` and
+    /// Returns whether the instance is `.responseSerializationFailed`. When `true`, the `failedStringEncoding` and
     /// `underlyingError` properties will contain the associated values.
     public var isResponseSerializationError: Bool {
         if case .responseSerializationFailed = self { return true }
         return false
     }
 
-    /// Returns whether the `AFError` is a server trust evaluation error.
+    /// Returns whether the instance is `.serverTrustEvaluationFailed`.
     public var isServerTrustEvaluationError: Bool {
         if case .serverTrustEvaluationFailed = self { return true }
         return false
     }
 
-    /// Returns whether the AFError is a request retry error. When `true`, the `underlyingError` property will
+    /// Returns whether the instance is `requestRetryFailed`. When `true`, the `underlyingError` property will
     /// contain the associated value.
     public var isRequestRetryError: Bool {
         if case .requestRetryFailed = self { return true }
@@ -279,29 +296,23 @@ extension AFError {
 extension AFError {
     /// The `URLConvertible` associated with the error.
     public var urlConvertible: URLConvertible? {
-        switch self {
-        case .invalidURL(let url):
-            return url
-        default:
-            return nil
-        }
+        guard case .invalidURL(let url) = self else { return nil }
+        return url
     }
 
     /// The `URL` associated with the error.
     public var url: URL? {
-        switch self {
-        case .multipartEncodingFailed(let reason):
-            return reason.url
-        default:
-            return nil
-        }
+        guard case .multipartEncodingFailed(let reason) = self else { return nil }
+        return reason.url
     }
 
-    /// The underlying `Error` responsible for generating the failure associated with `.parameterEncodingFailed`,
-    /// `.parameterEncoderFailed`, `.multipartEncodingFailed`, `.requestAdaptationFailed`,
+    /// The underlying `Error` responsible for generating the failure associated with `.sessionInvalidated`,
+    /// `.parameterEncodingFailed`, `.parameterEncoderFailed`, `.multipartEncodingFailed`, `.requestAdaptationFailed`,
     /// `.responseSerializationFailed`, `.requestRetryFailed` errors.
     public var underlyingError: Error? {
         switch self {
+        case .sessionInvalidated(let error):
+            return error
         case .parameterEncodingFailed(let reason):
             return reason.underlyingError
         case .parameterEncoderFailed(let reason):
@@ -321,64 +332,40 @@ extension AFError {
 
     /// The acceptable `Content-Type`s of a `.responseValidationFailed` error.
     public var acceptableContentTypes: [String]? {
-        switch self {
-        case .responseValidationFailed(let reason):
-            return reason.acceptableContentTypes
-        default:
-            return nil
-        }
+        guard case .responseValidationFailed(let reason) = self else { return nil }
+        return reason.acceptableContentTypes
     }
 
     /// The response `Content-Type` of a `.responseValidationFailed` error.
     public var responseContentType: String? {
-        switch self {
-        case .responseValidationFailed(let reason):
-            return reason.responseContentType
-        default:
-            return nil
-        }
+        guard case  .responseValidationFailed(let reason) = self else { return nil }
+        return reason.responseContentType
     }
 
     /// The response code of a `.responseValidationFailed` error.
     public var responseCode: Int? {
-        switch self {
-        case .responseValidationFailed(let reason):
-            return reason.responseCode
-        default:
-            return nil
-        }
+        guard case .responseValidationFailed(let reason) = self else { return nil }
+        return reason.responseCode
     }
 
     /// The `String.Encoding` associated with a failed `.stringResponse()` call.
     public var failedStringEncoding: String.Encoding? {
-        switch self {
-        case .responseSerializationFailed(let reason):
-            return reason.failedStringEncoding
-        default:
-            return nil
-        }
+        guard case .responseSerializationFailed(let reason) = self else { return nil }
+        return reason.failedStringEncoding
     }
 }
 
 extension AFError.ParameterEncodingFailureReason {
     var underlyingError: Error? {
-        switch self {
-        case .jsonEncodingFailed(let error):
-            return error
-        default:
-            return nil
-        }
+        guard case .jsonEncodingFailed(let error) = self else { return nil }
+        return error
     }
 }
 
 extension AFError.ParameterEncoderFailureReason {
     var underlyingError: Error? {
-        switch self {
-        case .encoderFailed(let error):
-            return error
-        default:
-            return nil
-        }
+        guard case .encoderFailed(let error) = self else { return nil }
+        return error
     }
 }
 
@@ -418,41 +405,25 @@ extension AFError.ResponseValidationFailureReason {
     }
 
     var responseContentType: String? {
-        switch self {
-        case .unacceptableContentType(_, let responseType):
-            return responseType
-        default:
-            return nil
-        }
+        guard case .unacceptableContentType(_, let responseType) = self else { return nil }
+        return responseType
     }
 
     var responseCode: Int? {
-        switch self {
-        case .unacceptableStatusCode(let code):
-            return code
-        default:
-            return nil
-        }
+        guard case .unacceptableStatusCode(let code) = self else { return nil }
+        return code
     }
 }
 
 extension AFError.ResponseSerializationFailureReason {
     var failedStringEncoding: String.Encoding? {
-        switch self {
-        case .stringSerializationFailed(let encoding):
-            return encoding
-        default:
-            return nil
-        }
+        guard case .stringSerializationFailed(let encoding) = self else { return nil }
+        return encoding
     }
 
     var underlyingError: Error? {
-        switch self {
-        case .jsonSerializationFailed(let error):
-            return error
-        default:
-            return nil
-        }
+        guard case .jsonSerializationFailed(let error) = self else { return nil }
+        return error
     }
 }
 
@@ -473,6 +444,13 @@ extension AFError.ServerTrustFailureReason {
 extension AFError: LocalizedError {
     public var errorDescription: String? {
         switch self {
+        case .sessionDeinitialized:
+            return """
+                   Session was invalidated without error, so it was likely deinitialized unexpectedly. \
+                   Be sure to retain a reference to your Session for the duration of your requests.
+                   """
+        case .sessionInvalidated(let error):
+            return "Session was invalidated with error: \(error?.localizedDescription ?? "No description.")"
         case .explicitlyCancelled:
             return "Request explicitly cancelled."
         case .invalidURL(let url):
@@ -492,8 +470,10 @@ extension AFError: LocalizedError {
         case .serverTrustEvaluationFailed:
             return "Server trust evaluation failed."
         case .requestRetryFailed(let retryError, let originalError):
-            return "Request retry failed with retry error: \(retryError.localizedDescription), " +
-                "original error: \(originalError.localizedDescription)"
+            return """
+                   Request retry failed with retry error: \(retryError.localizedDescription), \
+                   original error: \(originalError.localizedDescription)
+                   """
         }
     }
 }
@@ -576,6 +556,8 @@ extension AFError.ResponseSerializationFailureReason {
             return "Empty response could not be serialized to type: \(type). Use Empty as the expected type for such responses."
         case .decodingFailed(let error):
             return "Response could not be decoded because of error:\n\(error.localizedDescription)"
+        case .responseSerializerAddedAfterRequestFinished:
+            return "Response serializer was added to the request after it had already finished."
         }
     }
 }

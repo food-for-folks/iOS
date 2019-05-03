@@ -30,7 +30,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //print(foodDatabase[0].itemTitle)
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: Selector("endEditing:")))
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
         locationManager.delegate = self
         getAddresses()
         translateAddress()
@@ -90,7 +90,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
             }
             else {
                 if let itemLocation = item.itemLocation {
-                    for (address, count) in self.locationOccur {
+                    for (address, _) in self.locationOccur {
                         if address == itemLocation, let itemCount = self.locationOccur[itemLocation] {
                             self.locationOccur[itemLocation] = itemCount + 1;
                         }
@@ -106,13 +106,13 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
             geoCoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
                 if(error != nil)
                 {
-                    print("Error", error)
+                    print("Error", error!)
                 }
                     
                 else if let placemark = placemarks?[0]
                 {
                     let coordinates:CLLocationCoordinate2D = placemark.location!.coordinate
-                    var itemCoordinateInfo = CoordinateData(point: coordinates,address: address,count: occurence)
+                    let itemCoordinateInfo = CoordinateData(point: coordinates,address: address,count: occurence)
                     self.createAnnotations(itemInfo: itemCoordinateInfo)
                 }
             })
@@ -131,7 +131,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
     }
 }
 extension ViewControllerMaps: MKMapViewDelegate {
-    func MapView(_ MapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ MapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let itemAnnotationView = MapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView {
             itemAnnotationView.animatesWhenAdded = true
             itemAnnotationView.titleVisibility = .adaptive

@@ -1991,9 +1991,10 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>MIT License
+			<string>
+The MIT License (MIT)
 
-Copyright (c) 2017-2018 MessageKit
+Copyright (c) Nathan Tannar &lt;nathantannar4@gmail.com&gt; 2017-2019
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2016,7 +2017,7 @@ SOFTWARE.
 			<key>License</key>
 			<string>MIT</string>
 			<key>Title</key>
-			<string>MessageInputBar</string>
+			<string>InputBarAccessoryView</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -2024,7 +2025,7 @@ SOFTWARE.
 			<key>FooterText</key>
 			<string>MIT License
 
-Copyright (c) 2017-2018 MessageKit
+Copyright (c) 2017-2019 MessageKit
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -2256,7 +2257,7 @@ SOFTWARE.
    limitations under the License.
 </string>
 			<key>License</key>
-			<string>MIT</string>
+			<string>Apache-2.0</string>
 			<key>Title</key>
 			<string>Scaledrone</string>
 			<key>Type</key>

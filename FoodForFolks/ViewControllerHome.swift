@@ -172,7 +172,7 @@ class ViewControllerHome: UIViewController {
             let value = snapshot.value as? NSDictionary
             let phone = value?["phone"] as? Int64 ?? 0
             let ref = Database.database().reference()
-            ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text, "owner": vc.nameText.text, "location": vc.foodLocation.text, "expiration": vc.foodExpiration.date.description, "uid": vc.uid, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser?.uid, "phone": phone])
+            ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc!, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text!, "owner": vc.nameText.text!, "location": vc.foodLocation.text!, "expiration": vc.foodExpiration.date.description, "uid": vc.uid!, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser!.uid, "phone": phone])
             self.done = false
             self.tableView.reloadData()
         }) { (error) in
