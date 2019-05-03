@@ -3,7 +3,7 @@
 //  FoodForFolks
 //
 //  Created by Cory Rooker on 3/19/19.
-//  Copyright © 2019 Cory L. Rooker. All rights reserved.
+//  Copyright © 2019 Cory Rooker, Thomas Obarowski, Weston Harmon, Yuliya Pinchuk, Zeenat Sabakada. All rights reserved.
 //
 
 import UIKit

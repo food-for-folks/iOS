@@ -1,3 +1,10 @@
+//
+//  ViewControllerMaps.swift
+//  FoodForFolks
+//
+//  Created by Cory L. Rooker on 4/2/19.
+//  Copyright © 2019 Cory Rooker, Thomas Obarowski, Weston Harmon, Yuliya Pinchuk, Zeenat Sabakada. All rights reserved.
+//
 import UIKit
 import MapKit
 import Firebase
