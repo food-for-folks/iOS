@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AccountViewController: UIViewController {
-
+    
     @IBOutlet weak var accountName: UITextField!
     @IBOutlet weak var comapnyName: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -60,5 +60,5 @@ class AccountViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class AddFoodViewController: UITableViewController {
-
+    
     let storage = Storage.storage()
     @IBOutlet weak var imageToAdd: UIImageView!
     @IBOutlet weak var foodTitle: UITextField!

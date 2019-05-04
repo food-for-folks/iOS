@@ -11,7 +11,7 @@ import FirebaseAuth
 import Firebase
 
 class SignupViewController: UIViewController {
-
+    
     
     let alertPassword = UIAlertController(title: "Error!", message: "Missing Password or do not match!", preferredStyle: .alert)
     
@@ -114,7 +114,7 @@ class SignupViewController: UIViewController {
         } else if(phoneNumber.text == "") {
             self.present(alertPhone, animated: true, completion: nil)
         } else if(emailText.text != "" && passwordText.text != "") {
-        
+            
             if(Auth.auth().currentUser == nil) {
                 Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!) { (authResult, error) in
                     if(error == nil) {
@@ -138,7 +138,7 @@ class SignupViewController: UIViewController {
                 }
             }
         }
-
+        
     }
     
     @IBAction func cancelClicked(_ sender: Any) {

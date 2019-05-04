@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class SettingsTableViewController: UITableViewController {
-
+    
     
     @IBAction func logout(_ sender: Any) {
         
@@ -55,5 +55,5 @@ class SettingsTableViewController: UITableViewController {
         }
         
     }
-
+    
 }

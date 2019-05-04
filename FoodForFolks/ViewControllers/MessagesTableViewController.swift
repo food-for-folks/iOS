@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class MessagesTableViewController: UITableViewController {
-
+    
     var threads = [String]()
     var owner  = [String]()
     var uid = [String]()
@@ -54,7 +54,7 @@ class MessagesTableViewController: UITableViewController {
         performSegue(withIdentifier: "threadMessage", sender: nil)
         
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thread", for: indexPath)
         
@@ -62,5 +62,5 @@ class MessagesTableViewController: UITableViewController {
         
         return cell
     }
-
+    
 }

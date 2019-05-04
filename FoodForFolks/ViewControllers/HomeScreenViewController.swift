@@ -9,9 +9,8 @@
 import UIKit
 import Firebase
 
-
 class HomeScreenViewController: UIViewController {
-
+    
     var foodDatabase = [Food]()
     
     var foodNumber:Int?
@@ -90,7 +89,7 @@ class HomeScreenViewController: UIViewController {
         self.present(action, animated: true, completion: nil)
     }
     
-
+    
     func getData() {
         let ref = Database.database().reference()
         tableView.delegate = self
@@ -148,7 +147,7 @@ class HomeScreenViewController: UIViewController {
             }
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "foodDetails") {
             let foodDetails = segue.destination as! FoodDetailsViewController
@@ -156,7 +155,7 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
-     @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
+    @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
         let ref = Database.database().reference()
         ref.child("food").child(foodDatabase[foodNumber!].uid!).removeValue()
         foodDatabase.remove(at: foodNumber!)
@@ -208,7 +207,7 @@ extension HomeScreenViewController: UITableViewDataSource {
             cell.postTime.text = foodDatabase[indexPath.row].itemPostDate
             cell.pictureOfFood.image = foodDatabase[indexPath.row].data
         }
-
+        
         
         return cell
     }
@@ -220,7 +219,7 @@ extension HomeScreenViewController: UITableViewDelegate {
         foodNumber = indexPath.row
         performSegue(withIdentifier: "foodDetails", sender: nil)
     }
-
+    
 }
 
 extension HomeScreenViewController: UISearchBarDelegate {

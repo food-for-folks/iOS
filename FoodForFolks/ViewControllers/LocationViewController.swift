@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class LocationViewController: UIViewController {
-
+    
     
     @IBOutlet weak var addressLine1: UITextField!
     @IBOutlet weak var addressLine2: UITextField!

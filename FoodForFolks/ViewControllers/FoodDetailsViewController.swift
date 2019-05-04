@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class FoodDetailsViewController: UIViewController {
-
+    
     var food:Food?
     var ref: DatabaseReference!
     var claimed = false

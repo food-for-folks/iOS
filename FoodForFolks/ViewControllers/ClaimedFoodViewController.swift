@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ClaimedFoodViewController: UIViewController {
-
+    
     
     var foodDatabase = [Food]()
     var done:Bool?
@@ -79,7 +79,7 @@ class ClaimedFoodViewController: UIViewController {
             foodDetails.claimed = true
         }
     }
-
+    
 }
 
 
