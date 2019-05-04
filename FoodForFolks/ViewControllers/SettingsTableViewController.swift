@@ -1,5 +1,5 @@
 //
-//  TableViewControllerSettings.swift
+//  SettingsTableViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class TableViewControllerSettings: UITableViewController {
+class SettingsTableViewController: UITableViewController {
 
     
     @IBAction func logout(_ sender: Any) {

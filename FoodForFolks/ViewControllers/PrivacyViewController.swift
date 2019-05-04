@@ -1,5 +1,5 @@
 //
-//  ViewControllerNotifications.swift
+//  PrivacyViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 4/4/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerNotifications: UIViewController {
+class PrivacyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

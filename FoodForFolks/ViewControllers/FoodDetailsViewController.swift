@@ -1,5 +1,5 @@
 //
-//  ViewControllerFoodDetails.swift
+//  FoodDetailsViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewControllerFoodDetails: UIViewController {
+class FoodDetailsViewController: UIViewController {
 
     var food:Food?
     var ref: DatabaseReference!

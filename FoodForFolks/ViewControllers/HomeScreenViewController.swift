@@ -1,5 +1,5 @@
 //
-//  ViewControllerHome.swift
+//  HomeScreenViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class ViewControllerHome: UIViewController {
+class HomeScreenViewController: UIViewController {
 
     var foodDatabase = [Food]()
     
@@ -140,7 +140,7 @@ class ViewControllerHome: UIViewController {
                             self.done = true
                             self.tableView.reloadData()
                             
-                            let vc = self.tabBarController!.viewControllers![1] as? ViewControllerMaps
+                            let vc = self.tabBarController!.viewControllers![1] as? MapsViewController
                             vc?.foodDatabase = self.foodDatabase
                         }
                     })
@@ -151,7 +151,7 @@ class ViewControllerHome: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "foodDetails") {
-            let foodDetails = segue.destination as! ViewControllerFoodDetails
+            let foodDetails = segue.destination as! FoodDetailsViewController
             foodDetails.food = foodDatabase[foodNumber!]
         }
     }
@@ -164,7 +164,7 @@ class ViewControllerHome: UIViewController {
     }
     
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
-        let vc = unwindSegue.source as! ViewControllerNewFood
+        let vc = unwindSegue.source as! AddFoodViewController
         let date = Date()
         
         
@@ -184,7 +184,7 @@ class ViewControllerHome: UIViewController {
 
 
 
-extension ViewControllerHome: UITableViewDataSource {
+extension HomeScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellNib = UINib(nibName: "TableViewCellHome", bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: "HomeCell")
@@ -196,7 +196,7 @@ extension ViewControllerHome: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! TableViewCellHome
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeTableViewCell
         if searching {
             cell.itemDescription.text = searchQuery[indexPath.row].itemTitle
             cell.itemQuanty.text = searchQuery[indexPath.row].itemQuanty
@@ -214,7 +214,7 @@ extension ViewControllerHome: UITableViewDataSource {
     }
 }
 
-extension ViewControllerHome: UITableViewDelegate {
+extension HomeScreenViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         foodNumber = indexPath.row
@@ -223,7 +223,7 @@ extension ViewControllerHome: UITableViewDelegate {
 
 }
 
-extension ViewControllerHome: UISearchBarDelegate {
+extension HomeScreenViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchBar.showsCancelButton = true
         searchQuery = foodDatabase.filter({$0.itemTitle!.lowercased().prefix(searchText.count) == searchText.lowercased()})

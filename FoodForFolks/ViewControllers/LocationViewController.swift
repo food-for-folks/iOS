@@ -1,5 +1,5 @@
 //
-//  ViewControllerLocation.swift
+//  LocationViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 4/4/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewControllerLocation: UIViewController {
+class LocationViewController: UIViewController {
 
     
     @IBOutlet weak var addressLine1: UITextField!

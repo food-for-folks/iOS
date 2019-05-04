@@ -1,5 +1,5 @@
 //
-//  ViewControllerNewFood.swift
+//  AddFoodViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewControllerNewFood: UITableViewController {
+class AddFoodViewController: UITableViewController {
 
     let storage = Storage.storage()
     @IBOutlet weak var imageToAdd: UIImageView!

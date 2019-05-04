@@ -1,5 +1,5 @@
 //
-//  ViewControllerClaimed.swift
+//  ClaimedFoodViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ViewControllerClaimed: UIViewController {
+class ClaimedFoodViewController: UIViewController {
 
     
     var foodDatabase = [Food]()
@@ -74,7 +74,7 @@ class ViewControllerClaimed: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ClaimedDetails") {
-            let foodDetails = segue.destination as! ViewControllerFoodDetails
+            let foodDetails = segue.destination as! FoodDetailsViewController
             foodDetails.food = foodDatabase[foodNumber!]
             foodDetails.claimed = true
         }
@@ -83,7 +83,7 @@ class ViewControllerClaimed: UIViewController {
 }
 
 
-extension ViewControllerClaimed: UITableViewDataSource {
+extension ClaimedFoodViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return foodDatabase.count
     }
@@ -113,7 +113,7 @@ extension ViewControllerClaimed: UITableViewDataSource {
     }
 }
 
-extension ViewControllerClaimed: UITableViewDelegate {
+extension ClaimedFoodViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         foodNumber = indexPath.row

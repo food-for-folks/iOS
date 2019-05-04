@@ -1,5 +1,5 @@
 //
-//  TableViewCellHome.swift
+//  HomeTableViewCell.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 3/5/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCellHome: UITableViewCell {
+class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var pictureOfFood: UIImageView!
     

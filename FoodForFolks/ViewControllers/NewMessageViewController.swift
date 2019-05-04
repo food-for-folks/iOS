@@ -10,7 +10,7 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 
-class ViewControllerNewMessage: MessagesViewController {
+class NewMessageViewController: MessagesViewController {
     var owner:String?
     var uid:String?
     var messages: [Message] = []
@@ -28,7 +28,7 @@ class ViewControllerNewMessage: MessagesViewController {
     
 }
 
-extension ViewControllerNewMessage: MessagesDataSource {
+extension NewMessageViewController: MessagesDataSource {
     
     func numberOfSections(
         in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -64,7 +64,7 @@ extension ViewControllerNewMessage: MessagesDataSource {
     }
 }
 
-extension ViewControllerNewMessage: MessagesLayoutDelegate {
+extension NewMessageViewController: MessagesLayoutDelegate {
     func heightForLocation(message: MessageType,
                            at indexPath: IndexPath,
                            with maxWidth: CGFloat,
@@ -74,7 +74,7 @@ extension ViewControllerNewMessage: MessagesLayoutDelegate {
     }
 }
 
-extension ViewControllerNewMessage: MessagesDisplayDelegate {
+extension NewMessageViewController: MessagesDisplayDelegate {
     func configureAvatarView(
         _ avatarView: AvatarView,
         for message: MessageType,
@@ -87,7 +87,7 @@ extension ViewControllerNewMessage: MessagesDisplayDelegate {
     }
 }
 
-extension ViewControllerNewMessage: MessageInputBarDelegate {
+extension NewMessageViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar,didPressSendButtonWith text: String) {
         
         let newMessage = Message(

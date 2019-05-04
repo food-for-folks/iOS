@@ -1,5 +1,5 @@
 //
-//  ViewControllerMaps.swift
+//  MapsViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 4/2/19.
@@ -10,7 +10,7 @@ import MapKit
 import Firebase
 import CoreLocation
 
-class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
+class MapsViewController: UIViewController, CLLocationManagerDelegate {
     //database declarations
     var foodDatabase = [Food]()
     var foodNumber:Int?
@@ -130,7 +130,7 @@ class ViewControllerMaps: UIViewController, CLLocationManagerDelegate {
         self.MapView.addAnnotation(annotation)
     }
 }
-extension ViewControllerMaps: MKMapViewDelegate {
+extension MapsViewController: MKMapViewDelegate {
     func mapView(_ MapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let itemAnnotationView = MapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier) as? MKMarkerAnnotationView {
             itemAnnotationView.animatesWhenAdded = true

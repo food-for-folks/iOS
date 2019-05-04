@@ -1,5 +1,5 @@
 //
-//  TableViewControllerMessages.swift
+//  MessagesTableViewController.swift
 //  FoodForFolks
 //
 //  Created by Cory L. Rooker on 5/3/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class TableViewControllerMessages: UITableViewController {
+class MessagesTableViewController: UITableViewController {
 
     var threads = [String]()
     var owner  = [String]()
@@ -38,7 +38,7 @@ class TableViewControllerMessages: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "threadMessage") {
-            let vc = segue.destination as! ViewControllerNewMessage
+            let vc = segue.destination as! NewMessageViewController
             vc.owner = self.owner[selected!]
             vc.uid = self.uid[selected!]
         }
