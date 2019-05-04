@@ -38,8 +38,9 @@ class AddFoodViewController: UITableViewController {
             guard metadata != nil else {
                 return
             }
-        }
-        self.dismiss(animated: true) {
+            
+            self.dismiss(animated: true) {
+            }
         }
     }
     

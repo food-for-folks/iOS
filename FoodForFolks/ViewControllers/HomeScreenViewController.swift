@@ -8,31 +8,57 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class HomeScreenViewController: UIViewController {
-    
+    // Local database to hold posted items downloaded from firebase
     var foodDatabase = [Food]()
     
+    // Number of the row selected
     var foodNumber:Int?
+    
+    // data has been downloaded and does not need to be refreashed
     var done = false
     
+    // Database to hold items that have been searched for
     var searchQuery = [Food]()
+    
+    // Still searching
     var searching = false
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var addButton: UIBarButtonItem!
-    
+    // Hold user data for the item owner
     var user:UserData?
+    
+    // Connection to tableView
+    @IBOutlet weak var tableView: UITableView!
+    
+    // Connection to the searchBar
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    // Connection to the addButton
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //print(tabBarController?.viewControllers)
+        
+        // connect search bar
         searchBar.delegate = self
+        
+        // setup firebase database
         let ref = Database.database().reference()
+        
+        // get location of data
         ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // load the data stored in the database
             let value = snapshot.value as? NSDictionary
+            
+            // get the donor type of the logged in user
             let userType = value?["donorRec"] as? Int ?? 0
+            
+            // hide or show the add button based on type of user
             if(userType == 0) {
                 self.addButton.isEnabled = false
             } else if(userType == 1) {
@@ -41,13 +67,15 @@ class HomeScreenViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        if(!done) {
-            self.foodDatabase.removeAll()
-            self.tableView.reloadData()
-            getData()
+        
+        HUD.show(.progress)
+        if(!self.done) {
+            self.getData()
+        }
+        // Now some long running task starts...
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            // ...and once it finishes we flash the HUD for a second.
+            HUD.flash(.success, delay: 1.0)
         }
     }
     
@@ -95,6 +123,8 @@ class HomeScreenViewController: UIViewController {
         tableView.delegate = self
         
         ref.child("food").observe(.value) { (snapshot) in
+            self.foodDatabase.removeAll()
+            self.tableView.reloadData()
             if(snapshot.value != nil) {
                 var titleFood = ""
                 var quantity = ""
@@ -138,7 +168,6 @@ class HomeScreenViewController: UIViewController {
                             self.foodDatabase.append(newFood)
                             self.done = true
                             self.tableView.reloadData()
-                            
                             let vc = self.tabBarController!.viewControllers![1] as? MapsViewController
                             vc?.foodDatabase = self.foodDatabase
                         }
@@ -165,19 +194,25 @@ class HomeScreenViewController: UIViewController {
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
         let vc = unwindSegue.source as! AddFoodViewController
         let date = Date()
+        HUD.show(.progress)
         
-        
-        let ref2 = Database.database().reference()
-        ref2.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let phone = value?["phone"] as? Int64 ?? 0
-            let ref = Database.database().reference()
-            ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc!, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text!, "owner": vc.nameText.text!, "location": vc.foodLocation.text!, "expiration": vc.foodExpiration.date.description, "uid": vc.uid!, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser!.uid, "phone": phone])
-            self.done = false
-            self.tableView.reloadData()
-        }) { (error) in
-            print(error.localizedDescription)
+        // Now some long running task starts...
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            // ...and once it finishes we flash the HUD for a second.
+            HUD.flash(.success, delay: 1.0)
+            let ref2 = Database.database().reference()
+            ref2.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                let value = snapshot.value as? NSDictionary
+                let phone = value?["phone"] as? Int64 ?? 0
+                let ref = Database.database().reference()
+                ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc!, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text!, "owner": vc.nameText.text!, "location": vc.foodLocation.text!, "expiration": vc.foodExpiration.date.description, "uid": vc.uid!, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser!.uid, "phone": phone])
+                self.done = false
+                self.tableView.reloadData()
+            }) { (error) in
+                print(error.localizedDescription)
+            }
         }
+        
     }
 }
 

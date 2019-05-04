@@ -77,6 +77,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PKHUD (5.2.1)
   - Scaledrone (0.5.0):
     - Starscream (~> 3.1.0)
   - Starscream (3.1.0)
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - MessageKit
+  - PKHUD
   - Scaledrone
 
 SPEC REPOS:
@@ -106,6 +108,7 @@ SPEC REPOS:
     - leveldb-library
     - MessageKit
     - nanopb
+    - PKHUD
     - Scaledrone
     - Starscream
 
@@ -125,9 +128,10 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   Scaledrone: 7fc6a9ab8e969b0df53fe14b54217db8ddf0715a
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
 
-PODFILE CHECKSUM: 07f4ee37974ae76142da2ae0aad017dda733189f
+PODFILE CHECKSUM: 35f4ad3de505365203110f6ef4a54c1e71f5a485
 
 COCOAPODS: 1.6.1
