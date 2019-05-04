@@ -87,7 +87,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
-  - MessageKit
+  - MessageKit (~> 3.0.0-swift5)
   - PKHUD
   - Scaledrone
 
@@ -132,6 +132,6 @@ SPEC CHECKSUMS:
   Scaledrone: 7fc6a9ab8e969b0df53fe14b54217db8ddf0715a
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
 
-PODFILE CHECKSUM: 35f4ad3de505365203110f6ef4a54c1e71f5a485
+PODFILE CHECKSUM: fdc0156685bd95884012d33f97cdac0904918791
 
 COCOAPODS: 1.6.1

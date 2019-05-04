@@ -40,7 +40,7 @@ class HomeScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //print(Bundle.main.bundleURL)
         //print(tabBarController?.viewControllers)
         
         // connect search bar

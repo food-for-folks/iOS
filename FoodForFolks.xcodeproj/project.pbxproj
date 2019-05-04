@@ -22,6 +22,18 @@
 		5D391E0D222F123100BCB29B /* FoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0C222F123100BCB29B /* FoodData.swift */; };
 		5D391E0F222F1AFF00BCB29B /* AddFoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E0E222F1AFF00BCB29B /* AddFoodViewController.swift */; };
 		5D391E11222F204E00BCB29B /* FoodDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D391E10222F204E00BCB29B /* FoodDetailsViewController.swift */; };
+		5D55F18F227DED4F009E3A3F /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F18D227DED4F009E3A3F /* UIViewController+Extensions.swift */; };
+		5D55F190227DED4F009E3A3F /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F18E227DED4F009E3A3F /* UIColor+Extensions.swift */; };
+		5D55F194227DED7E009E3A3F /* TableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F192227DED7E009E3A3F /* TableViewCells.swift */; };
+		5D55F195227DED7E009E3A3F /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F193227DED7E009E3A3F /* CustomCell.swift */; };
+		5D55F197227DEE09009E3A3F /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F196227DEE09009E3A3F /* ChatViewController.swift */; };
+		5D55F199227DEE34009E3A3F /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F198227DEE34009E3A3F /* SampleData.swift */; };
+		5D55F19D227DEEB7009E3A3F /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F19A227DEEB7009E3A3F /* MockUser.swift */; };
+		5D55F19E227DEEB7009E3A3F /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F19B227DEEB7009E3A3F /* MockMessage.swift */; };
+		5D55F19F227DEEB7009E3A3F /* MockSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F19C227DEEB7009E3A3F /* MockSocket.swift */; };
+		5D55F1A4227DEF22009E3A3F /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F1A3227DEF21009E3A3F /* BasicAudioController.swift */; };
+		5D55F1A6227DEF47009E3A3F /* Settings+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F1A5227DEF47009E3A3F /* Settings+UserDefaults.swift */; };
+		5D55F1A8227DEFC2009E3A3F /* Lorem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55F1A7227DEFC2009E3A3F /* Lorem.swift */; };
 		5D8AF36E2253C259001CEE79 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */; };
 		5D8AF37022544508001CEE79 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF36F22544508001CEE79 /* UserData.swift */; };
 		5D8AF3722256A000001CEE79 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AF3712256A000001CEE79 /* AccountViewController.swift */; };
@@ -57,6 +69,18 @@
 		5D391E0C222F123100BCB29B /* FoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodData.swift; sourceTree = "<group>"; };
 		5D391E0E222F1AFF00BCB29B /* AddFoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodViewController.swift; sourceTree = "<group>"; };
 		5D391E10222F204E00BCB29B /* FoodDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailsViewController.swift; sourceTree = "<group>"; };
+		5D55F18D227DED4F009E3A3F /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		5D55F18E227DED4F009E3A3F /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		5D55F192227DED7E009E3A3F /* TableViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCells.swift; sourceTree = "<group>"; };
+		5D55F193227DED7E009E3A3F /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		5D55F196227DEE09009E3A3F /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		5D55F198227DEE34009E3A3F /* SampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		5D55F19A227DEEB7009E3A3F /* MockUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
+		5D55F19B227DEEB7009E3A3F /* MockMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockMessage.swift; sourceTree = "<group>"; };
+		5D55F19C227DEEB7009E3A3F /* MockSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockSocket.swift; sourceTree = "<group>"; };
+		5D55F1A3227DEF21009E3A3F /* BasicAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
+		5D55F1A5227DEF47009E3A3F /* Settings+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings+UserDefaults.swift"; sourceTree = "<group>"; };
+		5D55F1A7227DEFC2009E3A3F /* Lorem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Lorem.swift; sourceTree = "<group>"; };
 		5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		5D8AF36F22544508001CEE79 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		5D8AF3712256A000001CEE79 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +131,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5D334349227DE7FF00F37192 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5D55F18E227DED4F009E3A3F /* UIColor+Extensions.swift */,
+				5D55F18D227DED4F009E3A3F /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5D391DE0222F030F00BCB29B = {
 			isa = PBXGroup;
 			children = (
@@ -128,14 +161,34 @@
 		5D391DEB222F030F00BCB29B /* FoodForFolks */ = {
 			isa = PBXGroup;
 			children = (
+				5D55F1A2227DEF08009E3A3F /* AudioController */,
 				5D391DF2222F030F00BCB29B /* Main.storyboard */,
 				5D8F148C226F672800671D27 /* Launch Screen.storyboard */,
 				5DBE7804227D213B005FF422 /* ViewControllers */,
 				5DBE7807227D21CA005FF422 /* Controllers */,
+				5D334349227DE7FF00F37192 /* Extensions */,
 				5DBE7806227D21AC005FF422 /* Supporting Files */,
 				5DBE7805227D2184005FF422 /* Models */,
+				5D55F191227DED6A009E3A3F /* Views */,
 			);
 			path = FoodForFolks;
+			sourceTree = "<group>";
+		};
+		5D55F191227DED6A009E3A3F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D55F193227DED7E009E3A3F /* CustomCell.swift */,
+				5D55F192227DED7E009E3A3F /* TableViewCells.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5D55F1A2227DEF08009E3A3F /* AudioController */ = {
+			isa = PBXGroup;
+			children = (
+				5D55F1A3227DEF21009E3A3F /* BasicAudioController.swift */,
+			);
+			path = AudioController;
 			sourceTree = "<group>";
 		};
 		5DBE7804227D213B005FF422 /* ViewControllers */ = {
@@ -146,6 +199,7 @@
 				5D391E0E222F1AFF00BCB29B /* AddFoodViewController.swift */,
 				5D391DF0222F030F00BCB29B /* MapsViewController.swift */,
 				5D391E02222F060900BCB29B /* ClaimedFoodViewController.swift */,
+				5D55F196227DEE09009E3A3F /* ChatViewController.swift */,
 				5D19FA20227CFD3C004D16EB /* NewMessageViewController.swift */,
 				5DE4FEC92256DF7600BC954E /* PrivacyViewController.swift */,
 				5DE4FEC72256DEE900BC954E /* FAQViewController.swift */,
@@ -165,6 +219,9 @@
 		5DBE7805227D2184005FF422 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5D55F19B227DEEB7009E3A3F /* MockMessage.swift */,
+				5D55F19C227DEEB7009E3A3F /* MockSocket.swift */,
+				5D55F19A227DEEB7009E3A3F /* MockUser.swift */,
 				5D391E0C222F123100BCB29B /* FoodData.swift */,
 				5D8AF36F22544508001CEE79 /* UserData.swift */,
 				5D19FA22227CFF98004D16EB /* Message.swift */,
@@ -176,6 +233,9 @@
 		5DBE7806227D21AC005FF422 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5D55F1A5227DEF47009E3A3F /* Settings+UserDefaults.swift */,
+				5D55F1A7227DEFC2009E3A3F /* Lorem.swift */,
+				5D55F198227DEE34009E3A3F /* SampleData.swift */,
 				5DC71277224C12DE006F063C /* GoogleService-Info.plist */,
 				5D391DFA222F031100BCB29B /* Info.plist */,
 				5D391DF5222F031100BCB29B /* Assets.xcassets */,
@@ -340,29 +400,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D55F199227DEE34009E3A3F /* SampleData.swift in Sources */,
 				5DCC69912253BB4200E8DEA3 /* SignupViewController.swift in Sources */,
 				5D8AF3742256A0A7001CEE79 /* NotificationsViewController.swift in Sources */,
+				5D55F19E227DEEB7009E3A3F /* MockMessage.swift in Sources */,
 				5D8AF3722256A000001CEE79 /* AccountViewController.swift in Sources */,
 				8B694EBA224157AC008C81B8 /* LoginViewController.swift in Sources */,
+				5D55F18F227DED4F009E3A3F /* UIViewController+Extensions.swift in Sources */,
 				5D8AF37022544508001CEE79 /* UserData.swift in Sources */,
 				8B694EBC22415964008C81B8 /* Switcher.swift in Sources */,
 				CE70ADD22277B5AE00A66C13 /* CoordinateData.swift in Sources */,
 				5D19FA21227CFD3C004D16EB /* NewMessageViewController.swift in Sources */,
+				5D55F1A8227DEFC2009E3A3F /* Lorem.swift in Sources */,
+				5D55F19D227DEEB7009E3A3F /* MockUser.swift in Sources */,
 				5D19FA11227CF4C5004D16EB /* MessagesTableViewController.swift in Sources */,
+				5D55F197227DEE09009E3A3F /* ChatViewController.swift in Sources */,
 				5DE4FEC62256DE5C00BC954E /* LocationViewController.swift in Sources */,
+				5D55F190227DED4F009E3A3F /* UIColor+Extensions.swift in Sources */,
+				5D55F1A4227DEF22009E3A3F /* BasicAudioController.swift in Sources */,
 				5D391E0D222F123100BCB29B /* FoodData.swift in Sources */,
+				5D55F195227DED7E009E3A3F /* CustomCell.swift in Sources */,
 				5D391DF1222F030F00BCB29B /* MapsViewController.swift in Sources */,
 				5D391DED222F030F00BCB29B /* AppDelegate.swift in Sources */,
 				5D059BED222F598C00A0B676 /* SettingsTableViewController.swift in Sources */,
 				5D059BF1222F629500A0B676 /* HomeScreenViewController.swift in Sources */,
 				5D8AF36E2253C259001CEE79 /* ImagePickerManager.swift in Sources */,
 				5D391E03222F060900BCB29B /* ClaimedFoodViewController.swift in Sources */,
+				5D55F1A6227DEF47009E3A3F /* Settings+UserDefaults.swift in Sources */,
 				5D19FA23227CFF98004D16EB /* Message.swift in Sources */,
 				5DE4FECA2256DF7600BC954E /* PrivacyViewController.swift in Sources */,
 				5D391E0A222F0FD000BCB29B /* HomeTableViewCell.swift in Sources */,
 				5DE4FEC82256DEE900BC954E /* FAQViewController.swift in Sources */,
 				5D391E11222F204E00BCB29B /* FoodDetailsViewController.swift in Sources */,
 				5D391E0F222F1AFF00BCB29B /* AddFoodViewController.swift in Sources */,
+				5D55F19F227DEEB7009E3A3F /* MockSocket.swift in Sources */,
+				5D55F194227DED7E009E3A3F /* TableViewCells.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

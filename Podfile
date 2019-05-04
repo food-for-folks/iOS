@@ -7,7 +7,7 @@ target 'FoodForFolks' do
 
   # Pods for FoodForFolks
 
-  pod 'MessageKit'
+  pod 'MessageKit', '~> 3.0.0-swift5'
   pod 'Scaledrone'
   pod 'Firebase/Auth'
   pod 'Firebase/Core'
