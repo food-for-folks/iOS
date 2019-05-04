@@ -291,6 +291,7 @@
 				TargetAttributes = {
 					5D391DE8222F030F00BCB29B = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -573,7 +574,7 @@
 			baseConfigurationReference = 969F04832DCD28508755088D /* Pods-FoodForFolks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FoodForFolks/FoodForFolks.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "FoodForFolks/Supporting Files/FoodForFolks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D884PK6NS7;
 				INFOPLIST_FILE = "$(SRCROOT)/FoodForFolks/Supporting Files/Info.plist";
@@ -583,7 +584,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uncc.food.for.folks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -593,7 +594,7 @@
 			baseConfigurationReference = D5E71E78DB16B3A7930C9AF3 /* Pods-FoodForFolks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FoodForFolks/FoodForFolks.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "FoodForFolks/Supporting Files/FoodForFolks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D884PK6NS7;
 				INFOPLIST_FILE = "$(SRCROOT)/FoodForFolks/Supporting Files/Info.plist";
@@ -603,7 +604,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = edu.uncc.food.for.folks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

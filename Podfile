@@ -6,6 +6,7 @@ target 'FoodForFolks' do
   use_frameworks!
 
   # Pods for FoodForFolks
+  inhibit_all_warnings!
 
   pod 'MessageKit', '~> 3.0.0-swift5'
   pod 'Scaledrone'
