@@ -2,24 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/clrooker/Documents/Food-For-Folks/FoodForFolks/TableViewControllerMessages.swift">
-   </FileRef>
-   <FileRef
-      location = "group:charlotteUpdated.gpx">
-   </FileRef>
-   <FileRef
-      location = "group:charlotteUpdated.gpx">
-   </FileRef>
-   <FileRef
-      location = "group:charlotte.gpx">
-   </FileRef>
-   <FileRef
-      location = "group:charlotte.gpx">
-   </FileRef>
-   <FileRef
-      location = "group:default.gpx">
-   </FileRef>
-   <FileRef
       location = "group:FoodForFolks.xcodeproj">
    </FileRef>
    <FileRef

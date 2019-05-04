@@ -62,6 +62,9 @@
 		5D8AF3712256A000001CEE79 /* ViewControllerAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerAccount.swift; sourceTree = "<group>"; };
 		5D8AF3732256A0A7001CEE79 /* ViewControllerNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerNotifications.swift; sourceTree = "<group>"; };
 		5D8F148C226F672800671D27 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		5DBE7808227D224E005FF422 /* default.gpx */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.gpx; path = ../../default.gpx; sourceTree = "<group>"; };
+		5DBE7809227D2251005FF422 /* charlotte.gpx */ = {isa = PBXFileReference; lastKnownFileType = file; name = charlotte.gpx; path = ../../charlotte.gpx; sourceTree = "<group>"; };
+		5DBE780A227D227F005FF422 /* charlotteUpdated.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = charlotteUpdated.gpx; path = "/Users/clrooker/Documents/Food-For-Folks/FoodForFolks/Supporting Files/charlotteUpdated.gpx"; sourceTree = "<absolute>"; };
 		5DC71277224C12DE006F063C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5DCC69902253BB4200E8DEA3 /* ViewControllerSignup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSignup.swift; sourceTree = "<group>"; };
 		5DE4FEC52256DE5C00BC954E /* ViewControllerLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLocation.swift; sourceTree = "<group>"; };
@@ -125,38 +128,73 @@
 		5D391DEB222F030F00BCB29B /* FoodForFolks */ = {
 			isa = PBXGroup;
 			children = (
-				330A76802272029F007EEC10 /* FoodForFolks.entitlements */,
-				5DC71277224C12DE006F063C /* GoogleService-Info.plist */,
-				5D391DEC222F030F00BCB29B /* AppDelegate.swift */,
-				8B694EBB22415964008C81B8 /* Switcher.swift */,
-				5D391E0C222F123100BCB29B /* FoodData.swift */,
+				5D391DF2222F030F00BCB29B /* Main.storyboard */,
+				5D8F148C226F672800671D27 /* Launch Screen.storyboard */,
+				5DBE7804227D213B005FF422 /* ViewControllers */,
+				5DBE7807227D21CA005FF422 /* Controllers */,
+				5DBE7806227D21AC005FF422 /* Supporting Files */,
+				5DBE7805227D2184005FF422 /* Models */,
+			);
+			path = FoodForFolks;
+			sourceTree = "<group>";
+		};
+		5DBE7804227D213B005FF422 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				5D059BF0222F629500A0B676 /* ViewControllerHome.swift */,
-				5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */,
-				5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */,
 				5D391E10222F204E00BCB29B /* ViewControllerFoodDetails.swift */,
 				5D391E0E222F1AFF00BCB29B /* ViewControllerNewFood.swift */,
-				5D8AF36F22544508001CEE79 /* UserData.swift */,
 				5D391DF0222F030F00BCB29B /* ViewControllerMaps.swift */,
 				5D391E02222F060900BCB29B /* ViewControllerClaimed.swift */,
-				5D19FA10227CF4C5004D16EB /* TableViewControllerMessages.swift */,
-				5D391DF2222F030F00BCB29B /* Main.storyboard */,
 				5D19FA20227CFD3C004D16EB /* ViewControllerNewMessage.swift */,
-				5D19FA22227CFF98004D16EB /* Message.swift */,
 				5DE4FEC92256DF7600BC954E /* ViewControllerPrivacy.swift */,
 				5DE4FEC72256DEE900BC954E /* ViewControllerFAQ.swift */,
 				5DE4FEC52256DE5C00BC954E /* ViewControllerLocation.swift */,
 				5D8AF3732256A0A7001CEE79 /* ViewControllerNotifications.swift */,
 				5D8AF3712256A000001CEE79 /* ViewControllerAccount.swift */,
-				5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */,
 				5DCC69902253BB4200E8DEA3 /* ViewControllerSignup.swift */,
 				8B694EB9224157AC008C81B8 /* ViewControllerLogin.swift */,
 				5D059BEC222F598C00A0B676 /* TableViewControllerSettings.swift */,
-				5D391DF5222F031100BCB29B /* Assets.xcassets */,
-				5D8F148C226F672800671D27 /* Launch Screen.storyboard */,
-				5D391DFA222F031100BCB29B /* Info.plist */,
+				5D19FA10227CF4C5004D16EB /* TableViewControllerMessages.swift */,
+				5D391E08222F0FD000BCB29B /* TableViewCellHome.swift */,
+				5D391E09222F0FD000BCB29B /* TableViewCellHome.xib */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5DBE7805227D2184005FF422 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5D391E0C222F123100BCB29B /* FoodData.swift */,
+				5D8AF36F22544508001CEE79 /* UserData.swift */,
+				5D19FA22227CFF98004D16EB /* Message.swift */,
 				CE70ADD12277B5AE00A66C13 /* CoordinateData.swift */,
 			);
-			path = FoodForFolks;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5DBE7806227D21AC005FF422 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5DC71277224C12DE006F063C /* GoogleService-Info.plist */,
+				5D391DFA222F031100BCB29B /* Info.plist */,
+				5D391DF5222F031100BCB29B /* Assets.xcassets */,
+				5DBE7809227D2251005FF422 /* charlotte.gpx */,
+				5DBE780A227D227F005FF422 /* charlotteUpdated.gpx */,
+				5DBE7808227D224E005FF422 /* default.gpx */,
+				330A76802272029F007EEC10 /* FoodForFolks.entitlements */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5DBE7807227D21CA005FF422 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5D391DEC222F030F00BCB29B /* AppDelegate.swift */,
+				8B694EBB22415964008C81B8 /* Switcher.swift */,
+				5D8AF36D2253C259001CEE79 /* ImagePickerManager.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +208,7 @@
 				5D391DE5222F030F00BCB29B /* Sources */,
 				5D391DE6222F030F00BCB29B /* Frameworks */,
 				5D391DE7222F030F00BCB29B /* Resources */,
-				C6F52A751A57563A6074356B /* [CP] Embed Pods Frameworks */,
+				A82BC1F8ED4DA06C298A7AB9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,7 +295,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C6F52A751A57563A6074356B /* [CP] Embed Pods Frameworks */ = {
+		A82BC1F8ED4DA06C298A7AB9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -464,7 +502,7 @@
 				CODE_SIGN_ENTITLEMENTS = FoodForFolks/FoodForFolks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D884PK6NS7;
-				INFOPLIST_FILE = FoodForFolks/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FoodForFolks/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +522,7 @@
 				CODE_SIGN_ENTITLEMENTS = FoodForFolks/FoodForFolks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D884PK6NS7;
-				INFOPLIST_FILE = FoodForFolks/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FoodForFolks/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
