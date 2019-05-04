@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class FoodDetailsViewController: UIViewController {
     
@@ -33,8 +34,20 @@ class FoodDetailsViewController: UIViewController {
     
     @IBAction func deleteButtonClicked(_ sender: Any) {
         ref = Database.database().reference()
-        ref.child("food").child((food?.uid)!).removeValue()
-        self.navigationController?.popViewController(animated: true)
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let image = storageRef.child(food!.itemLocation!)
+        
+        image.delete { error in
+            if let error = error {
+                print(error)
+            } else {
+                HUD.flash(.success, delay: 1.0) { finished in
+                    self.ref.child("food").child((self.food?.uid)!).removeValue()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
     }
     
     

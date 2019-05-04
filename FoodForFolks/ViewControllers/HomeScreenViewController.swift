@@ -216,8 +216,6 @@ class HomeScreenViewController: UIViewController {
     }
 }
 
-
-
 extension HomeScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellNib = UINib(nibName: "TableViewCellHome", bundle: nil)
