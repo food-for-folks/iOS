@@ -28,7 +28,7 @@ class ViewControllerHome: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(tabBarController?.viewControllers)
+        //print(tabBarController?.viewControllers)
         searchBar.delegate = self
         let ref = Database.database().reference()
         ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in

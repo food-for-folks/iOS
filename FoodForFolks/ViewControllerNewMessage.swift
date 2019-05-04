@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageKit
+import InputBarAccessoryView
 
 class ViewControllerNewMessage: MessagesViewController {
     var owner:String?
@@ -87,9 +88,7 @@ extension ViewControllerNewMessage: MessagesDisplayDelegate {
 }
 
 extension ViewControllerNewMessage: MessageInputBarDelegate {
-    func messageInputBar(
-        _ inputBar: MessageInputBar,
-        didPressSendButtonWith text: String) {
+    func messageInputBar(_ inputBar: MessageInputBar,didPressSendButtonWith text: String) {
         
         let newMessage = Message(
             member: member,
