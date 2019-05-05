@@ -16,6 +16,8 @@ class MessagesTableViewController: UITableViewController {
     var uid = [String]()
     var pNum = [Int]()
     var selected:Int?
+    var company = [String]()
+    var foodName = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class MessagesTableViewController: UITableViewController {
                     self.owner.append((childSnap.childSnapshot(forPath: "foodOwn").value as? String)!)
                     self.pNum.append((childSnap.childSnapshot(forPath: "phone").value as? Int)!)
                     self.uid.append((childSnap.childSnapshot(forPath: "uid").value as? String)!)
+                    self.company.append((childSnap.childSnapshot(forPath: "company").value as? String)!)
+                    self.foodName.append((childSnap.childSnapshot(forPath: "foodTitle").value as? String)!)
                 }
                 self.tableView.reloadData()
             }
@@ -40,7 +44,9 @@ class MessagesTableViewController: UITableViewController {
         if (segue.identifier == "threadMessage") {
             let vc = segue.destination as! NewMessageViewController
             vc.owner = self.owner[selected!]
-            vc.uid = self.uid[selected!]
+            vc.UID = self.uid[selected!]
+            vc.comp = self.company[selected!]
+            vc.foodName = self.foodName[selected!]
         }
     }
     
@@ -58,7 +64,8 @@ class MessagesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "thread", for: indexPath)
         
-        cell.textLabel?.text = owner[indexPath.row]
+        cell.textLabel?.text = company[indexPath.row]
+        cell.detailTextLabel?.text = foodName[indexPath.row]
         
         return cell
     }

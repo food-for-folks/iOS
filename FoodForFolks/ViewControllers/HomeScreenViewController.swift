@@ -27,7 +27,7 @@ class HomeScreenViewController: UIViewController {
     var searching = false
     
     // Hold user data for the item owner
-    var user:UserData?
+    var user = UserData()
     
     // Connection to tableView
     @IBOutlet weak var tableView: UITableView!
@@ -57,6 +57,8 @@ class HomeScreenViewController: UIViewController {
             
             // get the donor type of the logged in user
             let userType = value?["donorRec"] as? Int ?? 0
+            
+            self.user.compName = value?["company"] as? String
             
             // hide or show the add button based on type of user
             if(userType == 0) {
@@ -138,6 +140,7 @@ class HomeScreenViewController: UIViewController {
                 var uid = ""
                 var postUID = ""
                 var pNum = 0
+                var company = ""
                 for child in snapshot.children {
                     let childSnap = child as! DataSnapshot
                     titleFood = (childSnap.childSnapshot(forPath: "title").value as? String)!
@@ -152,10 +155,12 @@ class HomeScreenViewController: UIViewController {
                     pNum = (childSnap.childSnapshot(forPath: "phone").value as? Int)!
                     uid = childSnap.key
                     postUID = (childSnap.childSnapshot(forPath: "uid").value as? String)!
+                    company = (childSnap.childSnapshot(forPath: "company").value as? String)!
                     
                     let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: postDate, itemImage: itemImage, idNumber: idNumber, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
                     newFood.postUID = postUID
                     newFood.pNum = pNum
+                    newFood.company = company
                     let storage = Storage.storage()
                     let storageRef = storage.reference()
                     let imageRef = storageRef.child("/images/\(titleFood)")
@@ -205,7 +210,7 @@ class HomeScreenViewController: UIViewController {
                 let value = snapshot.value as? NSDictionary
                 let phone = value?["phone"] as? Int64 ?? 0
                 let ref = Database.database().reference()
-                ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc!, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text!, "owner": vc.nameText.text!, "location": vc.foodLocation.text!, "expiration": vc.foodExpiration.date.description, "uid": vc.uid!, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser!.uid, "phone": phone])
+                ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc!, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text!, "owner": vc.nameText.text!, "location": vc.foodLocation.text!, "expiration": vc.foodExpiration.date.description, "uid": vc.uid!, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser!.uid, "phone": phone, "company": self.user.compName!])
                 self.done = false
                 self.tableView.reloadData()
             }) { (error) in

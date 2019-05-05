@@ -36,12 +36,17 @@ import MessageKit
 final class NewMessageViewController: ChatViewController {
     
     var owner:String?
-    var uid:String?
+    var UID:String?
+    var comp:String?
+    var foodName:String?
     
     override func configureMessageCollectionView() {
         super.configureMessageCollectionView()
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        self.title = "\(self.comp!) (\(self.foodName!))"
+        self.company = comp
+        self.foodNameC = foodName
     }
     
 }

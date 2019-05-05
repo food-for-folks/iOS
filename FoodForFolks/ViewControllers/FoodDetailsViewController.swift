@@ -53,13 +53,14 @@ class FoodDetailsViewController: UIViewController {
     
     @IBAction func claimButtonClicked(_ sender: Any) {
         ref = Database.database().reference()
-        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food!.postUID!, "foodQuanty": food!.itemQuanty!, "foodExp": food!.itemExpiration!, "foodDes": food!.itemDescription!, "foodOwn": food!.itemOwner!, "foodLocation": food!.itemLocation!, "phone": food!.pNum!])
+        ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food!.postUID!, "foodQuanty": food!.itemQuanty!, "foodExp": food!.itemExpiration!, "foodDes": food!.itemDescription!, "foodOwn": food!.itemOwner!, "foodLocation": food!.itemLocation!, "phone": food!.pNum!, "company": food!.company!])
         ref.child("food").child((food?.uid)!).removeValue()
         self.navigationController?.popViewController(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print(food?.company)
         foodImage.image = food?.data
         foodTitle.text = food?.itemTitle
         foodQuanty.text = food?.itemQuanty

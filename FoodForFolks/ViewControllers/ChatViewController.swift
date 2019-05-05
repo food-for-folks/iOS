@@ -25,6 +25,7 @@ SOFTWARE.
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import Firebase
 
 /// A base class for the example controllers
 class ChatViewController: MessagesViewController, MessagesDataSource {
@@ -36,7 +37,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
     /// The `BasicAudioController` controll the AVAudioPlayer state (play, pause, stop) and udpate audio cell UI accordingly.
     open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
 
-    var messageList: [MockMessage] = []
+    var messageList: [Message] = []
+    var member: Member!
+    var chatName:String?
+    var uidFirebase:String?
+    var company:String?
+    var foodNameC:String?
     
     let refreshControl = UIRefreshControl()
     
@@ -52,50 +58,96 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
         configureMessageCollectionView()
         configureMessageInputBar()
         loadFirstMessages()
-        title = "MessageKit"
+        
+        let ref = Database.database().reference()
+        ref.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let name = value?["name"] as? String ?? ""
+            let uid = value?["uid"] as? String ?? ""
+            self.chatName = name
+            self.uidFirebase = uid
+            self.member = Member(name: self.chatName!, color: .green)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+//        ref.child("users").child(Auth.auth().currentUser!.uid).child("food").observeSingleEvent(of: .value, with: { (snapshot) in
+//            let value = snapshot.value as? NSDictionary
+//            let name = value?["foodOwn"] as? String ?? ""
+//            let uid = value?["uid"] as? String ?? ""
+//            let company = value?["company"] as? String ?? ""
+//            self.chatName = name
+//            self.uidFirebase = uid
+//            self.company = company
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MockSocket.shared.connect(with: [SampleData.shared.nathan, SampleData.shared.wu])
-            .onNewMessage { [weak self] message in
-                self?.insertMessage(message)
-        }
+//        MockSocket.shared.connect(with: [SampleData.shared.nathan, SampleData.shared.wu])
+//            .onNewMessage { [weak self] message in
+//                self?.insertMessage(message)
+//        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        MockSocket.shared.disconnect()
+        //MockSocket.shared.disconnect()
         audioController.stopAnyOngoingPlaying()
     }
     
     func loadFirstMessages() {
         DispatchQueue.global(qos: .userInitiated).async {
-            let count = UserDefaults.standard.mockMessagesCount()
-            SampleData.shared.getMessages(count: count) { messages in
-                DispatchQueue.main.async {
-                    self.messageList = messages
-                    self.messagesCollectionView.reloadData()
-                    self.messagesCollectionView.scrollToBottom()
-                }
-            }
+            
+            let ref = Database.database().reference()
+            ref.child("users").child(Auth.auth().currentUser!.uid).child("chats").child("\(self.company!) \(self.foodNameC!)").observe(.value, with: { (snapshot) in
+                    if(snapshot.value != nil) {
+                        var content = ""
+                        var created = ""
+                        var senderID = ""
+                        var senderName = ""
+                        self.messageList.removeAll()
+                        for child in snapshot.children {
+                            let childSnap = child as! DataSnapshot
+                            content = (childSnap.childSnapshot(forPath: "content").value as? String)!
+                            created = (childSnap.childSnapshot(forPath: "created").value as? String)!
+                            senderID = (childSnap.childSnapshot(forPath: "senderID").value as? String)!
+                            senderName = (childSnap.childSnapshot(forPath: "senderName").value as? String)!
+                            self.member = Member(name: senderName, color: .blue)
+                            let message = Message(member: self.member, text: content, messageId: senderID)
+                            self.messageList.append(message)
+                        }
+                        self.messagesCollectionView.reloadData()
+                        self.messagesCollectionView.scrollToBottom()
+                    }
+            })
+//            let count = UserDefaults.standard.mockMessagesCount()
+//            SampleData.shared.getMessages(count: count) { messages in
+//                DispatchQueue.main.async {
+//                    self.messageList = messages
+//                    self.messagesCollectionView.reloadData()
+//                    self.messagesCollectionView.scrollToBottom()
+//                }
+//            }
         }
     }
     
-    @objc
-    func loadMoreMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
-            SampleData.shared.getMessages(count: 20) { messages in
-                DispatchQueue.main.async {
-                    self.messageList.insert(contentsOf: messages, at: 0)
-                    self.messagesCollectionView.reloadDataAndKeepOffset()
-                    self.refreshControl.endRefreshing()
-                }
-            }
-        }
-    }
-    
+//    @objc
+//    func loadMoreMessages() {
+//        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + 1) {
+//            SampleData.shared.getMessages(count: 20) { messages in
+//                DispatchQueue.main.async {
+//                    self.messageList.insert(contentsOf: messages, at: 0)
+//                    self.messagesCollectionView.reloadDataAndKeepOffset()
+//                    self.refreshControl.endRefreshing()
+//                }
+//            }
+//        }
+//    }
+//
     func configureMessageCollectionView() {
         
         messagesCollectionView.messagesDataSource = self
@@ -105,7 +157,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
         maintainPositionOnKeyboardFrameChanged = true // default false
         
         messagesCollectionView.addSubview(refreshControl)
-        refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
+        //refreshControl.addTarget(self, action: #selector(loadMoreMessages), for: .valueChanged)
     }
     
     func configureMessageInputBar() {
@@ -120,7 +172,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
     
     // MARK: - Helpers
     
-    func insertMessage(_ message: MockMessage) {
+    func insertMessage(_ message: Message) {
         messageList.append(message)
         // Reload last section to update header/footer labels and insert a new one
         messagesCollectionView.performBatchUpdates({
@@ -147,7 +199,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
     // MARK: - MessagesDataSource
     
     func currentSender() -> SenderType {
-        return SampleData.shared.currentSender
+        return Sender(id: member.name, displayName: member.name)
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -329,14 +381,18 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
 
     private func insertMessages(_ data: [Any]) {
         for component in data {
-            let user = SampleData.shared.currentSender
+            //let user = Sender(id: member.name, displayName: member.name)
+            let date = Date()
+            self.member = Member(name: self.chatName!, color: .green)
             if let str = component as? String {
-                let message = MockMessage(text: str, user: user, messageId: UUID().uuidString, date: Date())
-                insertMessage(message)
-            } else if let img = component as? UIImage {
-                let message = MockMessage(image: img, user: user, messageId: UUID().uuidString, date: Date())
-                insertMessage(message)
-            }
+                let ref = Database.database().reference()
+                ref.child("users").child(Auth.auth().currentUser!.uid).child("chats").child("\(self.company!) \(self.foodNameC!)").childByAutoId().updateChildValues(["content": str, "created": date.description, "senderID": Auth.auth().currentUser!.uid, "senderName": member.name])
+                //let message = Message(member: member, text: str, messageId: UUID().uuidString)
+                //insertMessage(message)
+            } //else if let img = component as? UIImage {
+                //let message = MockMessage(image: img, user: user, messageId: UUID().uuidString, date: Date())
+                //insertMessage(message)
+            //}
         }
     }
 }
