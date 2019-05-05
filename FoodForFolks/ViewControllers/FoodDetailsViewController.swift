@@ -54,6 +54,8 @@ class FoodDetailsViewController: UIViewController {
     @IBAction func claimButtonClicked(_ sender: Any) {
         ref = Database.database().reference()
         ref.child("users").child((Auth.auth().currentUser?.uid)!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food!.postUID!, "foodQuanty": food!.itemQuanty!, "foodExp": food!.itemExpiration!, "foodDes": food!.itemDescription!, "foodOwn": food!.itemOwner!, "foodLocation": food!.itemLocation!, "phone": food!.pNum!, "company": food!.company!])
+        
+        ref.child("users").child(food!.postUID!).child("food").childByAutoId().updateChildValues(["foodTitle": foodTitle.text!, "uid": food!.postUID!, "foodQuanty": food!.itemQuanty!, "foodExp": food!.itemExpiration!, "foodDes": food!.itemDescription!, "foodOwn": food!.itemOwner!, "foodLocation": food!.itemLocation!, "phone": food!.pNum!, "company": food!.company!])
         ref.child("food").child((food?.uid)!).removeValue()
         self.navigationController?.popViewController(animated: true)
     }

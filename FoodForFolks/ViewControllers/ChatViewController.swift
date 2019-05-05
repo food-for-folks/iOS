@@ -103,7 +103,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
         DispatchQueue.global(qos: .userInitiated).async {
             
             let ref = Database.database().reference()
-            ref.child("users").child(Auth.auth().currentUser!.uid).child("chats").child("\(self.company!) \(self.foodNameC!)").observe(.value, with: { (snapshot) in
+            ref.child("chats").child("\(self.company!) \(self.foodNameC!)").observe(.value, with: { (snapshot) in
                     if(snapshot.value != nil) {
                         var content = ""
                         var created = ""
@@ -386,7 +386,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
             self.member = Member(name: self.chatName!, color: .green)
             if let str = component as? String {
                 let ref = Database.database().reference()
-                ref.child("users").child(Auth.auth().currentUser!.uid).child("chats").child("\(self.company!) \(self.foodNameC!)").childByAutoId().updateChildValues(["content": str, "created": date.description, "senderID": Auth.auth().currentUser!.uid, "senderName": member.name])
+                ref.child("chats").child("\(self.company!) \(self.foodNameC!)").childByAutoId().updateChildValues(["content": str, "created": date.description, "senderID": Auth.auth().currentUser!.uid, "senderName": member.name])
                 //let message = Message(member: member, text: str, messageId: UUID().uuidString)
                 //insertMessage(message)
             } //else if let img = component as? UIImage {
