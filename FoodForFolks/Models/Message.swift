@@ -19,6 +19,7 @@ struct Message {
     let member: Member
     let text: String
     let messageId: String
+    let sendDate2:String
 }
 
 extension Message: MessageType {
@@ -27,7 +28,10 @@ extension Message: MessageType {
     }
     
     var sentDate: Date {
-        return Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss ZZZZ"
+        let new = dateFormatter.date(from: sendDate2)
+        return new ?? Date()
     }
     
     var kind: MessageKind {

@@ -49,6 +49,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
+        formatter.timeStyle = .short
         return formatter
     }()
     
@@ -70,18 +71,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-//        ref.child("users").child(Auth.auth().currentUser!.uid).child("food").observeSingleEvent(of: .value, with: { (snapshot) in
-//            let value = snapshot.value as? NSDictionary
-//            let name = value?["foodOwn"] as? String ?? ""
-//            let uid = value?["uid"] as? String ?? ""
-//            let company = value?["company"] as? String ?? ""
-//            self.chatName = name
-//            self.uidFirebase = uid
-//            self.company = company
-//        }) { (error) in
-//            print(error.localizedDescription)
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -117,7 +106,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource {
                             senderID = (childSnap.childSnapshot(forPath: "senderID").value as? String)!
                             senderName = (childSnap.childSnapshot(forPath: "senderName").value as? String)!
                             self.member = Member(name: senderName, color: .blue)
-                            let message = Message(member: self.member, text: content, messageId: senderID)
+                            let message = Message(member: self.member, text: content, messageId: senderID, sendDate2: created)
                             self.messageList.append(message)
                         }
                         self.messagesCollectionView.reloadData()
