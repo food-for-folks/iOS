@@ -67,7 +67,7 @@
                     <navigationItem key="navigationItem" title="Food For Folks" id="7Hw-PZ-W78">
                         <barButtonItem key="leftBarButtonItem" title="Sort" id="H99-KQ-XHb">
                             <connections>
-                                <action selector="filterButtonClicked:" destination="9pv-A4-QxB" id="co1-7d-nW3"/>
+                                <action selector="sortButtonClicked:" destination="9pv-A4-QxB" id="co1-7d-nW3"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lpr-zu-xQf">

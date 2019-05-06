@@ -67,11 +67,12 @@ class HomeScreenViewController: UIViewController {
                 self.addButton.isEnabled = true
             }
         }) { (error) in
+            //catch any erros and print to console
             print(error.localizedDescription)
         }
-        
+        // Show loading screen
         HUD.show(.progress)
-        if(!self.done) {
+        if(!self.done) { // Check if data has been loaded or not
             self.getData()
         }
         // Now some long running task starts...
@@ -82,31 +83,39 @@ class HomeScreenViewController: UIViewController {
     }
     
     
-    @IBAction func filterButtonClicked(_ sender: Any) {
+    @IBAction func sortButtonClicked(_ sender: Any) {
+        // present an action sheet
         let action: UIAlertController = UIAlertController(title: "Sort By", message: "Pick option to sort the food by", preferredStyle: .actionSheet)
+        
+        // add buttons
         let cancelActionButton = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             print("Cancel")
         }
+    
         let nameActionButton = UIAlertAction(title: "Name (A-Z)", style: .default) { _ in
             print("name")
             let nameArray = self.foodDatabase.sorted {
-                //$0.itemTitle! < $1.itemTitle!
+                // sort data
                 $0.itemTitle!.localizedStandardCompare($1.itemTitle!) == .orderedAscending
             }
             self.foodDatabase = nameArray
             self.tableView.reloadData()
         }
+        
         let ageActionButton = UIAlertAction(title: "Expiration", style: .default) { _ in
             print("expiration")
             let nameArray = self.foodDatabase.sorted {
+                // sort data
                 $0.itemExpiration! < $1.itemExpiration!
             }
             self.foodDatabase = nameArray
             self.tableView.reloadData()
         }
+        
         let stateActionButton = UIAlertAction(title: "Quantity (Small to Large)", style: .default) { _ in
             print("quantity")
             let nameArray = self.foodDatabase.sorted {
+                // sort data
                 $0.itemQuanty!.localizedStandardCompare($1.itemQuanty!) == .orderedAscending
             }
             self.foodDatabase = nameArray
@@ -119,15 +128,25 @@ class HomeScreenViewController: UIViewController {
         self.present(action, animated: true, completion: nil)
     }
     
-    
+    // Helper function
     func getData() {
+        // create database reference
         let ref = Database.database().reference()
+        
+        // connect tableView
         tableView.delegate = self
         
+        // setup listener to correct location to collect data for new food being posted
         ref.child("food").observe(.value) { (snapshot) in
+            
+            // clean the database of duplicate items
             self.foodDatabase.removeAll()
             self.tableView.reloadData()
+            
+            //check if database is empty
             if(snapshot.value != nil) {
+                
+                // data variables with default data before database loops.
                 var titleFood = ""
                 var quantity = ""
                 var postDate = ""
@@ -141,6 +160,8 @@ class HomeScreenViewController: UIViewController {
                 var postUID = ""
                 var pNum = 0
                 var company = ""
+                
+                //loop over the entire database
                 for child in snapshot.children {
                     let childSnap = child as! DataSnapshot
                     titleFood = (childSnap.childSnapshot(forPath: "title").value as? String)!
@@ -153,17 +174,22 @@ class HomeScreenViewController: UIViewController {
                     location = (childSnap.childSnapshot(forPath: "location").value as? String)!
                     exp = (childSnap.childSnapshot(forPath: "expiration").value as? String)!
                     pNum = (childSnap.childSnapshot(forPath: "phone").value as? Int)!
-                    uid = childSnap.key
+                    uid = childSnap.key // unique location of food item
                     postUID = (childSnap.childSnapshot(forPath: "uid").value as? String)!
                     company = (childSnap.childSnapshot(forPath: "company").value as? String)!
                     
+                    // create food item
                     let newFood = Food(itemTitle: titleFood, itemQuanty: quantity, itemPostDate: postDate, itemImage: itemImage, idNumber: idNumber, itemDescription: itemDes, itemOwner: owner, itemLocation: location, itemExpiration: exp, uid: uid)
                     newFood.postUID = postUID
                     newFood.pNum = pNum
                     newFood.company = company
+                    
+                    // connect to Firebase Storage and set location
                     let storage = Storage.storage()
                     let storageRef = storage.reference()
                     let imageRef = storageRef.child("/images/\(titleFood)")
+                    
+                    // download image from storage
                     imageRef.getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
                         if error != nil {
                             print(error!)
@@ -173,6 +199,8 @@ class HomeScreenViewController: UIViewController {
                             self.foodDatabase.append(newFood)
                             self.done = true
                             self.tableView.reloadData()
+                            
+                            // pass database to maps controller
                             let vc = self.tabBarController!.viewControllers![1] as? MapsViewController
                             vc?.foodDatabase = self.foodDatabase
                         }
@@ -182,6 +210,7 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    // pass data to details view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "foodDetails") {
             let foodDetails = segue.destination as! FoodDetailsViewController
@@ -189,6 +218,7 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    // if returning from delete action on details view
     @IBAction func unwindFromDetails(unwindSegue: UIStoryboardSegue) {
         let ref = Database.database().reference()
         ref.child("food").child(foodDatabase[foodNumber!].uid!).removeValue()
@@ -196,22 +226,31 @@ class HomeScreenViewController: UIViewController {
         tableView.reloadData()
     }
     
+    // Add new item to database
     @IBAction func unwindFromAdd(unwindSegue: UIStoryboardSegue) {
+        
+        // get data from add view
         let vc = unwindSegue.source as! AddFoodViewController
+        
+        // get current date
         let date = Date()
+        
+        // setup loading screen
         HUD.show(.progress)
         
         // Now some long running task starts...
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             // ...and once it finishes we flash the HUD for a second.
             HUD.flash(.success, delay: 1.0)
+            
+            // setup ref and add data to firebase database
             let ref2 = Database.database().reference()
             ref2.child("users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 let phone = value?["phone"] as? Int64 ?? 0
                 let ref = Database.database().reference()
                 ref.child("food").childByAutoId().updateChildValues(["title": vc.foodTitle.text!, "postDate": (String(Calendar.current.component(.month, from: date)) + " / " + String(Calendar.current.component(.day, from: date))), "image": vc.imageLoc!, "idNumber": self.foodDatabase.count + 1, "description": vc.foodDescription.text!, "owner": vc.nameText.text!, "location": vc.foodLocation.text!, "expiration": vc.foodExpiration.date.description, "uid": vc.uid!, "quantity": vc.foodQuanty.text!, "postUID": Auth.auth().currentUser!.uid, "phone": phone, "company": self.user.compName!])
-                self.done = false
+                self.done = false // if the view needs to reload this sets the flag but the listener should not need it
                 self.tableView.reloadData()
             }) { (error) in
                 print(error.localizedDescription)
@@ -220,7 +259,7 @@ class HomeScreenViewController: UIViewController {
         
     }
 }
-
+// setup cell and correctly show search or regular views
 extension HomeScreenViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellNib = UINib(nibName: "TableViewCellHome", bundle: nil)
@@ -232,6 +271,7 @@ extension HomeScreenViewController: UITableViewDataSource {
         }
     }
     
+    //
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeTableViewCell
         if searching {
