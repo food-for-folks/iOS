@@ -57,5 +57,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * We have used a lot of code from the MessageKit team. They made this app way eaiser to create. Love them!
-* Inspiration
-* etc
+* This project has it roots in a senior design project from UNC Charlotte during the spring 2019 school semester. 
+* It would not be possible without Professor Mohamed Shehab and his ITCS 4180 class or Professor Bojan Cukic in ITCS 4155. Thank you both for the great classs.
+* We would also like to thank the dean of UNCC CCI department Fatma Mili and others for the support. If they had not showed such intrest in the project we would not have continued it.
