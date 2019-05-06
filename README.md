@@ -1,6 +1,6 @@
 # Food For Folks
 
-Connecting people and organizations with food to donate to people and places that need food. This is a completely intergrated solution that can store food items and enable it users to communicate in app easly without the need to rely on outside apps. 
+Connecting people and organizations with food to donate to people and places that need food. This is a completely intergrated solution that can store food items and enable it users to communicate in app easly without the need to rely on 3rd party apps. 
 
 ## Getting Started
 
