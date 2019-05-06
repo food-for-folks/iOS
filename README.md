@@ -52,7 +52,7 @@ See also the list of [contributors](https://github.com/tjobarow/Food-For-Folks/g
 
 ## License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE.md](https://github.com/food-for-folks/iOS/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
