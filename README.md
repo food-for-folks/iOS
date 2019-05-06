@@ -42,7 +42,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Cory Rooker** - *Lead Programmer* - [AlternateCory](https://github.com/AlternateCory)
+* **Cory Rooker** - *Lead Programmer iOS* - [AlternateCory](https://github.com/AlternateCory)
 * **Thomas Obarowski** - *Initial work* - [tjobarow](https://github.com/tjobarow)
 * **Yuliya Pinchuk** - *Initial work* - [ypinchuk](https://github.com/ypinchuk) 
 * **Weston Harmon** - *Initial work* - [wharmon3](https://github.com/wharmon3)
