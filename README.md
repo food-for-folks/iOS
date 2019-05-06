@@ -44,8 +44,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 * **Cory Rooker** - *Lead Programmer* - [AlternateCory](https://github.com/AlternateCory)
 * **Thomas Obarowski** - *Initial work* - [tjobarow](https://github.com/tjobarow)
-* **Yuliya Pinchuk** - *Initial work* - [ypinchuk](https://github.com/ypinchuk)
-* **Weston Harmon** - *Initial work* - 
+* **Yuliya Pinchuk** - *Initial work* - [ypinchuk](https://github.com/ypinchuk) 
+* **Weston Harmon** - *Initial work* - [wharmon3](https://github.com/wharmon3)
 * **Zeenat Sabakada** - *Initial work* - 
 
 See also the list of [contributors](https://github.com/tjobarow/Food-For-Folks/graphs/contributors) who participated in this project.
